@@ -1,1 +1,431 @@
-Hello World
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Portfolio</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            /* Apply Source Code Pro as the default font */
+            body {
+                font-family: "Source Code Pro", monospace;
+                background-color: #f3f4f6; /* Light gray background, similar to GitHub */
+                color: #1f2937; /* Dark gray text */
+            }
+            /* Custom styles for active tab and hover effects */
+            .nav-link {
+                @apply px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-200 rounded-md transition-colors duration-300;
+            }
+            .nav-link.active {
+                @apply text-blue-700 font-semibold bg-blue-100;
+            }
+            .content-section {
+                @apply p-6 bg-white rounded-xl shadow-lg min-h-[60vh]; /* Added min-h for consistent height */
+            }
+            /* Fun formatting: subtle gradient for header/footer */
+            header {
+                background: linear-gradient(
+                    to right,
+                    #60a5fa,
+                    #3b82f6
+                ); /* Blue gradient */
+            }
+            footer {
+                background: linear-gradient(
+                    to right,
+                    #3b82f6,
+                    #60a5fa
+                ); /* Blue gradient */
+            }
+            /* Card styling for portfolio/blog items */
+            .card {
+                @apply bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300;
+            }
+            /* Button styling */
+            .btn {
+                @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105;
+            }
+            /* Responsive design for navigation */
+            @media (max-width: 768px) {
+                .nav-links {
+                    @apply flex-col items-center;
+                }
+                .nav-link {
+                    @apply mb-2 w-full text-center;
+                }
+                header nav {
+                    @apply flex-col;
+                }
+            }
+        </style>
+    </head>
+    <body class="flex flex-col min-h-screen">
+        <header class="text-white shadow-md sticky top-0 z-50">
+            <div
+                class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center"
+            >
+                <h1 class="text-3xl font-bold mb-4 md:mb-0">My Name</h1>
+                <nav class="nav-links flex space-x-0 md:space-x-2">
+                    <a
+                        href="#about"
+                        class="nav-link active"
+                        onclick="showSection('about', this)"
+                        >About</a
+                    >
+                    <a
+                        href="#portfolio"
+                        class="nav-link"
+                        onclick="showSection('portfolio', this)"
+                        >Portfolio</a
+                    >
+                    <a
+                        href="#blog"
+                        class="nav-link"
+                        onclick="showSection('blog', this)"
+                        >Blog</a
+                    >
+                    <a
+                        href="#publications"
+                        class="nav-link"
+                        onclick="showSection('publications', this)"
+                        >Publications</a
+                    >
+                    <a
+                        href="#contact"
+                        class="nav-link"
+                        onclick="showSection('contact', this)"
+                        >Contact</a
+                    >
+                </nav>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-6 py-8 flex-grow">
+            <section id="about" class="content-section">
+                <h2 class="text-3xl font-semibold mb-6 text-blue-700">
+                    About Me
+                </h2>
+                <div class="space-y-4 text-lg">
+                    <p>
+                        Welcome to my personal space on the web! I'm a
+                        passionate [Your Profession/Field] with a keen interest
+                        in [Your Interests]. This is where I'll share a bit
+                        about myself, my work, and things I'm learning.
+                    </p>
+                    <p>
+                        [This is where your short bio will go. You can talk
+                        about your journey, your skills, what drives you, or
+                        anything else you'd like to share. For example: "I
+                        started my journey in X, driven by a curiosity for Y,
+                        and have since honed my skills in Z. I believe in
+                        continuous learning and applying technology to solve
+                        real-world problems." ]
+                    </p>
+                    <p>
+                        When I'm not working on [Your Work/Projects], you can
+                        find me [Your Hobbies/Interests].
+                    </p>
+                </div>
+            </section>
+
+            <section id="portfolio" class="content-section hidden">
+                <h2 class="text-3xl font-semibold mb-6 text-blue-700">
+                    Portfolio
+                </h2>
+                <p class="text-lg mb-6">
+                    Here are some of the projects I've worked on. Click on them
+                    to learn more!
+                </p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card">
+                        <h3 class="text-2xl font-semibold mb-3 text-blue-600">
+                            Project Alpha
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            A brief description of Project Alpha, highlighting
+                            its key features and technologies used. Lorem ipsum
+                            dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-semibold mb-3 text-blue-600">
+                            Project Beta
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            An overview of Project Beta, focusing on the problem
+                            it solves and the impact it has. Sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-semibold mb-3 text-blue-600">
+                            Project Gamma
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            Details about Project Gamma, including its
+                            development process and any notable achievements. Ut
+                            enim ad minim veniam, quis nostrud exercitation
+                            ullamco laboris.
+                        </p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="blog" class="content-section hidden">
+                <h2 class="text-3xl font-semibold mb-6 text-blue-700">Blog</h2>
+                <p class="text-lg mb-6">
+                    Thoughts, articles, and updates. Stay tuned for more!
+                </p>
+                <div class="space-y-8">
+                    <div class="card">
+                        <h3 class="text-2xl font-semibold mb-2 text-blue-600">
+                            My First Blog Post
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-3">
+                            Published on: May 18, 2025
+                        </p>
+                        <p class="text-gray-600">
+                            This is a placeholder for my first blog post. I'll
+                            be writing about topics related to [Your
+                            Field/Interests]. Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit...
+                        </p>
+                        <a
+                            href="#"
+                            class="text-blue-600 hover:underline mt-4 inline-block"
+                            >Read more &rarr;</a
+                        >
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-semibold mb-2 text-blue-600">
+                            Exploring New Technologies
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-3">
+                            Published on: May 10, 2025
+                        </p>
+                        <p class="text-gray-600">
+                            A quick dive into some exciting new technologies
+                            I've been exploring recently. Sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua...
+                        </p>
+                        <a
+                            href="#"
+                            class="text-blue-600 hover:underline mt-4 inline-block"
+                            >Read more &rarr;</a
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <section id="publications" class="content-section hidden">
+                <h2 class="text-3xl font-semibold mb-6 text-blue-700">
+                    Publications
+                </h2>
+                <p class="text-lg mb-6">
+                    A list of my published works, research papers, and articles.
+                </p>
+                <ul class="space-y-6 list-disc list-inside">
+                    <li class="card">
+                        <h3 class="text-xl font-semibold text-blue-600">
+                            Publication Title 1 (Year)
+                        </h3>
+                        <p class="text-gray-600">
+                            Author(s). "Full Title of the Publication."
+                            <em>Journal/Conference Name</em>, Vol. X, No. Y, pp.
+                            ZZZ-ZZZ.
+                            <a href="#" class="text-blue-500 hover:underline"
+                                >[Link to Publication/DOI]</a
+                            >
+                        </p>
+                    </li>
+                    <li class="card">
+                        <h3 class="text-xl font-semibold text-blue-600">
+                            Research Paper on XYZ (Year)
+                        </h3>
+                        <p class="text-gray-600">
+                            Your Name, Co-author Name. "Exploring the Depths of
+                            XYZ."
+                            <em
+                                >Proceedings of the International Conference on
+                                ABC</em
+                            >, pp. 123-130.
+                            <a href="#" class="text-blue-500 hover:underline"
+                                >[Link to Paper]</a
+                            >
+                        </p>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="contact" class="content-section hidden">
+                <h2 class="text-3xl font-semibold mb-6 text-blue-700">
+                    Get In Touch
+                </h2>
+                <p class="text-lg mb-6">
+                    I'd love to hear from you! Whether you have a question, a
+                    project proposal, or just want to say hi, feel free to reach
+                    out.
+                </p>
+                <form action="#" method="POST" class="space-y-6">
+                    <div>
+                        <label
+                            for="name"
+                            class="block text-sm font-medium text-gray-700"
+                            >Full Name</label
+                        >
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            autocomplete="name"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label
+                            for="email"
+                            class="block text-sm font-medium text-gray-700"
+                            >Email Address</label
+                        >
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            autocomplete="email"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label
+                            for="message"
+                            class="block text-sm font-medium text-gray-700"
+                            >Message</label
+                        >
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="4"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        ></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn w-full md:w-auto">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-8 text-center">
+                    <p class="text-gray-600">You can also find me on:</p>
+                    <div class="flex justify-center space-x-6 mt-4">
+                        <a
+                            href="#"
+                            class="text-blue-600 hover:text-blue-800 transition-colors"
+                        >
+                            <svg
+                                class="w-8 h-8"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.074 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                            <span class="sr-only">GitHub</span>
+                        </a>
+                        <a
+                            href="#"
+                            class="text-blue-600 hover:text-blue-800 transition-colors"
+                        >
+                            <svg
+                                class="w-8 h-8"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M22.23 5.636a1.007 1.007 0 00-.79-.376h-1.08c-.28 0-.55.06-.79.18l-1.8 1.02c-.43.24-.98.24-1.41 0l-1.8-1.02a1.003 1.003 0 00-.79-.18h-1.08a1.007 1.007 0 00-.79.376L10 7.616v.95c0 .42.24.8.61.95l1.8 1.02c.43.24.98.24 1.41 0l1.8-1.02c.37-.15.61-.53.61-.95v-.95l1.8-1.98zM12 13.364c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm6.67 2.08a1 1 0 00-1.21.29l-1.63 2.17c-.19.25-.49.4-.8.4H8.97c-.31 0-.61-.15-.8-.4l-1.63-2.17a1 1 0 00-1.21-.29A7.963 7.963 0 004 19.954V20a1 1 0 001 1h14a1 1 0 001-1v-.046a7.963 7.963 0 00-2.33-4.51zM2 12c0 .83.12 1.63.34 2.39.06.2.15.39.26.57l.02.03.02.03A9.95 9.95 0 0012 22a9.95 9.95 0 009.36-7H22c-.06-.2-.15-.39-.26-.57l-.02-.03-.02-.03A9.95 9.95 0 0012 2a9.95 9.95 0 00-9.36 7H2c.06.2.15.39.26.57l.02.03.02.03A9.95 9.95 0 0012 22a9.95 9.95 0 009.36-7H22c-.06-.2-.15-.39-.26-.57l-.02-.03-.02-.03A9.95 9.95 0 0012 2zM2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12z"
+                                />
+                            </svg>
+                            <span class="sr-only">LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-white py-6 text-center">
+            <p>
+                &copy; <span id="currentYear"></span> My Name. All rights
+                reserved.
+            </p>
+            <p>
+                Powered by
+                <a
+                    href="https://tailwindcss.com/"
+                    class="hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Tailwind CSS</a
+                >
+                & GitHub Pages
+            </p>
+        </footer>
+
+        <script>
+            // JavaScript to handle section visibility and active tab highlighting
+            function showSection(sectionId, navElement) {
+                // Hide all content sections
+                document
+                    .querySelectorAll(".content-section")
+                    .forEach((section) => {
+                        section.classList.add("hidden");
+                    });
+                // Show the target section
+                document.getElementById(sectionId).classList.remove("hidden");
+
+                // Update active class for navigation links
+                document.querySelectorAll(".nav-link").forEach((link) => {
+                    link.classList.remove("active");
+                    link.classList.remove(
+                        "bg-blue-100",
+                        "font-semibold",
+                        "text-blue-700",
+                    ); // explicit removal
+                });
+                navElement.classList.add("active");
+                navElement.classList.add(
+                    "bg-blue-100",
+                    "font-semibold",
+                    "text-blue-700",
+                ); // explicit addition
+
+                // Scroll to the top of the content area for better UX on tab change
+                document
+                    .querySelector("main")
+                    .scrollIntoView({ behavior: "smooth" });
+            }
+
+            // Set current year in footer
+            document.getElementById("currentYear").textContent =
+                new Date().getFullYear();
+
+            // Optional: Set the 'About' section as active by default on page load
+            // (already handled by class 'active' in HTML, but this is an alternative)
+            // window.onload = () => {
+            //    document.querySelector('.nav-link[href="#about"]').click();
+            // };
+        </script>
+    </body>
+</html>
