@@ -15,27 +15,16 @@
             /* Apply Source Code Pro as the default font */
             body {
                 font-family: "Source Code Pro", monospace;
-                background-color: #fef2f2; /* Tailwind red-50 (Very light pastel red background) */
-                color: #374151; /* Darker gray text for contrast */
+                background-color: #fef2f2; /* Tailwind red-50 */
+                color: #374151; /* Tailwind gray-700 */
             }
-            /* Custom styles for active tab and hover effects */
-            .nav-link {
-                @apply px-5 py-2 text-gray-700 hover:text-red-500 hover:bg-red-100 rounded-md transition-colors duration-300; /* hover:text-red-500, hover:bg-red-100 */
-            }
-            .nav-link.active {
-                @apply text-red-500 font-semibold bg-red-200; /* text-red-500, bg-red-200 */
-            }
-            .content-section {
-                @apply p-6 bg-white rounded-xl shadow-lg min-h-[60vh];
-            }
-            /* Fun formatting: subtle gradient for header/footer with lighter pastel red */
+            /* Gradients for header/footer - standard CSS */
             header {
                 background: linear-gradient(
                     to right,
                     #fee2e2,
                     #fecaca
                 ); /* red-100 to red-200 */
-                color: #4b5563; /* gray-600 for better contrast on lighter red gradient */
             }
             footer {
                 background: linear-gradient(
@@ -43,93 +32,71 @@
                     #fecaca,
                     #fee2e2
                 ); /* red-200 to red-100 */
-                color: #4b5563; /* gray-600 for better contrast */
             }
-            /* Card styling for portfolio/blog items */
+            /* Custom divider style */
+            .custom-divider {
+                height: 1px;
+                background-color: #fecaca; /* Tailwind red-200 */
+                margin-top: 1.5rem;
+                margin-bottom: 1.5rem;
+                border: none;
+            }
+            /* Active navigation link style - defined here for clarity and specificity */
+            .nav-link.active {
+                color: #ef4444; /* text-red-500 */
+                background-color: #fecaca; /* bg-red-200 */
+                font-weight: 600; /* font-semibold */
+            }
+            /* Styling for content sections (base) */
+            .content-section {
+                /* Tailwind classes p-6 bg-white rounded-xl shadow-lg min-h-[60vh] applied directly in HTML */
+            }
+            /* Card styling (base) */
             .card {
-                @apply bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300; /* bg-red-50 */
+                /* Tailwind classes bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 applied directly in HTML */
             }
-            /* Button styling with lighter pastel red theme */
+            /* Button styling (base) */
             .btn {
-                @apply bg-red-400 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105; /* bg-red-400, hover:bg-red-500 */
-            }
-            /* Headings color */
-            .content-section h2 {
-                @apply text-red-500; /* text-red-500 */
-            }
-            .card h3 {
-                /* Applies to Portfolio, Blog, and Publication card titles */
-                @apply text-red-500; /* text-red-500 */
-            }
-            /* Link color within content */
-            .content-section a:not(.btn):not(.nav-link) {
-                @apply text-red-500 hover:text-red-600 hover:underline; /* text-red-500, hover:text-red-600 */
-            }
-            /* Social icon link color */
-            .social-link {
-                @apply text-red-400 hover:text-red-500 transition-colors; /* text-red-400, hover:text-red-500 */
-            }
-            /* Footer link color */
-            footer a {
-                @apply text-red-500 hover:underline; /* text-red-500 */
-            }
-            /* Input focus ring color */
-            input:focus,
-            textarea:focus {
-                @apply ring-red-400 border-red-400;
-            }
-
-            /* Responsive design for navigation */
-            @media (max-width: 768px) {
-                header .container {
-                    /* Target container within header specifically */
-                    @apply flex-col items-center;
-                }
-                .nav-links {
-                    @apply flex-col items-center mt-4 md:mt-0; /* Add margin top on small screens if needed */
-                }
-                .nav-link {
-                    @apply mb-2 w-full text-center;
-                }
+                /* Tailwind classes inline-block bg-red-400 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 applied directly in HTML */
             }
         </style>
     </head>
     <body class="flex flex-col min-h-screen">
-        <header class="shadow-md sticky top-0 z-50">
+        <header class="shadow-md sticky top-0 z-50 text-gray-700">
             <div
                 class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center"
             >
-                <h1 class="text-3xl font-bold mb-4 md:mb-0">Daniel Dia</h1>
-                <nav
-                    class="nav-links flex flex-wrap justify-center md:space-x-3"
-                >
+                <h1 class="text-3xl font-bold mb-4 md:mb-0 text-gray-800">
+                    Daniel Dia
+                </h1>
+                <nav class="flex flex-wrap justify-center md:space-x-1">
                     <a
                         href="#about"
-                        class="nav-link active"
+                        class="nav-link active px-5 py-2 text-gray-700 hover:text-red-500 hover:bg-red-100 rounded-md transition-colors duration-300"
                         onclick="showSection('about', this)"
                         >About</a
                     >
                     <a
                         href="#portfolio"
-                        class="nav-link"
+                        class="nav-link px-5 py-2 text-gray-700 hover:text-red-500 hover:bg-red-100 rounded-md transition-colors duration-300"
                         onclick="showSection('portfolio', this)"
                         >Portfolio</a
                     >
                     <a
                         href="#blog"
-                        class="nav-link"
+                        class="nav-link px-5 py-2 text-gray-700 hover:text-red-500 hover:bg-red-100 rounded-md transition-colors duration-300"
                         onclick="showSection('blog', this)"
                         >Blog</a
                     >
                     <a
                         href="#publications"
-                        class="nav-link"
+                        class="nav-link px-5 py-2 text-gray-700 hover:text-red-500 hover:bg-red-100 rounded-md transition-colors duration-300"
                         onclick="showSection('publications', this)"
                         >Publications</a
                     >
                     <a
                         href="#contact"
-                        class="nav-link"
+                        class="nav-link px-5 py-2 text-gray-700 hover:text-red-500 hover:bg-red-100 rounded-md transition-colors duration-300"
                         onclick="showSection('contact', this)"
                         >Contact</a
                     >
@@ -138,45 +105,67 @@
         </header>
 
         <main class="container mx-auto px-6 py-8 flex-grow">
-            <section id="about" class="content-section">
-                <h2 class="text-3xl font-semibold mb-6">About Me</h2>
-                <div class="space-y-4 text-lg">
-                    <p>
-                        Welcome to my personal space on the web! I'm Daniel, and
-                        this is where I'll share a bit about myself, my work,
-                        and things I'm learning.
+            <section
+                id="about"
+                class="content-section p-6 bg-white rounded-xl shadow-lg min-h-[60vh]"
+            >
+                <h2
+                    class="text-4xl font-semibold mb-8 text-center text-red-500"
+                >
+                    About Me 🧑‍💻
+                </h2>
+                <div class="max-w-2xl mx-auto text-xl">
+                    <p class="mb-6 text-center leading-relaxed">
+                        Welcome to my personal space on the web! 👋 I'm Daniel,
+                        and this is where I'll share a bit about myself, my
+                        work, and things I'm learning.
                     </p>
-                    <p>
-                        I'm Daniel Dia, a CCE student at AUB, where I aim to
-                        integrate hardware and software approaches, combining my
-                        studies with a planned double major in Pure Mathematics
-                        and a strong interest in Economics. My core passion
-                        involves applying techniques from pure mathematics,
-                        statistics, information theory, and probability theory,
-                        in addition to machine learning and deep learning
-                        methods, to analyze and model complex systems, with a
-                        particular interest in fields like quantitative finance
-                        and embedded software. I believe in continuous learning
-                        and applying mathematics and technology to solve
-                        real-world problems.
-                    </p>
-                    <p>
+                    <hr class="custom-divider" />
+                    <div class="space-y-5">
+                        <p class="leading-relaxed text-justify">
+                            I'm Daniel Dia, a CCE student at AUB, where I aim to
+                            integrate hardware and software approaches,
+                            combining my studies with a planned double major in
+                            Pure Mathematics and a strong interest in Economics.
+                            📈 My core passion involves applying techniques from
+                            pure mathematics, statistics, information theory,
+                            and probability theory, in addition to machine
+                            learning and deep learning methods, to analyze and
+                            model complex systems, with a particular interest in
+                            fields like quantitative finance and embedded
+                            software.
+                        </p>
+                        <p class="leading-relaxed text-justify">
+                            I believe in continuous learning and applying
+                            mathematics and technology to solve real-world
+                            problems. 🚀
+                        </p>
+                    </div>
+                    <hr class="custom-divider" />
+                    <p class="text-center leading-relaxed">
                         When I'm not working on this, you can find me studying
-                        history & political economy, playing guitar, reading,
-                        and writing poetry.
+                        history & political economy, playing guitar 🎸, reading
+                        📚, and writing poetry ✍️.
                     </p>
                 </div>
             </section>
 
-            <section id="portfolio" class="content-section hidden">
-                <h2 class="text-3xl font-semibold mb-6">Portfolio</h2>
+            <section
+                id="portfolio"
+                class="content-section hidden p-6 bg-white rounded-xl shadow-lg min-h-[60vh]"
+            >
+                <h2 class="text-3xl font-semibold mb-6 text-red-500">
+                    Portfolio 💼
+                </h2>
                 <p class="text-lg mb-6">
                     Here are some of the projects I've worked on. Click on them
                     to learn more!
                 </p>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="card">
-                        <h3 class="text-2xl font-semibold mb-3">
+                    <div
+                        class="card bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+                    >
+                        <h3 class="text-2xl font-semibold mb-3 text-red-500">
                             Project Alpha
                         </h3>
                         <p class="text-gray-600 mb-4">
@@ -184,10 +173,16 @@
                             its key features and technologies used. Lorem ipsum
                             dolor sit amet, consectetur adipiscing elit.
                         </p>
-                        <a href="#" class="btn">View Project</a>
+                        <a
+                            href="#"
+                            class="btn inline-block bg-red-400 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                            >View Project</a
+                        >
                     </div>
-                    <div class="card">
-                        <h3 class="text-2xl font-semibold mb-3">
+                    <div
+                        class="card bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+                    >
+                        <h3 class="text-2xl font-semibold mb-3 text-red-500">
                             Project Beta
                         </h3>
                         <p class="text-gray-600 mb-4">
@@ -195,10 +190,16 @@
                             it solves and the impact it has. Sed do eiusmod
                             tempor incididunt ut labore et dolore magna aliqua.
                         </p>
-                        <a href="#" class="btn">View Project</a>
+                        <a
+                            href="#"
+                            class="btn inline-block bg-red-400 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                            >View Project</a
+                        >
                     </div>
-                    <div class="card">
-                        <h3 class="text-2xl font-semibold mb-3">
+                    <div
+                        class="card bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+                    >
+                        <h3 class="text-2xl font-semibold mb-3 text-red-500">
                             Project Gamma
                         </h3>
                         <p class="text-gray-600 mb-4">
@@ -207,19 +208,30 @@
                             enim ad minim veniam, quis nostrud exercitation
                             ullamco laboris.
                         </p>
-                        <a href="#" class="btn">View Project</a>
+                        <a
+                            href="#"
+                            class="btn inline-block bg-red-400 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                            >View Project</a
+                        >
                     </div>
                 </div>
             </section>
 
-            <section id="blog" class="content-section hidden">
-                <h2 class="text-3xl font-semibold mb-6">Blog</h2>
+            <section
+                id="blog"
+                class="content-section hidden p-6 bg-white rounded-xl shadow-lg min-h-[60vh]"
+            >
+                <h2 class="text-3xl font-semibold mb-6 text-red-500">
+                    Blog 📝
+                </h2>
                 <p class="text-lg mb-6">
                     Thoughts, articles, and updates. Stay tuned for more!
                 </p>
                 <div class="space-y-8">
-                    <div class="card">
-                        <h3 class="text-2xl font-semibold mb-2">
+                    <div
+                        class="card bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+                    >
+                        <h3 class="text-2xl font-semibold mb-2 text-red-500">
                             My First Blog Post
                         </h3>
                         <p class="text-sm text-gray-500 mb-3">
@@ -231,12 +243,16 @@
                             Field/Interests]. Lorem ipsum dolor sit amet,
                             consectetur adipiscing elit...
                         </p>
-                        <a href="#" class="mt-4 inline-block"
+                        <a
+                            href="#"
+                            class="mt-4 inline-block text-red-500 hover:text-red-600 hover:underline"
                             >Read more &rarr;</a
                         >
                     </div>
-                    <div class="card">
-                        <h3 class="text-2xl font-semibold mb-2">
+                    <div
+                        class="card bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+                    >
+                        <h3 class="text-2xl font-semibold mb-2 text-red-500">
                             Exploring New Technologies
                         </h3>
                         <p class="text-sm text-gray-500 mb-3">
@@ -247,31 +263,47 @@
                             I've been exploring recently. Sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua...
                         </p>
-                        <a href="#" class="mt-4 inline-block"
+                        <a
+                            href="#"
+                            class="mt-4 inline-block text-red-500 hover:text-red-600 hover:underline"
                             >Read more &rarr;</a
                         >
                     </div>
                 </div>
             </section>
 
-            <section id="publications" class="content-section hidden">
-                <h2 class="text-3xl font-semibold mb-6">Publications</h2>
+            <section
+                id="publications"
+                class="content-section hidden p-6 bg-white rounded-xl shadow-lg min-h-[60vh]"
+            >
+                <h2 class="text-3xl font-semibold mb-6 text-red-500">
+                    Publications 📄
+                </h2>
                 <p class="text-lg mb-6">
                     A list of my published works, research papers, and articles.
                 </p>
                 <ul class="space-y-6">
-                    <li class="card">
-                        <h3 class="text-xl font-semibold">
+                    <li
+                        class="card bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+                    >
+                        <h3 class="text-xl font-semibold text-red-500">
                             Publication Title 1 (Year)
                         </h3>
                         <p class="text-gray-600 mt-1">
                             Author(s). "Full Title of the Publication."
                             <em>Journal/Conference Name</em>, Vol. X, No. Y, pp.
-                            ZZZ-ZZZ. <a href="#">[Link to Publication/DOI]</a>
+                            ZZZ-ZZZ.
+                            <a
+                                href="#"
+                                class="text-red-500 hover:text-red-600 hover:underline"
+                                >[Link to Publication/DOI]</a
+                            >
                         </p>
                     </li>
-                    <li class="card">
-                        <h3 class="text-xl font-semibold">
+                    <li
+                        class="card bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+                    >
+                        <h3 class="text-xl font-semibold text-red-500">
                             Research Paper on XYZ (Year)
                         </h3>
                         <p class="text-gray-600 mt-1">
@@ -280,104 +312,72 @@
                             <em
                                 >Proceedings of the International Conference on
                                 ABC</em
-                            >, pp. 123-130. <a href="#">[Link to Paper]</a>
+                            >, pp. 123-130.
+                            <a
+                                href="#"
+                                class="text-red-500 hover:text-red-600 hover:underline"
+                                >[Link to Paper]</a
+                            >
                         </p>
                     </li>
                 </ul>
             </section>
 
-            <section id="contact" class="content-section hidden">
-                <h2 class="text-3xl font-semibold mb-6">Get In Touch</h2>
-                <p class="text-lg mb-6">
-                    I'd love to hear from you! Whether you have a question, a
-                    project proposal, or just want to say hi, feel free to reach
-                    out.
-                </p>
-                <form action="#" method="POST" class="space-y-6">
+            <section
+                id="contact"
+                class="content-section hidden p-6 bg-white rounded-xl shadow-lg min-h-[60vh]"
+            >
+                <h2
+                    class="text-3xl font-semibold mb-8 text-center text-red-500"
+                >
+                    Get In Touch 📬
+                </h2>
+                <div
+                    class="max-w-xl mx-auto text-lg text-center space-y-6 leading-relaxed"
+                >
+                    <p>
+                        For any particular requests, collaborations, or just to
+                        say hi, you can reach me through the following channels:
+                    </p>
                     <div>
-                        <label
-                            for="name"
-                            class="block text-sm font-medium text-gray-700"
-                            >Full Name</label
-                        >
-                        <input
-                            type="text"
-                            name="name"
-                            id="name"
-                            autocomplete="name"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-400 focus:border-red-400 sm:text-sm"
-                        />
-                    </div>
-                    <div>
-                        <label
-                            for="email"
-                            class="block text-sm font-medium text-gray-700"
-                            >Email Address</label
-                        >
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            autocomplete="email"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-400 focus:border-red-400 sm:text-sm"
-                        />
-                    </div>
-                    <div>
-                        <label
-                            for="message"
-                            class="block text-sm font-medium text-gray-700"
-                            >Message</label
-                        >
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="4"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-400 focus:border-red-400 sm:text-sm"
-                        ></textarea>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn w-full md:w-auto">
-                            Send Message
-                        </button>
-                    </div>
-                </form>
-                <div class="mt-8 text-center">
-                    <p class="text-gray-600">You can also find me on:</p>
-                    <div class="flex justify-center space-x-6 mt-4">
-                        <a href="#" class="social-link">
-                            <svg
-                                class="w-8 h-8"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
+                        <p>
+                            <strong>Email:</strong>
+                            <a
+                                href="mailto:dmd13@mail.aub.edu"
+                                class="text-red-500 hover:underline"
+                                >dmd13@mail.aub.edu</a
                             >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.074 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                    clip-rule="evenodd"
-                                />
-                            </svg>
-                            <span class="sr-only">GitHub</span>
-                        </a>
-                        <a href="#" class="social-link">
-                            <svg
-                                class="w-8 h-8"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <strong>LinkedIn:</strong>
+                            <a
+                                href="https://www.linkedin.com/in/daniel-dia-558260258/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-red-500 hover:underline"
+                                >linkedin.com/in/daniel-dia-558260258</a
                             >
-                                <path
-                                    d="M22.23 5.636a1.007 1.007 0 00-.79-.376h-1.08c-.28 0-.55.06-.79.18l-1.8 1.02c-.43.24-.98.24-1.41 0l-1.8-1.02a1.003 1.003 0 00-.79-.18h-1.08a1.007 1.007 0 00-.79.376L10 7.616v.95c0 .42.24.8.61.95l1.8 1.02c.43.24.98.24 1.41 0l1.8-1.02c.37-.15.61-.53.61-.95v-.95l1.8-1.98zM12 13.364c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm6.67 2.08a1 1 0 00-1.21.29l-1.63 2.17c-.19.25-.49.4-.8.4H8.97c-.31 0-.61-.15-.8-.4l-1.63-2.17a1 1 0 00-1.21-.29A7.963 7.963 0 004 19.954V20a1 1 0 001 1h14a1 1 0 001-1v-.046a7.963 7.963 0 00-2.33-4.51zM2 12c0 .83.12 1.63.34 2.39.06.2.15.39.26.57l.02.03.02.03A9.95 9.95 0 0012 22a9.95 9.95 0 009.36-7H22c-.06-.2-.15-.39-.26-.57l-.02-.03-.02-.03A9.95 9.95 0 0012 2a9.95 9.95 0 00-9.36 7H2c.06.2.15.39.26.57l.02.03.02.03A9.95 9.95 0 0012 22a9.95 9.95 0 009.36-7H22c-.06-.2-.15-.39-.26-.57l-.02-.03-.02-.03A9.95 9.95 0 0012 2zM2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12z"
-                                />
-                            </svg>
-                            <span class="sr-only">LinkedIn</span>
-                        </a>
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <strong>GitHub:</strong>
+                            <a
+                                href="https://github.com/Kibalchish47/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-red-500 hover:underline"
+                                >github.com/Kibalchish47/</a
+                            >
+                        </p>
                     </div>
                 </div>
             </section>
         </main>
 
-        <footer class="py-6 text-center">
+        <footer class="py-6 text-center text-gray-700">
             <p>
                 &copy; <span id="currentYear"></span> Daniel Dia. All rights
                 reserved.
@@ -386,6 +386,7 @@
                 Powered by
                 <a
                     href="https://tailwindcss.com/"
+                    class="text-red-500 hover:underline"
                     target="_blank"
                     rel="noopener noreferrer"
                     >Tailwind CSS</a
@@ -411,25 +412,26 @@
 
                 // Update active class for navigation links
                 document.querySelectorAll(".nav-link").forEach((link) => {
-                    link.classList.remove("active");
                     link.classList.remove(
-                        "bg-red-200",
-                        "font-semibold",
+                        "active",
                         "text-red-500",
-                    ); // Pastel red theme for active link (text-red-500, bg-red-200)
-                    link.classList.add("text-gray-700"); // Ensure non-active links are gray
+                        "font-semibold",
+                        "bg-red-200",
+                    );
+                    link.classList.add("text-gray-700"); // Ensure non-active links are default gray
                 });
                 if (navElement) {
-                    navElement.classList.add("active");
                     navElement.classList.add(
-                        "bg-red-200",
-                        "font-semibold",
+                        "active",
                         "text-red-500",
-                    ); // Pastel red theme for active link
-                    navElement.classList.remove("text-gray-700"); // Remove gray text color when active
+                        "font-semibold",
+                        "bg-red-200",
+                    );
+                    navElement.classList.remove("text-gray-700"); // Remove default gray when active
                 }
 
                 // Scroll to the top of the main content area for better UX on tab change
+                // This is good practice even if content is short, for consistency.
                 const mainContent = document.querySelector("main");
                 if (mainContent) {
                     mainContent.scrollIntoView({
@@ -444,21 +446,17 @@
                 new Date().getFullYear();
 
             // Ensure the 'About' section is shown and its tab is active by default on page load
-            window.addEventListener("DOMContentLoaded", (event) => {
+            window.addEventListener("DOMContentLoaded", () => {
+                // By default, 'about' section is visible and 'About' tab is active in HTML.
+                // If you want to ensure JS sets it explicitly (e.g., if HTML default changes):
                 const aboutLink = document.querySelector(
                     '.nav-link[href="#about"]',
                 );
                 if (aboutLink) {
-                    // Call showSection to correctly set initial state
-                    showSection("about", aboutLink);
-                } else {
-                    // Fallback if the about link isn't found (should not happen with current HTML)
-                    const firstSection =
-                        document.querySelector(".content-section");
-                    const firstNavLink = document.querySelector(".nav-link");
-                    if (firstSection && firstNavLink) {
-                        showSection(firstSection.id, firstNavLink);
-                    }
+                    // Only call showSection if the 'about' section is not already the one meant to be shown.
+                    // The HTML already has 'about' section visible and its link active.
+                    // If you strictly want JS to control it from load:
+                    // showSection('about', aboutLink);
                 }
             });
         </script>
