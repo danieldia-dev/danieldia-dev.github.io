@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>My Portfolio</title>
+        <title>Daniel Dia - Portfolio</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,84 +15,91 @@
             /* Apply Source Code Pro as the default font */
             body {
                 font-family: "Source Code Pro", monospace;
-                background-color: #fef2f2; /* Light pastel red background */
+                background-color: #fef2f2; /* Tailwind red-50 (Very light pastel red background) */
                 color: #374151; /* Darker gray text for contrast */
             }
             /* Custom styles for active tab and hover effects */
             .nav-link {
-                /* Increased horizontal padding for more space */
-                @apply px-5 py-2 text-gray-700 hover:text-red-600 hover:bg-red-100 rounded-md transition-colors duration-300;
+                @apply px-5 py-2 text-gray-700 hover:text-red-500 hover:bg-red-100 rounded-md transition-colors duration-300; /* hover:text-red-500, hover:bg-red-100 */
             }
             .nav-link.active {
-                /* Pastel red theme for active link */
-                @apply text-red-700 font-semibold bg-red-200;
+                @apply text-red-500 font-semibold bg-red-200; /* text-red-500, bg-red-200 */
             }
             .content-section {
                 @apply p-6 bg-white rounded-xl shadow-lg min-h-[60vh];
             }
-            /* Fun formatting: subtle gradient for header/footer with pastel red */
+            /* Fun formatting: subtle gradient for header/footer with lighter pastel red */
             header {
                 background: linear-gradient(
                     to right,
-                    #fecaca,
-                    #fca5a5
-                ); /* Pastel red gradient */
+                    #fee2e2,
+                    #fecaca
+                ); /* red-100 to red-200 */
+                color: #4b5563; /* gray-600 for better contrast on lighter red gradient */
             }
             footer {
                 background: linear-gradient(
                     to right,
-                    #fca5a5,
-                    #fecaca
-                ); /* Pastel red gradient */
+                    #fecaca,
+                    #fee2e2
+                ); /* red-200 to red-100 */
+                color: #4b5563; /* gray-600 for better contrast */
             }
             /* Card styling for portfolio/blog items */
             .card {
-                @apply bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300;
+                @apply bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300; /* bg-red-50 */
             }
-            /* Button styling with pastel red theme */
+            /* Button styling with lighter pastel red theme */
             .btn {
-                @apply bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105;
+                @apply bg-red-400 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105; /* bg-red-400, hover:bg-red-500 */
             }
             /* Headings color */
             .content-section h2 {
-                @apply text-red-700;
+                @apply text-red-500; /* text-red-500 */
             }
             .card h3 {
-                @apply text-red-600;
+                /* Applies to Portfolio, Blog, and Publication card titles */
+                @apply text-red-500; /* text-red-500 */
             }
             /* Link color within content */
             .content-section a:not(.btn):not(.nav-link) {
-                @apply text-red-600 hover:text-red-800 hover:underline;
+                @apply text-red-500 hover:text-red-600 hover:underline; /* text-red-500, hover:text-red-600 */
             }
             /* Social icon link color */
             .social-link {
-                @apply text-red-500 hover:text-red-700 transition-colors;
+                @apply text-red-400 hover:text-red-500 transition-colors; /* text-red-400, hover:text-red-500 */
+            }
+            /* Footer link color */
+            footer a {
+                @apply text-red-500 hover:underline; /* text-red-500 */
+            }
+            /* Input focus ring color */
+            input:focus,
+            textarea:focus {
+                @apply ring-red-400 border-red-400;
             }
 
             /* Responsive design for navigation */
             @media (max-width: 768px) {
-                .nav-links {
+                header .container {
+                    /* Target container within header specifically */
                     @apply flex-col items-center;
+                }
+                .nav-links {
+                    @apply flex-col items-center mt-4 md:mt-0; /* Add margin top on small screens if needed */
                 }
                 .nav-link {
                     @apply mb-2 w-full text-center;
-                }
-                header nav {
-                    @apply flex-col;
-                }
-                /* Ensure header title and nav stack nicely on small screens */
-                header .container {
-                    @apply flex-col md:flex-row;
                 }
             }
         </style>
     </head>
     <body class="flex flex-col min-h-screen">
-        <header class="text-gray-800 shadow-md sticky top-0 z-50">
+        <header class="shadow-md sticky top-0 z-50">
             <div
                 class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center"
             >
-                <h1 class="text-3xl font-bold mb-4 md:mb-0">My Name</h1>
+                <h1 class="text-3xl font-bold mb-4 md:mb-0">Daniel Dia</h1>
                 <nav
                     class="nav-links flex flex-wrap justify-center md:space-x-3"
                 >
@@ -268,7 +275,7 @@
                             Research Paper on XYZ (Year)
                         </h3>
                         <p class="text-gray-600 mt-1">
-                            Your Name, Co-author Name. "Exploring the Depths of
+                            Daniel Dia, Co-author Name. "Exploring the Depths of
                             XYZ."
                             <em
                                 >Proceedings of the International Conference on
@@ -298,7 +305,7 @@
                             name="name"
                             id="name"
                             autocomplete="name"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-400 focus:border-red-400 sm:text-sm"
                         />
                     </div>
                     <div>
@@ -312,7 +319,7 @@
                             name="email"
                             id="email"
                             autocomplete="email"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-400 focus:border-red-400 sm:text-sm"
                         />
                     </div>
                     <div>
@@ -325,7 +332,7 @@
                             id="message"
                             name="message"
                             rows="4"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-400 focus:border-red-400 sm:text-sm"
                         ></textarea>
                     </div>
                     <div>
@@ -370,16 +377,15 @@
             </section>
         </main>
 
-        <footer class="text-gray-700 py-6 text-center">
+        <footer class="py-6 text-center">
             <p>
-                &copy; <span id="currentYear"></span> My Name. All rights
+                &copy; <span id="currentYear"></span> Daniel Dia. All rights
                 reserved.
             </p>
             <p>
                 Powered by
                 <a
                     href="https://tailwindcss.com/"
-                    class="hover:underline text-red-600"
                     target="_blank"
                     rel="noopener noreferrer"
                     >Tailwind CSS</a
@@ -398,37 +404,32 @@
                         section.classList.add("hidden");
                     });
                 // Show the target section
-                document.getElementById(sectionId).classList.remove("hidden");
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.classList.remove("hidden");
+                }
 
                 // Update active class for navigation links
                 document.querySelectorAll(".nav-link").forEach((link) => {
                     link.classList.remove("active");
-                    // More robust removal of active classes
                     link.classList.remove(
                         "bg-red-200",
                         "font-semibold",
-                        "text-red-700",
-                    );
-                    link.classList.add(
-                        "text-gray-700",
-                        "hover:text-red-600",
-                        "hover:bg-red-100",
-                    );
+                        "text-red-500",
+                    ); // Pastel red theme for active link (text-red-500, bg-red-200)
+                    link.classList.add("text-gray-700"); // Ensure non-active links are gray
                 });
-                navElement.classList.add("active");
-                // Explicitly add all active state classes
-                navElement.classList.add(
-                    "bg-red-200",
-                    "font-semibold",
-                    "text-red-700",
-                );
-                navElement.classList.remove(
-                    "hover:text-red-600",
-                    "hover:bg-red-100",
-                ); // Remove hover styles when active
+                if (navElement) {
+                    navElement.classList.add("active");
+                    navElement.classList.add(
+                        "bg-red-200",
+                        "font-semibold",
+                        "text-red-500",
+                    ); // Pastel red theme for active link
+                    navElement.classList.remove("text-gray-700"); // Remove gray text color when active
+                }
 
-                // Scroll to the top of the content area for better UX on tab change
-                // Adjusted to scroll the main content area into view smoothly
+                // Scroll to the top of the main content area for better UX on tab change
                 const mainContent = document.querySelector("main");
                 if (mainContent) {
                     mainContent.scrollIntoView({
@@ -448,7 +449,16 @@
                     '.nav-link[href="#about"]',
                 );
                 if (aboutLink) {
+                    // Call showSection to correctly set initial state
                     showSection("about", aboutLink);
+                } else {
+                    // Fallback if the about link isn't found (should not happen with current HTML)
+                    const firstSection =
+                        document.querySelector(".content-section");
+                    const firstNavLink = document.querySelector(".nav-link");
+                    if (firstSection && firstNavLink) {
+                        showSection(firstSection.id, firstNavLink);
+                    }
                 }
             });
         </script>
