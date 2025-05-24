@@ -1,0 +1,36 @@
+baseURL = "https://kibalchish47.github.io/" # Replace with your actual username if different
+languageCode = "en-us"
+title = "Daniel Dia - Portfolio"
+paginate = 5 # Number of items per page for lists (blog, portfolio)
+
+# Enable PostCSS processing for Tailwind
+[build]
+  [build.buildStats]
+    enable = true
+  [[build.cachebusters]]
+    source = 'assets/notwatching/hugo_stats\.json'
+    target = 'css'
+  [[build.cachebusters]]
+    source = '(postcss|tailwind)\.config\.js'
+    target = 'css'
+[module]
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    disableWatch = true
+    source = 'hugo_stats.json'
+    target = 'assets/notwatching/hugo_stats.json'
+
+[params]
+  AuthorName = "Daniel Dia"
+  # Add other site-wide params here
+
+[markup.goldmark.renderer]
+  unsafe = true # Allows raw HTML in Markdown, if needed
+
+# Note: If your repo is kibalchish47.github.io (user/org page), baseURL is fine.
+# If it's a project page like kibalchish47.github.io/my-repo,
+# baseURL should be "https://kibalchish47.github.io/my-repo/"
+# For kibalchish47.github.io repository, the baseURL should just be "https://kibalchish47.github.io/"
+# And the site will be served from the root of the domain.

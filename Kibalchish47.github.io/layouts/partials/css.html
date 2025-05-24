@@ -1,0 +1,20 @@
+{{/* layouts/partials/css.html */}} {{ $tailwindConfigPath :=
+"./tailwind.config.js" }} {{ $cssOpts := dict "config" $tailwindConfigPath
+"inlineImports" true }} {{ $styles := resources.Get "css/main.css" }} {{ if
+$styles }} {{ $processedCSS := $styles | css.TailwindCSS $cssOpts }} {{ if
+$processedCSS }} {{ if hugo.IsDevelopment }}
+<link rel="stylesheet" href="{{ $processedCSS.RelPermalink }}" />
+{{ else }} {{ $finalCSS := $processedCSS | minify | fingerprint |
+resources.PostProcess }}
+<link
+    rel="stylesheet"
+    href="{{ $finalCSS.RelPermalink }}"
+    integrity="{{ $finalCSS.Data.Integrity }}"
+    crossorigin="anonymous"
+/>
+{{ end }} {{ else }} {{ errorf "partials/css.html: css.TailwindCSS processing
+failed for 'assets/css/main.css'. No output was generated. Check Hugo logs for
+earlier PostCSS/Tailwind errors." }}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}" /> {{ end }} {{ else }}
+{{ errorf "partials/css.html: Resource 'assets/css/main.css' not found." }} {{
+end }}

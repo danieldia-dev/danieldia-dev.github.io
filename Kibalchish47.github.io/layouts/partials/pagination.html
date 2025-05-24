@@ -1,0 +1,48 @@
+{{ $pag := $.Paginator }} {{ if gt $pag.TotalPages 1 }}
+<nav
+    class="flex justify-center items-center space-x-2 mt-12"
+    aria-label="Pagination"
+>
+    {{ if $pag.HasPrev }}
+    <a
+        href="{{ $pag.Prev.URL }}"
+        class="px-4 py-2 text-sm font-medium text-custom-gray-700 bg-white rounded-md hover:bg-custom-red-100 border border-custom-red-200"
+    >
+        &laquo; Previous
+    </a>
+    {{ else }}
+    <span
+        class="px-4 py-2 text-sm font-medium text-custom-gray-400 bg-white rounded-md border border-custom-red-200 cursor-not-allowed"
+    >
+        &laquo; Previous
+    </span>
+    {{ end }} {{ range $pag.Pagers }} {{ if eq . $pag }}
+    <span
+        aria-current="page"
+        class="px-4 py-2 text-sm font-medium text-white bg-custom-red-500 rounded-md border border-custom-red-500"
+    >
+        {{ .PageNumber }}
+    </span>
+    {{ else }}
+    <a
+        href="{{ .URL }}"
+        class="px-4 py-2 text-sm font-medium text-custom-gray-700 bg-white rounded-md hover:bg-custom-red-100 border border-custom-red-200"
+    >
+        {{ .PageNumber }}
+    </a>
+    {{ end }} {{ end }} {{ if $pag.HasNext }}
+    <a
+        href="{{ $pag.Next.URL }}"
+        class="px-4 py-2 text-sm font-medium text-custom-gray-700 bg-white rounded-md hover:bg-custom-red-100 border border-custom-red-200"
+    >
+        Next &raquo;
+    </a>
+    {{ else }}
+    <span
+        class="px-4 py-2 text-sm font-medium text-custom-gray-400 bg-white rounded-md border border-custom-red-200 cursor-not-allowed"
+    >
+        Next &raquo;
+    </span>
+    {{ end }}
+</nav>
+{{ end }}

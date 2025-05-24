@@ -1,0 +1,47 @@
+/* assets/css/main.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Remove: @import "tailwindcss"; */
+/* The @source "hugo_stats.json"; is for build statistics and is fine to keep if you want it,
+   but not strictly necessary for Tailwind processing itself.
+   If it causes issues, you can temporarily remove it for debugging. */
+@source "hugo_stats.json";
+
+/* Your global custom styles and @apply rules */
+@layer base {
+    body {
+        font-family: theme("fontFamily.sans");
+        @apply bg-custom-red-50 text-custom-gray-700 flex flex-col min-h-screen;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: theme("fontFamily.sans");
+    }
+    .custom-divider {
+        @apply h-px bg-custom-red-200 my-6 border-none;
+    }
+    .nav-link.active {
+        @apply text-custom-red-500 bg-custom-red-200 font-semibold;
+    }
+}
+
+@layer components {
+    .site-header {
+        @apply shadow-md sticky top-0 z-50 text-custom-gray-700 bg-header-gradient;
+    }
+    .site-footer {
+        @apply py-6 text-center text-custom-gray-700 bg-footer-gradient;
+    }
+    .content-card {
+        @apply bg-custom-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300;
+    }
+    .btn-primary {
+        @apply inline-block bg-custom-red-400 hover:bg-custom-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105;
+    }
+}

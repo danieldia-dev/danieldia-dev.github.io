@@ -1,0 +1,117 @@
+{{ define "main" }}
+<div id="homepage-content">
+    <section id="about" class="content-section p-6 bg-white rounded-xl shadow-lg min-h-[60vh]">
+        <h2 class="text-4xl font-semibold mb-8 text-center text-custom-red-500">About Me</h2>
+        {{ with .Site.GetPage "/about" }}
+            <div class="max-w-2xl mx-auto text-xl prose prose-custom-red lg:prose-xl">
+             {{ .Content }}
+            </div>
+        {{ else }}
+            <p class="text-center">About content coming soon...</p>
+        {{ end }}
+    </section>
+
+    <section id="portfolio-link" class="text-center py-10">
+        <h2 class="text-3xl font-semibold mb-6 text-custom-red-500">Portfolio 💼</h2>
+        <p class="text-lg mb-6">Explore my projects.</p>
+        <a href="{{ "/portfolio/" | relURL }}" class="btn-primary">View Portfolio</a>
+    </section>
+
+    <section id="blog-link" class="text-center py-10">
+        <h2 class="text-3xl font-semibold mb-6 text-custom-red-500">Blog 📝</h2>
+        <p class="text-lg mb-6">Read my latest thoughts and articles.</p>
+        <a href="{{ "/blog/" | relURL }}" class="btn-primary">Visit Blog</a>
+    </section>
+
+    <section id="publications-link" class="text-center py-10">
+        <h2 class="text-3xl font-semibold mb-6 text-custom-red-500">Publications 📄</h2>
+        <p class="text-lg mb-6">Check out my published work.</p>
+        <a href="{{ "/publications/" | relURL }}" class="btn-primary">View Publications</a>
+    </section>
+
+    <section id="contact" class="content-section p-6 bg-white rounded-xl shadow-lg min-h-[60vh]">
+        <h2 class="text-3xl font-semibold mb-8 text-center text-custom-red-500">Get In Touch 📬</h2>
+         {{ with .Site.GetPage "/contact" }}
+            <div class="max-w-xl mx-auto text-lg text-center space-y-6 leading-relaxed prose prose-custom-red lg:prose-xl">
+             {{ .Content }}
+            </div>
+        {{ else }}
+            <p class="text-center">Contact information coming soon...</p>
+        {{ end }}
+    </section>
+</div>
+{{ end }}
+
+{{ define "scripts_extra" }}
+<script>
+    // Simple hash-based section toggling for About/Contact on homepage
+    function showSectionBasedOnHash() {
+        const sections = document.querySelectorAll('#homepage-content > section');
+        const navLinks = document.querySelectorAll('header nav a');
+        let targetId = window.location.hash ? window.location.hash.substring(1) : 'about'; // Default to 'about'
+
+        // If navigating to a section not on this page (e.g. blog link clicked from blog page), do nothing here.
+        // This script is primarily for #about and #contact on the homepage.
+        if (targetId !== 'about' && targetId !== 'contact') {
+             // If it's not about or contact, make sure about is shown by default if no other logic applies
+             if (!document.getElementById(targetId) || !document.getElementById(targetId).closest('#homepage-content')) {
+                targetId = 'about';
+             }
+        }
+
+
+        let sectionToShow = document.getElementById(targetId);
+
+        sections.forEach(section => {
+            if (section.id === targetId && section.closest('#homepage-content')) {
+                section.classList.remove('hidden');
+            } else if (section.closest('#homepage-content') && (section.id === 'about' || section.id === 'contact')) {
+                // Only hide about/contact if they are not the target
+                section.classList.add('hidden');
+            } else {
+                // Non-about/contact sections on homepage are always visible (they are just links)
+                section.classList.remove('hidden');
+            }
+        });
+
+        // If after hiding, the target section (about/contact) isn't found or visible, default to showing 'about'
+         if (!sectionToShow || sectionToShow.classList.contains('hidden') && (targetId === 'about' || targetId === 'contact')) {
+            document.getElementById('about')?.classList.remove('hidden');
+            targetId = 'about';
+        }
+
+
+        navLinks.forEach(link => {
+            link.classList.remove('active', 'text-custom-red-500', 'font-semibold', 'bg-custom-red-200');
+            link.classList.add('text-custom-gray-700');
+            if (link.getAttribute('href').endsWith('#' + targetId)) {
+                link.classList.add('active', 'text-custom-red-500', 'font-semibold', 'bg-custom-red-200');
+                link.classList.remove('text-custom-gray-700');
+            }
+        });
+    }
+
+    // Initial call
+    window.addEventListener('DOMContentLoaded', showSectionBasedOnHash);
+    // Update on hash change
+    window.addEventListener('hashchange', showSectionBasedOnHash);
+
+    // Allow nav clicks to update hash and show section
+    document.querySelectorAll('header nav a[href^="{{ "/" | relURL }}#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const sectionId = this.getAttribute('href').split('#')[1];
+            const targetSectionOnPage = document.getElementById(sectionId);
+            if (targetSectionOnPage && targetSectionOnPage.closest('#homepage-content')) {
+                // e.preventDefault(); // Only prevent default if staying on page
+                window.location.hash = '#' + sectionId;
+                // showSectionBasedOnHash will be triggered by hashchange or manually if needed
+                if (window.location.pathname === '/' || window.location.pathname === '{{ "/" | relURL }}' || window.location.pathname === '{{ .Site.BaseURL | relURL }}index.html' ) {
+                     // Call directly if hashchange doesn't fire consistently or for immediate feedback
+                     showSectionBasedOnHash();
+                }
+            }
+            // If link is to another page's section, let default behavior proceed
+        });
+    });
+</script>
+{{ end }}
