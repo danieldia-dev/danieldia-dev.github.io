@@ -1,32 +1,38 @@
 <!doctype html>
-<html lang="{{ .Site.LanguageCode | default "en" }}" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
-    {{ partialCached "css.html" . }}
-
-    {{ $styles := resources.Get "css/tailwind.css"}}
-        {{ if hugo.IsServer }}   <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
-        {{ else }}
-            {{ $styles := $styles | minify | fingerprint | resources.PostProcess }}
-            <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
-    {{ end }}
-
-    <link rel="icon" type="image/png" href="{{ "D2.png" | relURL }}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet" />
-    {{ block "head_extra" . }}{{ end }} </head>
-<body class="bg-lime-400 text-purple-700 flex flex-col min-h-screen font-sans">
-    {{ partial "site-header.html" . }}
-
-    <main class="container mx-auto px-6 py-8 flex-grow">
-        {{ block "main" . }}
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            {{ if .IsHome }}
+                {{ .Site.Title }}
+            {{ else }}
+                {{ .Title }} - {{ .Site.Title }}
             {{ end }}
-    </main>
+        </title>
+        
+        {{ partialCached "css.html" . }}
 
-    {{ partial "site-footer.html" . }}
+        {{/* Adjust to your favicon path */}}
+        {{/*  Re-add when you have a favicon  */}}
+        {{/*  <link rel="icon" type="image/png" href="{{ relURL "favicon.png" }}" />  */}}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet" />
+        {{ block "head_extra" . }}
+        {{ end }}
+    </head>
+    <body class="bg-lime-400 text-purple-700 flex flex-col min-h-screen font-sans">
+        {{ partial "site-header.html" . }}
 
-    {{ block "scripts_extra" . }}{{ end }} </body>
+        <main class="container mx-auto px-6 py-8 flex-grow">
+            {{ block "main" . }}
+            {{ end }}
+        </main>
+
+        {{ partial "site-footer.html" . }}
+
+        {{ block "scripts_extra" . }}
+        {{ end }}
+    </body>
 </html>
