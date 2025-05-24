@@ -1,7 +1,10 @@
 baseURL = "https://kibalchish47.github.io/" # Replace with your actual username if different
 languageCode = "en-us"
 title = "Daniel Dia - Portfolio"
-paginate = 5 # Number of items per page for lists (blog, portfolio)
+
+# Number of items per page for lists (blog, portfolio)
+[pagination]
+  pagerSize = 5
 
 # Enable PostCSS processing for Tailwind
 [build]
