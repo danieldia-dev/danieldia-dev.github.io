@@ -16,8 +16,8 @@
 
     --font-sans: "Source Code Pro", Menlo, Consolas, Monaco, Adwaita Mono, Liberation Mono, Lucida Console, monospace;
 
-    --header-gradient: linear-gradient(to right, var(--color-custom-red-50), var(--color-custom-red-400));
-    --footer-gradient: linear-gradient(to right, var(--color-custom-red-400), var(--color-custom-red-50));
+    --header-gradient: linear-gradient(to right, #fee2e2, #fecaca);
+    --footer-gradient: linear-gradient(to right, #fecaca, #fee2e2);
 }
 
 @plugin "@tailwindcss/typography";
