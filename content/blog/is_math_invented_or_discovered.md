@@ -14,22 +14,22 @@ However, for psychological ease, I will assert that my thesis is that mathematic
 
 ## Table of Contents
 
-- Introduction
-- Table of Contents
-- Terminology: "discovery" vs. "invention"
-- Inductivism: Building Knowledge from the Ground Up (Literally!)
-  - The Scientific Method and Inductivism
-  - But Here's Where It Gets a Bit Messy (and More Interesting!)
-- Mathematics: A Different Beast Altogether?
-  - The Bedrock of Math: Axioms – Discovered or Invented?
-  - For Culture: Intuitionism: Mathematics as a Mental Construction
-  - The Material World's Imprint on Abstract Thought
-  - Example: The Curious Case of "1 + 1 = 2"
-  - The Art of Choosing Axioms: Crafting the Playing Field
-  - Mathematics: An Invented Language, Rooted in Abstraction
-  - Physics: Discovering Facts, Inventing Models
-- The Great Divide: Why Mathematics is Largely Invented, and Physics Largely Discovered
-- Conclusion: Two Paths to Understanding
+1.  [Introduction](#1-introduction)
+2.  [Table of Contents](#2-table-of-contents)
+3.  [Terminology: "discovery" vs. "invention"](#3-terminology-discovery-vs-invention)
+4.  [Inductivism: Building Knowledge from the Ground Up (Literally!)](#4-inductivism-building-knowledge-from-the-ground-up-literally)
+    * [The Scientific Method and Inductivism](#the-scientific-method-and-inductivism)
+    * [But Here's Where It Gets a Bit Messy (and More Interesting!)](#but-heres-where-it-gets-a-bit-messy-and-more-interesting)
+5.  [Mathematics: A Different Beast Altogether?](#5-mathematics-a-different-beast-altogether)
+    * [The Bedrock of Math: Axioms – Discovered or Invented?](#the-bedrock-of-math-axioms-discovered-or-invented)
+    * [For Culture: Intuitionism: Mathematics as a Mental Construction](#for-culture-intuitionism-mathematics-as-a-mental-construction)
+    * [The Material World's Imprint on Abstract Thought](#the-material-worlds-imprint-on-abstract-thought)
+    * [Example: The Curious Case of "1 + 1 = 2"](#example-the-curious-case-of-1-1-2)
+    * [The Art of Choosing Axioms: Crafting the Playing Field](#the-art-of-choosing-axioms-crafting-the-playing-field)
+    * [Mathematics: An Invented Language, Rooted in Abstraction](#mathematics-an-invented-language-rooted-in-abstraction)
+    * [Physics: Discovering Facts, Inventing Models](#physics-discovering-facts-inventing-models)
+6.  [The Great Divide: Why Mathematics is Largely Invented, and Physics Largely Discovered](#6-the-great-divide-why-mathematics-is-largely-invented-and-physics-largely-discovered)
+7.  [Conclusion: Two Paths to Understanding](#7-conclusion-two-paths-to-understanding)
 
 ## Terminology: "discovery" vs. "invention"
 
