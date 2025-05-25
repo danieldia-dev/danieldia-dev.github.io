@@ -1,7 +1,15 @@
+---
+title: "'Is mathematics discovered or invented?' – My thoughts on the topic"
+date: 2025-05-18
+draft: false
+tags: ["Mathematics", "Philosophy", "Philosophy of Mathematics", "Formal Logic"]
+summary: "Is mathematics invented or discovered? Delve into the philosophy of math vs. science, exploring axioms, inductivism, and the ongoing debate over the nature of mathematical truth."
+---
+
 # "Is mathematics discovered or invented?" – My thoughts on the topic
-> "Mathematics, rightly viewed, possesses not only truth, but supreme beauty — cold and austere, like that of sculpture, without appeal to any part of our weaker nature, without the gorgeous trappings of painting or music, yet sublimely pure, and capable of a stern perfection such as only the greatest art can show. The true spirit of delight, the exaltation, the sense of being more than Man, which is the touchstone of the highest excellence, is to be found in mathematics as surely as in poetry."
->
-> — **Bertrand Russell, British logician**
+> Mathematics, rightly viewed, possesses not only truth, but supreme beauty — cold and austere, like that of sculpture, without appeal to any part of our weaker nature, without the gorgeous trappings of painting or music, yet sublimely pure, and capable of a stern perfection such as only the greatest art can show. The true spirit of delight, the exaltation, the sense of being more than Man, which is the touchstone of the highest excellence, is to be found in mathematics as surely as in poetry.
+
+— **Bertrand Russell, British logician**
 
 ## Introduction
 
