@@ -1,6 +1,6 @@
 ---
 title: "General Undergraduate Advice"
-draft: false
+draft: true
 tags: ["Advice", "Undergraduate"]
-summary: "This is a test post for my new Hugo blog setup!"
+summary: "A curated list of advice for aspiring mathematicians and STEM professionals."
 ---
