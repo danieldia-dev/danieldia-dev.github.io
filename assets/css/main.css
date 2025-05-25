@@ -14,7 +14,7 @@
     --color-custom-gray-700: #374151;
     --color-custom-gray-800: #1f2937;
 
-    --font-sans: "Inter", Menlo, Consolas, Monaco, Adwaita Mono, Liberation Mono, Lucida Console, monospace;
+    --font-sans: "Source Code Pro", Menlo, Consolas, Monaco, Adwaita Mono, Liberation Mono, Lucida Console, monospace;
 
     --header-gradient: linear-gradient(to right, #fee2e2, #fecaca);
     --footer-gradient: linear-gradient(to right, #fecaca, #fee2e2);
