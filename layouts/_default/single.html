@@ -1,16 +1,12 @@
-{{/* layouts/_default/single.html */}}
 {{ define "main" }}
-<article class="mx-auto bg-white rounded-xl shadow-lg
-              max-w-4xl {{/* Max width of the entire white box */}}
-              p-6 sm:p-8 md:p-10 lg:p-16 {{/* Increased overall padding for the white box */}}
-              ">
-    <header class="mb-6 md:mb-8 text-center">
-        <h1 class="text-3xl md:text-4xl font-bold text-custom-red-500">{{ .Title }}</h1>
+<article class="p-6 bg-white rounded-xl shadow-lg">
+    <header class="mb-8 text-center">
+        <h1 class="text-4xl font-bold text-custom-red-500">{{ .Title }}</h1>
         {{ if .Date }}
         <p class="text-sm text-custom-gray-600 mt-2">{{ .Date.Format "January 2, 2006" }}</p>
         {{ end }}
         {{ with .Params.tags }}
-        <div class="mt-3">
+        <div class="mt-2">
             {{ range . }}
             <span class="inline-block bg-custom-red-100 text-custom-red-500 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">{{ . }}</span>
             {{ end }}
@@ -18,13 +14,7 @@
         {{ end }}
     </header>
     <hr class="custom-divider"/>
-
-    {{/* Content area: prose sets typography, max-w-2xl makes text column narrower for "condensed" feel */}}
-    <div class="prose prose-custom-red
-                prose-base lg:prose-lg {{/* Base size, slightly larger on large screens. Remove lg:prose-lg for consistent base size. */}}
-                max-w-2xl {{/* Max width of the text column itself, centered by prose defaults or mx-auto if needed */}}
-                mx-auto {{/* Explicitly center the prose block if its max-w is less than article's */}}
-                mt-6 md:mt-8">
+    <div class="prose prose-custom-red lg:prose-xl max-w-none {{ if or (eq .Type "blog") (eq .Type "portfolio") (eq .Type "publications") }}prose-sm md:prose-base{{ end }}">
         {{ .Content }}
     </div>
 </article>

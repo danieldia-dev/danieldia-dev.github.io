@@ -1,7 +1,6 @@
 ---
-title: "Daniel Dia" # Title for the homepage tab
-description: "Daniel Dia's personal portfolio, blog, and professional profile."
-# Parameters for shortcodes can be defined here
+title: "Daniel Dia"
+description: "Daniel Dia's personal website showcasing projects, blog, and professional profile."
 tech_stack:
   - "Linux"
   - "Python"
@@ -13,6 +12,8 @@ tech_stack:
   - "Bash"
   - "MATLAB"
   - "Gemini AI"
+profile_pic: "D2.png"
+tagline: "Computer & Communications Engineer | Mathematics & Finance Enthusiast"
 ---
 
 {{< profile_header >}}
@@ -27,4 +28,4 @@ tech_stack:
 
 {{< recent_blog_posts count=3 >}}
 
-{{</* Note: The Contact section/page is linked from the main header, not part of this _index.md flow */>}}
+{{< recent_publications count=3 >}}
