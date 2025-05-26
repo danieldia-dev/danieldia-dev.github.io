@@ -1,0 +1,5 @@
+<section id="home-profile" class="text-center pt-10 pb-6 mb-12 md:mb-16">
+    <img src="{{ (site.Params.profilePic | default "D2.png") | relURL }}" alt="{{ site.Params.AuthorName }}" class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full shadow-xl mb-5 border-4 border-white object-cover">
+    <h1 class="text-4xl md:text-5xl font-bold text-custom-gray-800">{{ site.Params.AuthorName | default site.Title }}</h1>
+    <p class="mt-3 text-lg md:text-xl text-custom-gray-600">{{ site.Params.tagline | default "Exploring technology, mathematics, and finance." }}</p>
+</section>
