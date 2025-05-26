@@ -1,11 +1,4 @@
 ---
-title: "Daniel Dia - Home" # Or just "Home" or your name
-# layout: "home" # Not usually needed if layouts/index.html exists
-# You can add a description here for SEO if you like
-description: "Daniel Dia's personal portfolio, blog, and publication site."
----
-
----
 title: "Daniel Dia" # Title for the homepage tab
 description: "Daniel Dia's personal portfolio, blog, and professional profile."
 # Parameters for shortcodes can be defined here
