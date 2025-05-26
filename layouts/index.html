@@ -1,69 +1,38 @@
-{{/* layouts/index.html */}}
 {{ define "main" }}
-<div class="space-y-12 md:space-y-20">
-
-    <section id="home-profile" class="text-center pt-10 pb-6">
-        <img src="{{ (.Site.Params.profilePic | default "D2.png") | relURL }}" alt="{{ .Site.Params.AuthorName }}" class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full shadow-xl mb-5 border-4 border-white">
-        <h1 class="text-4xl md:text-5xl font-bold text-custom-gray-800">{{ .Site.Params.AuthorName }}</h1>
-        <p class="mt-3 text-lg md:text-xl text-custom-gray-600">{{ .Site.Params.tagline | default "Exploring the intersections of technology, mathematics, and finance." }}</p>
-        {{/* partial "social-icons.html" . */}}
+<div id="homepage-content">
+    <section id="about" class="text-center py-10">
+        <h2 class="text-4xl font-semibold mb-8 text-center text-custom-red-500">About Me</h2>
+        <p class="text-lg mb-6">Learn about me.</p>
+        <a href="{{ "/about/" | relURL }}" class="btn-primary">View About Me</a>
     </section>
 
-    <section id="tech-stack" class="py-10 bg-custom-red-100 rounded-xl shadow-lg">
-        <div class="container mx-auto px-6">
-            <h2 class="text-2xl md:text-3xl font-semibold text-custom-red-500 mb-8 text-center">Technologies & Tools</h2>
-            {{ $techs := slice "Linux" "Python" "Pandas" "PyTorch" "Jupyter" "Rust" "git" "Bash" "MATLAB" "Gemini" }}
-            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
-                {{ range $techs }}
-                <span class="bg-white text-custom-gray-700 px-4 py-2 rounded-md text-sm md:text-base font-medium shadow-md hover:shadow-lg transition-shadow">{{ . }}</span>
-                {{ end }}
-            </div>
-            </div>
+    <section id="portfolio-link" class="text-center py-10">
+        <h2 class="text-3xl font-semibold mb-6 text-custom-red-500">Portfolio 💼</h2>
+        <p class="text-lg mb-6">Explore my projects.</p>
+        <a href="{{ "/portfolio/" | relURL }}" class="btn-primary">View Portfolio</a>
     </section>
 
-    <section id="experience" class="py-10">
-        <div class="container mx-auto px-6 max-w-3xl">
-            <h2 class="text-2xl md:text-3xl font-semibold text-custom-red-500 mb-8 text-center">Experience</h2>
-            <div class="bg-white p-6 rounded-xl shadow-lg">
-                <p class="text-custom-gray-700">Details about my professional experience will go here. This section is currently a placeholder.</p>
-                </div>
-        </div>
+    <section id="blog-link" class="text-center py-10">
+        <h2 class="text-3xl font-semibold mb-6 text-custom-red-500">Blog 📝</h2>
+        <p class="text-lg mb-6">Read my latest thoughts and articles.</p>
+        <a href="{{ "/blog/" | relURL }}" class="btn-primary">Visit Blog</a>
     </section>
 
-    <section id="projects" class="py-10 bg-custom-red-100 rounded-xl shadow-lg">
-        <div class="container mx-auto px-6">
-            <h2 class="text-2xl md:text-3xl font-semibold text-custom-red-500 mb-8 text-center">Featured Projects</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                {{ range first 2 (where .Site.RegularPages.ByDate.Reverse "Type" "portfolio") }}
-                    {{ partial "portfolio-card.html" . }}
-                {{ else }}
-                    <p class="md:col-span-2 text-center text-custom-gray-600">No featured projects yet. <a href="{{ "/portfolio/" | relURL }}" class="text-custom-red-500 hover:underline">View all projects</a>.</p>
-                {{ end }}
-            </div>
-             {{ if gt (len (where .Site.RegularPages "Type" "portfolio")) 2 }}
-            <div class="text-center mt-10">
-                <a href="{{ "/portfolio/" | relURL }}" class="btn-primary">View All Projects</a>
-            </div>
-            {{ end }}
-        </div>
+    <section id="publications-link" class="text-center py-10">
+        <h2 class="text-3xl font-semibold mb-6 text-custom-red-500">Publications 📄</h2>
+        <p class="text-lg mb-6">Check out my published work.</p>
+        <a href="{{ "/publications/" | relURL }}" class="btn-primary">View Publications</a>
     </section>
 
-    <section id="blog" class="py-10">
-        <div class="container mx-auto px-6 max-w-3xl">
-            <h2 class="text-2xl md:text-3xl font-semibold text-custom-red-500 mb-8 text-center">Latest From The Blog</h2>
-            <div class="space-y-8">
-                {{ range first 3 (where .Site.RegularPages.ByDate.Reverse "Type" "blog") }}
-                    {{ partial "blog-card.html" . }}
-                {{ else }}
-                     <p class="text-center text-custom-gray-600">No blog posts yet. <a href="{{ "/blog/" | relURL }}" class="text-custom-red-500 hover:underline">Visit the blog</a>.</p>
-                {{ end }}
+    <section id="contact" class="content-section p-6 bg-white rounded-xl shadow-lg min-h-[60vh]">
+        <h2 class="text-3xl font-semibold mb-8 text-center text-custom-red-500">Get In Touch 📬</h2>
+         {{ with .Site.GetPage "/contact" }}
+            <div class="max-w-xl mx-auto text-lg text-center space-y-6 leading-relaxed prose prose-custom-red lg:prose-xl">
+             {{ .Content }}
             </div>
-            {{ if gt (len (where .Site.RegularPages "Type" "blog")) 3 }}
-            <div class="text-center mt-10">
-                <a href="{{ "/blog/" | relURL }}" class="btn-primary">View All Posts</a>
-            </div>
-            {{ end }}
-        </div>
+        {{ else }}
+            <p class="text-center">Contact information coming soon...</p>
+        {{ end }}
     </section>
 
 </div>
