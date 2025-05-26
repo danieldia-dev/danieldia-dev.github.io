@@ -27,8 +27,8 @@ target = 'assets/notwatching/hugo_stats.json'
 
 [params]
 AuthorName = "Daniel Dia"
-tagline = "Computer & Communications Engineer | Mathematics Enthusiast" # Update with your tagline
-profilePic = "D2.png"                                                   # Path relative to static folder, e.g., static/D2.png
+tagline = "Computer & Communications Engineer @AUB | Mathematics Enthusiast" # Update with your tagline
+profilePic = "D2.png"                                                        # Path relative to static folder, e.g., static/D2.png
 
 [markup.goldmark.renderer]
 unsafe = true # Allows raw HTML in Markdown, if needed

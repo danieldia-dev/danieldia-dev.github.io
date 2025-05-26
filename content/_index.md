@@ -1,26 +1,54 @@
 ---
 title: "Daniel Dia"
 description: "Daniel Dia's personal website showcasing projects, blog, and professional profile."
+# Updated and re-ordered tech_stack
 tech_stack:
-  - "Linux"
+  # Programming Languages & Core Tools
   - "Python"
-  - "Pandas"
-  - "PyTorch"
-  - "Jupyter"
+  - "C++"
   - "Rust"
-  - "git"
+  - "SQL"
   - "Bash"
+  - "git"
+  - "CI/CD (Jenkins)"
+  - "Linux"
   - "MATLAB"
+  - "Jupyter"
+  # Data Science & Machine Learning
+  - "Pandas"
+  - "Numpy"
+  - "PyTorch"
+  - "Deep & Machine learning and Neural Networks"
   - "Gemini AI"
+  # Foundational Knowledge
+  - "Data Structures & Algorithms"
+  - "Probability Theory & Statistics"
+  - "Real Analysis"
+  - "Linear & Abstract Algebra"
+  - "Information Theory"
+  - "Complexity Theory"
+  - "Computer architecture"
+  # General Software
+  - "Microsoft Office"
 profile_pic: "D2.png"
 tagline: "Computer & Communications Engineer | Mathematics & Finance Enthusiast"
 ---
 
 {{< profile_header >}}
 
-{{< about_teaser >}}
-
-{{< tech_stack >}}
+{{/* Wrapper for side-by-side Tech Stack and About Teaser */}}
+<div class="container mx-auto px-4 md:px-6">
+  <div class="md:flex md:flex-row md:space-x-8 items-start mb-12 md:mb-16">
+      {{/* Column 1: Tech Stack */}}
+      <div class="md:w-1/2 mb-8 md:mb-0">
+          {{< tech_stack >}}
+      </div>
+      {{/* Column 2: About Teaser */}}
+      <div class="md:w-1/2">
+          {{< about_teaser >}}
+      </div>
+  </div>
+</div>
 
 {{< experience_section >}}
 
