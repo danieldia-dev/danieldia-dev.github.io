@@ -36,16 +36,13 @@ tagline: "Computer & Communications Engineer | Mathematics & Finance Enthusiast"
 
 {{< profile_header >}}
 
-{{/* Wrapper for side-by-side Tech Stack and About Teaser */}}
 <div class="container mx-auto px-4 md:px-6">
   <div class="md:flex md:flex-row md:space-x-8 items-start mb-12 md:mb-16">
-      {{/* Column 1: Tech Stack */}}
       <div class="md:w-1/2 mb-8 md:mb-0">
-          {{< tech_stack >}}
-      </div>
-      {{/* Column 2: About Teaser */}}
-      <div class="md:w-1/2">
           {{< about_teaser >}}
+      </div>
+      <div class="md:w-1/2">
+          {{< tech_stack >}}
       </div>
   </div>
 </div>

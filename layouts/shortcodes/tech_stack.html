@@ -5,13 +5,14 @@
             Technologies, Skills & Tools
         </h2>
         {{/* Corrected default slice: ensure all items, especially those with spaces, are quoted */}}
-        {{ $techs := .Page.Params.tech_stack | default (slice
+        $techs := .Page.Params.tech_stack | default (slice
             "Linux" "Python" "Pandas" "Numpy" "PyTorch" "Jupyter"
             "Rust" "git" "CI/CD (Jenkins)" "Microsoft Office" "Bash" "MATLAB" "Gemini AI"
             "Data Structures & Algorithms"
             "Probability Theory & Statistics" "Real Analysis" "Linear & Abstract Algebra" "Information Theory" "Complexity Theory"
             "SQL" "C++" "Deep & Machine learning and Neural Networks" "Computer architecture"
-        ) }}
+        )
+
         <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
             {{ range $techs }}
             <span class="bg-custom-red-100 text-custom-red-700 px-4 py-2 rounded-full text-sm font-medium shadow hover:shadow-md transition-shadow">{{ . }}</span>
