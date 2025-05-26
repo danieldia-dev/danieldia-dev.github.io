@@ -1,0 +1,5 @@
+<article class="content-card bg-white p-6 rounded-xl shadow-lg"> <h3 class="text-xl font-semibold mb-1 text-custom-red-500"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p class="text-xs text-custom-gray-500 mb-2">Published on: {{ .Date.Format "January 2, 2006" }}</p>
+    <p class="text-custom-gray-600 text-sm mb-3">{{ .Summary | plainify | truncate 150 }}</p>
+    <a href="{{ .RelPermalink }}" class="text-custom-red-500 hover:underline text-sm font-semibold">Read more &rarr;</a>
+</article>

@@ -1,0 +1,7 @@
+<article class="content-card flex flex-col bg-white"> <h3 class="text-xl font-semibold mb-2 text-custom-red-500"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{ with .Params.image }}
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="rounded-md mb-3 max-h-40 w-full object-cover">
+    {{ end }}
+    <p class="text-custom-gray-600 text-sm mb-3 flex-grow">{{ .Summary | plainify | truncate 120 }}</p>
+    <a href="{{ .RelPermalink }}" class="btn-primary text-sm mt-auto self-start">View Project</a>
+</article>

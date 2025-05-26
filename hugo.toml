@@ -4,33 +4,34 @@ title = "Daniel Dia - Portfolio"
 
 # Number of items per page for lists (blog, portfolio)
 [pagination]
-  pagerSize = 5
+pagerSize = 5
 
 # Enable PostCSS processing for Tailwind
 [build]
-  [build.buildStats]
-    enable = true
-  [[build.cachebusters]]
-    source = 'assets/notwatching/hugo_stats\.json'
-    target = 'css'
-  [[build.cachebusters]]
-    source = '(postcss|tailwind)\.config\.js'
-    target = 'css'
+[build.buildStats]
+enable = true
+[[build.cachebusters]]
+source = 'assets/notwatching/hugo_stats\.json'
+target = 'css'
+[[build.cachebusters]]
+source = '(postcss|tailwind)\.config\.js'
+target = 'css'
 [module]
-  [[module.mounts]]
-    source = 'assets'
-    target = 'assets'
-  [[module.mounts]]
-    disableWatch = true
-    source = 'hugo_stats.json'
-    target = 'assets/notwatching/hugo_stats.json'
+[[module.mounts]]
+source = 'assets'
+target = 'assets'
+[[module.mounts]]
+disableWatch = true
+source = 'hugo_stats.json'
+target = 'assets/notwatching/hugo_stats.json'
 
 [params]
-  AuthorName = "Daniel Dia"
-  # Add other site-wide params here
+AuthorName = "Daniel Dia"
+tagline = "Computer & Communications Engineer | Mathematics Enthusiast" # Update with your tagline
+profilePic = "D2.png"                                                   # Path relative to static folder, e.g., static/D2.png
 
 [markup.goldmark.renderer]
-  unsafe = true # Allows raw HTML in Markdown, if needed
+unsafe = true # Allows raw HTML in Markdown, if needed
 
 # Note: If your repo is kibalchish47.github.io (user/org page), baseURL is fine.
 # If it's a project page like kibalchish47.github.io/my-repo,

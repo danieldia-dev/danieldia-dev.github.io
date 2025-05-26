@@ -21,7 +21,6 @@
 }
 
 @plugin "@tailwindcss/typography";
-/* End Tailwind Config */
 
 body {
     @apply bg-custom-red-50 text-custom-gray-700 flex flex-col min-h-screen font-sans;

@@ -1,39 +1,116 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            {{ if .IsHome }}
-                {{ .Site.Title }}
-            {{ else }}
-                {{ .Title }} - {{ .Site.Title }}
-            {{ end }}
-        </title>
-
-        {{ partialCached "css.html" . }}
-
-        {{/* Adjust to your favicon path */}}
-        {{/*  Re-add when you have a favicon  */}}
-        {{/*  <link rel="icon" type="image/png" href="{{ relURL "favicon.png" }}" />  */}}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet" />
-        {{ block "head_extra" . }}
+<html lang="{{ .Site.LanguageCode | default "en" }}" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        {{ if .IsHome }}
+            {{ .Site.Title }}
+        {{ else }}
+            {{ .Title }} - {{ .Site.Title }}
         {{ end }}
-    </head>
-    <body class="bg-lime-400 text-purple-700 flex flex-col min-h-screen font-sans">
-        {{ partial "site-header.html" . }}
+    </title>
 
-        <main class="container mx-auto px-6 py-8 flex-grow">
-            {{ block "main" . }}
+    {{ partialCached "css.html" . }}
+
+    {{/* Your favicon link - re-add when ready */}}
+    {{/* <link rel="icon" type="image/png" href="{{ "D2.png" | relURL }}" /> */}}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {{/* Combined font link is good. The separate Source Code Pro link below this was redundant. */}}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+
+    {{ block "head_extra" . }}{{ end }}
+</head>
+{{/* Removed hardcoded test classes like bg-lime-400. Styling should come from your compiled main.css */}}
+<body class="flex flex-col min-h-screen font-sans"> {{/* Base classes - main.css will apply theme bg/text colors */}}
+    {{ partial "site-header.html" . }}
+
+    <main class="container mx-auto px-6 py-8 flex-grow">
+        {{ block "main" . }}
             {{ end }}
-        </main>
+    </main>
 
-        {{ partial "site-footer.html" . }}
+    {{ partial "site-footer.html" . }}
 
-        {{ block "scripts_extra" . }}
-        {{ end }}
-    </body>
+    {{ block "scripts_extra" . }}
+        {{/* JavaScript for active navigation link highlighting */}}
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const navLinks = document.querySelectorAll('header nav a.nav-link');
+            const currentFullURL = window.location.href;
+            // Construct the base URL for comparison, ensuring it ends with a slash if it's not just "/"
+            // and handles potential subfolder deployments for GitHub Pages project sites
+            let siteBaseURL = '{{ .Site.BaseURL | relLangURL }}';
+            if (siteBaseURL.length > 1 && !siteBaseURL.endsWith('/')) {
+                siteBaseURL += '/';
+            }
+
+            // Function to normalize paths for comparison
+            const normalizePath = (pathInput) => {
+                let path = pathInput;
+                try {
+                    // Check if it's a full URL, if so, extract pathname
+                    if (pathInput.startsWith('http')) {
+                        path = new URL(pathInput).pathname;
+                    }
+                } catch (e) { /* Not a full URL, proceed with path as is */ }
+
+                // Remove base URL prefix if present (handles project sites in subdirectories)
+                if (siteBaseURL !== "/" && path.startsWith(siteBaseURL)) {
+                    // Need to be careful here. If siteBaseURL = /repo/ and path = /repo/about/, result is /about/
+                    // If siteBaseURL = / and path = /about/, result is /about/
+                    path = path.substring(siteBaseURL.length -1);
+                }
+
+                path = path.startsWith('/') ? path : '/' + path; // Ensure leading slash
+                if (path.length > 1 && path.endsWith('/')) {
+                    path = path.slice(0, -1); // Remove trailing slash for consistency, unless it's just "/"
+                }
+                if (path === '') path = '/'; // Ensure root path is represented as '/'
+                return path;
+            };
+
+            const normalizedCurrentPath = normalizePath(currentFullURL.split('#')[0].split('?')[0]);
+
+            let bestMatchLink = null;
+            let longestMatchLength = -1; // Initialize to -1 to allow root '/' to be a candidate
+
+            navLinks.forEach(link => {
+                link.classList.remove('active', 'text-custom-red-500', 'bg-custom-red-200', 'font-semibold');
+                link.classList.add('text-custom-gray-700'); // Default non-active style
+
+                const linkHref = link.getAttribute('href');
+                if (!linkHref) return;
+
+                const normalizedLinkPath = normalizePath(linkHref);
+
+                // Check for exact match or if current path is a sub-path of the link's path
+                if (normalizedCurrentPath === normalizedLinkPath ||
+                    (normalizedLinkPath !== '/' && normalizedCurrentPath.startsWith(normalizedLinkPath + '/'))) {
+
+                    // Prioritize longer matches (more specific)
+                    if (normalizedLinkPath.length > longestMatchLength) {
+                        longestMatchLength = normalizedLinkPath.length;
+                        bestMatchLink = link;
+                    }
+                }
+            });
+
+            if (bestMatchLink) {
+                bestMatchLink.classList.add('active', 'text-custom-red-500', 'bg-custom-red-200', 'font-semibold');
+                bestMatchLink.classList.remove('text-custom-gray-700');
+            } else if (normalizedCurrentPath === '/') {
+                 // Fallback for the homepage if no other more specific link matched (e.g. for a nav link pointing to "/")
+                const homeLink = document.querySelector('header nav a.nav-link[href$="/"]');
+                 if (homeLink && normalizePath(homeLink.getAttribute('href')) === '/') {
+                    homeLink.classList.add('active', 'text-custom-red-500', 'bg-custom-red-200', 'font-semibold');
+                    homeLink.classList.remove('text-custom-gray-700');
+                 }
+            }
+        });
+        </script>
+    {{ end }}
+</body>
 </html>
