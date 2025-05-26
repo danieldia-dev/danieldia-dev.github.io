@@ -44,7 +44,7 @@ Finally, for those looking to see linear algebra's power in more advanced settin
 [TO-DO]
 
 ## History of Mathematics and Meta-Mathematics
-This section does not have a specific aim, but roughly speaking those are books about mathematics (either its practice or history).
+This section does not have a specific aim, but roughly speaking those are books written by mathematicians about mathematics (either its practice or history).
 
 First, an obvious recommendation would be G.H. Hardy's **"A Mathematician's Apology"**. In "A Mathematician's Apology", G.H. Hardy makes a compelling case — an "apology" in the classical sense of a defense, like Plato's *'Apology of Socrates'* — for mathematics being valuable for its own sake, beyond any utility. The cornerstone of his argument is the profound "beauty of mathematics." Hardy eloquently describes this beauty, providing examples and criteria to understand it. Beyond this philosophical exploration, the book also includes a short autobiography, offering a personal window into the intellectual life of a working mathematician.
 
@@ -72,7 +72,7 @@ To avoid paraphrasing the intention of the textbook, I will cite the Preamble:
 > *Man, if I had forty hours instead of forty minutes, I bet I could actually have explained this all.*
 > This book is my attempt at those forty hours.
 
-In addition to overviews like this, I would recommend spending time working through foundational material from established textbooks. This involves reading various textbooks and working through the majority of the exercises: it takes longer, but you build a solid, more sustainable foundation this way.
+In addition to such overviews, I would recommend spending time working through foundational material from established textbooks. This involves reading various textbooks and working through the majority of the exercises: it takes longer, but you build a solid, more sustainable foundation this way.
 
 ---
 # Computer Science
