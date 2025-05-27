@@ -38,64 +38,71 @@
     {{ define "scripts_extra" }}
     <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const navLinks = document.querySelectorAll('header nav a.nav-link');
-        const currentFullURL = window.location.href;
-        // Construct the base URL for comparison, ensuring it ends with a slash
-        let siteBaseURL = '{{ .Site.BaseURL | relLangURL }}';
-        if (siteBaseURL.length > 0 && !siteBaseURL.endsWith('/')) {
-            siteBaseURL += '/';
-        }
-        if (siteBaseURL === "") { // Handle case where BaseURL might be "/" or empty for root
-            siteBaseURL = "/";
+        const navLinks = document.querySelectorAll('header nav a.nav-link'); // Ensure your nav links have the class "nav-link"
+        if (navLinks.length === 0) {
+            // console.warn("No navigation links found with selector 'header nav a.nav-link'. Active link highlighting might not work.");
+            return;
         }
 
+        const currentWindowLocation = window.location;
+        // For Kibalchish47.github.io, site.BaseURL should resolve to "/" or "https://Kibalchish47.github.io/"
+        // We are interested in the pathname part.
+        let siteBasePath = new URL('{{ .Site.BaseURL | relLangURL }}', currentWindowLocation.origin).pathname;
+        if (siteBasePath.length > 1 && !siteBasePath.endsWith('/')) {
+            siteBasePath += '/';
+        }
+        if (siteBasePath === "") siteBasePath = "/";
 
-        // Function to normalize paths for comparison
-        const normalizePath = (pathInput) => {
-            let path = pathInput;
-            try {
-                if (pathInput.startsWith('http')) {
-                    path = new URL(pathInput).pathname;
-                }
-            } catch (e) { /* Not a full URL, proceed */ }
 
-            // Remove base URL prefix if current site is in a subfolder
-            // Only do this if siteBaseURL is more than just "/"
-            if (siteBaseURL !== "/" && path.startsWith(siteBaseURL)) {
-                path = path.substring(siteBaseURL.length -1); // Keep leading slash from path
-            }
-
-            path = path.startsWith('/') ? path : '/' + path; // Ensure leading slash
-            if (path.length > 1 && path.endsWith('/')) {
-                path = path.slice(0, -1); // Remove trailing slash for consistency
-            }
-            if (path === '') path = '/'; // Ensure root path is represented as '/'
-            return path;
-        };
-
-        const normalizedCurrentPath = normalizePath(currentFullURL.split('#')[0].split('?')[0]);
+        // Get current page's pathname, make it relative to the base path, and normalize
+        let currentPagePath = currentWindowLocation.pathname;
+        if (currentPagePath.startsWith(siteBasePath)) {
+            currentPagePath = "/" + currentPagePath.substring(siteBasePath.length);
+        }
+        if (currentPagePath.length > 1 && currentPagePath.endsWith('/')) {
+            currentPagePath = currentPagePath.slice(0, -1); // Remove trailing slash for consistency
+        }
+        if (currentPagePath === "") currentPagePath = "/"; // Normalize empty path to root
 
         let bestMatchLink = null;
         let longestMatchLength = -1;
 
         navLinks.forEach(link => {
             link.classList.remove('active', 'text-custom-red-500', 'bg-custom-red-200', 'font-semibold');
-            link.classList.add('text-custom-gray-700');
+            link.classList.add('text-custom-gray-700'); // Reset to default non-active style
 
             const linkHref = link.getAttribute('href');
             if (!linkHref) return;
 
-            const normalizedLinkPath = normalizePath(linkHref);
+            let linkPath;
+            try {
+                // Create a full URL for the link to reliably get its pathname
+                linkPath = new URL(linkHref, currentWindowLocation.origin).pathname;
+                // Make link path relative to base path
+                if (linkPath.startsWith(siteBasePath)) {
+                    linkPath = "/" + linkPath.substring(siteBasePath.length);
+                }
+            } catch (e) {
+                // If it's already a relative path like "/about/"
+                linkPath = linkHref.startsWith('/') ? linkHref : '/' + linkHref;
+            }
 
-            if (normalizedCurrentPath === normalizedLinkPath) { // Exact match takes precedence
-                if (normalizedLinkPath.length >= longestMatchLength) { // Allow exact root match
-                    longestMatchLength = normalizedLinkPath.length;
+            if (linkPath.length > 1 && linkPath.endsWith('/')) {
+                linkPath = linkPath.slice(0, -1); // Remove trailing slash
+            }
+            if (linkPath === "") linkPath = "/"; // Normalize empty path to root
+
+            // Matching logic:
+            // 1. Exact match:
+            if (currentPagePath === linkPath) {
+                if (linkPath.length >= longestMatchLength) {
+                    longestMatchLength = linkPath.length;
                     bestMatchLink = link;
                 }
-            } else if (normalizedLinkPath !== '/' && normalizedCurrentPath.startsWith(normalizedLinkPath + '/')) {
-                // Sub-path match (e.g., /blog for /blog/post)
-                if (normalizedLinkPath.length > longestMatchLength) {
-                    longestMatchLength = normalizedLinkPath.length;
+            // 2. Current page is a sub-page of the link (e.g., current /blog/post matches link /blog)
+            } else if (linkPath !== "/" && currentPagePath.startsWith(linkPath + '/')) {
+                if (linkPath.length > longestMatchLength) {
+                    longestMatchLength = linkPath.length;
                     bestMatchLink = link;
                 }
             }
@@ -104,12 +111,28 @@
         if (bestMatchLink) {
             bestMatchLink.classList.add('active', 'text-custom-red-500', 'bg-custom-red-200', 'font-semibold');
             bestMatchLink.classList.remove('text-custom-gray-700');
-        } else if (normalizedCurrentPath === '/') {
-             // Explicitly activate "Homepage" link if we are on the root path and no other more specific link matched
-            const homePageLink = document.querySelector('header nav a.nav-link[href$="/"]'); // Finds a link ending with /
-             if (homePageLink && normalizePath(homePageLink.getAttribute('href')) === '/') {
-                homePageLink.classList.add('active', 'text-custom-red-500', 'bg-custom-red-200', 'font-semibold');
-                homePageLink.classList.remove('text-custom-gray-700');
+        } else if (currentPagePath === "/") {
+             // Fallback for the homepage if no other specific link matched
+            const homePageLink = document.querySelector('header nav a.nav-link[href$="/"]'); // Finds a link whose href ends with "/"
+             if (homePageLink) {
+                let homeLinkPathNormalized;
+                try {
+                    homeLinkPathNormalized = new URL(homePageLink.getAttribute('href'), currentWindowLocation.origin).pathname;
+                     if (homeLinkPathNormalized.startsWith(siteBasePath)) {
+                        homeLinkPathNormalized = "/" + homeLinkPathNormalized.substring(siteBasePath.length);
+                    }
+                    if (homeLinkPathNormalized.length > 1 && homeLinkPathNormalized.endsWith('/')) {
+                        homeLinkPathNormalized = homeLinkPathNormalized.slice(0, -1);
+                    }
+                     if (homeLinkPathNormalized === "") homeLinkPathNormalized = "/";
+                } catch (e) {
+                    homeLinkPathNormalized = "/"; // Assume root if parsing fails
+                }
+
+                if (homeLinkPathNormalized === "/") {
+                    homePageLink.classList.add('active', 'text-custom-red-500', 'bg-custom-red-200', 'font-semibold');
+                    homePageLink.classList.remove('text-custom-gray-700');
+                }
              }
         }
     });
