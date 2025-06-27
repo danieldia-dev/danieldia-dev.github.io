@@ -3,7 +3,7 @@ title: "Daniel Dia"
 description: "Daniel Dia's personal website showcasing projects, blog, and professional profile."
 # Updated and re-ordered tech_stack
 profile_pic: "D2.png"
-tagline: "Computer & Communications Engineer | Mathematics & Finance Enthusiast"
+tagline: "Computer & Communications Engineering student @AUB | Mathematics & Finance Enthusiast"
 ---
 
 {{< profile_header >}}
