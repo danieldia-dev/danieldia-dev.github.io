@@ -1,0 +1,26 @@
+{{/* layouts/partials/analytics.html */}}
+
+{{/*
+  This partial adds the GoatCounter analytics script.
+  It only renders in the "production" environment, so local development
+  visits (from 'hugo server') are not tracked.
+  The production environment is set automatically by GitHub Actions and when you run 'hugo'.
+*/}}
+
+{{ if hugo.IsProduction }}
+  {{ $gcCode := .Site.Params.goatcounter_code }}
+  {{ if $gcCode }}
+    <script data-goatcounter="{{ printf "https://%s.goatcounter.com/count" $gcCode }}"
+            async src="//gc.zgo.at/count.js"></script>
+    {{/* Add a noscript fallback for users without JavaScript */}}
+    <noscript>
+        <img src="{{ printf "https://%s.goatcounter.com/count?p=%s" $gcCode .Path }}" alt="">
+    </noscript>
+  {{ else }}
+    {{/*
+      This warning will appear in your terminal during the build if the code is not set.
+      This helps prevent deploying without analytics enabled.
+    */}}
+    {{ warnf "GoatCounter code not found in hugo.toml. Analytics will not be enabled." }}
+  {{ end }}
+{{ end }}
