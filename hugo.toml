@@ -1,6 +1,6 @@
 baseURL = "https://kibalchish47.github.io/" # Replace with your actual username if different
 languageCode = "en-us"
-title = "Daniel Dia - Portfolio"
+title = "Daniel Dia"
 
 # Number of items per page for lists (blog, portfolio)
 [pagination]
@@ -28,7 +28,7 @@ target = 'assets/notwatching/hugo_stats.json'
 [params]
 AuthorName = "Daniel Dia"
 tagline = "Computer & Communications Engineer @AUB | Mathematics Enthusiast" # Update with your tagline
-profilePic = "D2.png"                                                        # Path relative to static folder, e.g., static/D2.png
+profilePic = "pfp_small_blurred.png"                                         # Path relative to static folder, e.g., static/D2.png
 
 [markup.goldmark.renderer]
 unsafe = true # Allows raw HTML in Markdown, if needed

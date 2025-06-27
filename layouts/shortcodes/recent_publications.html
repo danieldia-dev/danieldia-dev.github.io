@@ -9,7 +9,7 @@
             {{ range first $count (where site.RegularPages.ByDate.Reverse "Type" "publications") }}
                 {{ partial "publication-card.html" . }}
             {{ else }}
-                <p class="text-center text-custom-gray-600 py-4">No recent publications yet.</p>
+                <p class="md:col-span-2 text-center text-custom-gray-600 py-4">No recent publications yet.</p>
             {{ end }}
         </div>
         {{ if gt (len (where site.RegularPages "Type" "publications")) $count }}
