@@ -27,8 +27,8 @@ target = 'assets/notwatching/hugo_stats.json'
 
 [params]
 AuthorName = "Daniel Dia"
-tagline = "Computer & Communications Engineer @AUB | Mathematics Enthusiast" # Update with your tagline
-profilePic = "pfp_small_blurred.png"                                         # Path relative to static folder, e.g., static/D2.png
+tagline = "Computer & Communications Engineering student @AUB | Mathematics Enthusiast" # Update with your tagline
+profilePic = "pfp_small_blurred.png"                                                    # Path relative to static folder, e.g., static/D2.png
 goatcounter_code = "danieldia"
 
 [markup.goldmark.renderer]
