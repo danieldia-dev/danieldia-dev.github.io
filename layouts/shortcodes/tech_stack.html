@@ -7,9 +7,9 @@
         {{/* Define the list of technologies and tools */}}
         {{ $techs := .Page.Params.tech_stack | default (slice
             "Linux" "Python" "Pandas" "Numpy" "PyTorch" "OOP"
-            "Rust" "SQL" "C++" "git" "CI/CD (Jenkins + GitHub Actions)"
+            "Rust" "SQL" "C++" "git" "Jenkins (CI/CD)" GitHub Actions (CI/CD)"
             "Bash" "MATLAB" "Data Structures & Algorithms" "Functional Programming"
-            "Deep & Machine learning and Neural Networks" "Computer architecture"
+            "Machine learning (ML)" "Deep Learning (DL)" "Computer architecture"
         ) }}
         <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
             {{ range $techs }}
