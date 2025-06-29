@@ -64,6 +64,8 @@ And this:
 
 > Could anything be more unattractive and inelegant? Could any argument be more obfuscatory and unreadable? This isn’t mathematics! A proof should be an epiphany from the Gods, not a coded message from the Pentagon. This is what comes from a misplaced sense of logical rigor: **ugliness**. The spirit of the argument has been buried under a heap of confusing formalism.
 
+I really enjoy quoting Lockhart because of how amusing and insightful his writing is.
+
 ## Other Topics and Outliers
 A very interesting book I found and used to a large extent in high school was [**'An Infinitely Large Napkin'**](https://web.evanchen.cc/napkin.html) by Evan Chen. It is a very good book spanning a wide range of topics, including linear & abstract algebra, algebraic & point-set topology, algebraic geometry, various flavors of analysis & measure theory, and more. It has a signature conversational style that makes it easy to read and understand, and it is a great resource for anyone interested in satisfying their curiosity about higher mathematics.
 

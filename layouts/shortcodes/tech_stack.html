@@ -6,10 +6,10 @@
         </h2>
         {{/* Define the list of technologies and tools */}}
         {{ $techs := .Page.Params.tech_stack | default (slice
-            "Linux" "Python" "Pandas" "Numpy" "PyTorch" "Jupyter"
-            "Rust" "git" "CI/CD (Jenkins)" "Bash" "MATLAB"
-            "Data Structures & Algorithms"
-            "SQL" "C++" "Deep & Machine learning and Neural Networks" "Computer architecture"
+            "Linux" "Python" "Pandas" "Numpy" "PyTorch" "OOP"
+            "Rust" "SQL" "C++" "git" "CI/CD (Jenkins + GitHub Actions)"
+            "Bash" "MATLAB" "Data Structures & Algorithms" "Functional Programming"
+            "Deep & Machine learning and Neural Networks" "Computer architecture"
         ) }}
         <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
             {{ range $techs }}
