@@ -5,7 +5,7 @@ authors: ["Daniel Dia", "Co Author"]
 journal: "Journal of Important Discoveries"
 link: "https://example.com/link-to-paper" # Optional external link
 summary: "A concise summary of the paper's contributions and findings."
-draft: false
+draft: true
 ---
 
 ## Abstract

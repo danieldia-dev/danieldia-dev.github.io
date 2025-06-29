@@ -4,7 +4,7 @@ date: 2025-06-29
 draft: false
 image: "/images/project-placeholder.jpg" # Optional: path relative to static folder e.g. static/images/project-placeholder.jpg
 summary: "DynamiXplore brings the power of Rust to the simplicity of Python for complex systems analysis."
-tags: ["Dynamical Systems", "Python", "Rust", "Simulation", "In Progress"]
+tags: ["Dynamical Systems", "FOSS", "Research Software", "Python", "Rust", "Simulation", "In Progress"]
 ---
 
 Scientists and engineers across disciplines—from epidemiology and physics to economics and biology—rely on the numerical exploration of dynamical systems to understand complex phenomena. This exploration typically involves a recurring workflow: defining a model's equations, simulating its behavior over time, and analyzing the resulting trajectory to uncover its fundamental properties, such as stability, periodicity, or the presence of chaos.

@@ -34,6 +34,14 @@ goatcounter_code = "danieldia"
 [markup.goldmark.renderer]
 unsafe = true # Allows raw HTML in Markdown, if needed
 
+[markup.highlight]
+# See a complete list of styles here: https://xyproto.github.io/splash/docs/all.html
+style = "github"
+codeFences = true
+guessSyntax = true
+lineNos = false
+noClasses = false
+
 # Note: If your repo is kibalchish47.github.io (user/org page), baseURL is fine.
 # If it's a project page like kibalchish47.github.io/my-repo,
 # baseURL should be "https://kibalchish47.github.io/my-repo/"
