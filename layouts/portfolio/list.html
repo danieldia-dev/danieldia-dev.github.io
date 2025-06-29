@@ -5,22 +5,19 @@
         {{ $portfolioPages := where .Site.RegularPages "Type" "portfolio" }}
         {{ $experiencePages := where .Site.RegularPages "Type" "experience" }}
 
-        <!-- 1. Experience Section -->
+        <!-- 1. Experience Section (MODIFIED) -->
         <section id="experience-list">
             <h2 class="text-3xl font-bold text-center text-custom-red-500 mb-8">Experience</h2>
-            <div class="space-y-6 max-w-4xl mx-auto">
-                {{ range $experiencePages.ByDate.Reverse }}
-                    <div class="content-card bg-white p-6 rounded-xl shadow-lg">
-                        <h3 class="text-xl font-semibold text-custom-gray-800">{{ .Title }}</h3>
-                        <p class="font-medium text-custom-gray-600">{{ .Params.company }} | <span class="text-sm text-custom-gray-500">{{ .Params.duration }}</span></p>
-                        <div class="prose prose-sm prose-custom-red max-w-none mt-2">
-                            {{ .Content }}
-                        </div>
-                    </div>
-                {{ else }}
-                    <p class="text-center text-custom-gray-600">No professional experience listed yet.</p>
-                {{ end }}
-            </div>
+            {{ if gt (len $experiencePages) 0 }}
+                <div class="space-y-8 max-w-3xl mx-auto">
+                    {{ range $experiencePages.ByDate.Reverse }}
+                        {{/* Use the experience-card partial to show a summary card with a button */}}
+                        {{ partial "experience-card.html" . }}
+                    {{ end }}
+                </div>
+            {{ else }}
+                <p class="text-center text-custom-gray-600">No professional experience listed yet.</p>
+            {{ end }}
         </section>
 
         <hr class="custom-divider max-w-4xl mx-auto"/>
@@ -56,8 +53,5 @@
                 <p class="text-center text-custom-gray-600">No coursework listed yet.</p>
             {{ end }}
         </section>
-
-         <!-- You can add more sections here for other categories if you want -->
-
     </div>
 {{ end }}
