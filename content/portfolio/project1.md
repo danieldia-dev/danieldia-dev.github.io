@@ -1,5 +1,5 @@
 ---
-title: "Project 1: A Modular Framework for Numerical Exploration of Dynamical Systems (DynamiXplore)"
+title: "Project 1 – A Modular Framework for Numerical Exploration of Dynamical Systems (DynamiXplore)"
 date: 2025-06-29
 draft: false
 image: "/images/project-placeholder.jpg" # Optional: path relative to static folder e.g. static/images/project-placeholder.jpg
@@ -92,7 +92,7 @@ This workflow is intuitive for anyone familiar with the SciPy ecosystem but prov
 
 ### **2. Application Architecture: The Python-Rust Hybrid Model**
 
-The architecture is designed to maximize user-friendliness ([[The Python Programming Language]] and computational performance ([[The Rust Programming Language]]).
+The architecture is designed to maximize the user-friendliness of Python and the computational performance of Rust.
 
 #### **Layer 1: Python User-Facing Layer**
 
