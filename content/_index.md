@@ -21,10 +21,8 @@ tagline: "Computer & Communications Engineering student @AUB | Mathematics & Fin
   </div>
 </div>
 
-{{< experience_section >}}
+{{< recent_experience >}}
 
-{{< recent_projects count=3 >}}
-
+{{< recent_projects count=2 >}}
 {{< recent_blog_posts count=3 >}}
-
 {{< recent_publications count=3 >}}

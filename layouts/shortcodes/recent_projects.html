@@ -6,13 +6,15 @@
             <a href="{{ "/portfolio/" | relURL }}" class="hover:underline">Projects</a>
         </h2>
         <div class="grid md:grid-cols-2 gap-6 md:gap-8">
-            {{ range first $count (where site.RegularPages.ByDate.Reverse "Type" "portfolio") }}
+            {{/* MODIFIED: Filter for portfolio type AND category "Project" */}}
+            {{ $projects := where (where .Site.RegularPages "Type" "portfolio") ".Params.category" "Project" }}
+            {{ range first $count ($projects.ByDate.Reverse) }}
                 {{ partial "portfolio-card.html" . }}
             {{ else }}
                 <p class="md:col-span-2 text-center text-custom-gray-600 py-4">No featured projects yet.</p>
             {{ end }}
         </div>
-         {{ if gt (len (where site.RegularPages "Type" "portfolio")) $count }}
+         {{ if gt (len $projects) $count }}
         <div class="text-center mt-10">
             <a href="{{ "/portfolio/" | relURL }}" class="btn-primary">View All Projects</a>
         </div>
