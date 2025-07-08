@@ -34,7 +34,6 @@ jobs:
 
       - name: Install Node.js dependencies
         run: npm ci # Requires package-lock.json
-
       # Hugo builds the site, including processing CSS with PostCSS (Tailwind) via Hugo Pipes
       - name: Build Hugo site
         run: hugo --minify # Output is in 'public' folder by default
