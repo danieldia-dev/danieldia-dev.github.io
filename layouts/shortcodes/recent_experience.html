@@ -1,25 +1,19 @@
-{{/* layouts/shortcodes/recent_experience.html */}}
-{{/* This shortcode now finds experience items and uses the unified-card partial to display them. */}}
-
-{{ $count := .Get "count" | default 2 }} {{/* You can control how many to show, e.g., {{< recent_experience count=2 >}} */}}
-
-<section id="experience-showcase" class="py-10 md:py-16">
+{{ $count := .Get "count" | default 2 }}
+<section class="py-10 md:py-16">
     <div class="container mx-auto px-6 max-w-4xl">
-        <h2 class="text-2xl md:text-3xl font-semibold text-custom-gray-800 dark:text-custom-red-100 mb-8 text-center">
-            <a href="{{ "/experience/" | relURL }}" class="hover:underline">Experience</a>
+        <h2 class="text-2xl md:text-3xl font-semibold text-custom-gray-800 dark:text-custom-red-100 mb-8 text-center flex items-center justify-center gap-x-3">
+            {{ partial "icon.html" "briefcase" }}
+            <a href="{{ "/experience/" | relURL }}" class="hover:underline">Recent Experience</a>
         </h2>
-
         <div class="grid md:grid-cols-2 gap-8">
-            {{ $experiencePages := where site.RegularPages.ByDate.Reverse "Type" "experience" }}
-            {{ range first $count $experiencePages }}
-                {{/* This is the key change: we are now calling the unified card partial */}}
+            {{ $pages := where site.RegularPages.ByDate.Reverse "Type" "experience" }}
+            {{ range first $count $pages }}
                 {{ partial "unified-card.html" . }}
             {{ else }}
-                <p class="md:col-span-2 text-center text-custom-gray-600 py-4">Experience section is currently being updated. Please check back soon!</p>
+                <p class="md:col-span-2 text-center text-custom-gray-600 py-4">No experience listed yet.</p>
             {{ end }}
         </div>
-
-        {{ if gt (len $experiencePages) $count }}
+        {{ if gt (len $pages) $count }}
         <div class="text-center mt-10">
             <a href="{{ "/experience/" | relURL }}" class="btn-primary">View All Experiences</a>
         </div>

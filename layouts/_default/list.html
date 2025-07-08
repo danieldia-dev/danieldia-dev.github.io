@@ -1,14 +1,20 @@
-{{/* layouts/_default/list.html */}}
 {{ define "main" }}
 <div class="container mx-auto px-6 py-10">
-    <h1 class="text-4xl font-bold text-center mb-4 text-custom-gray-800 dark:text-custom-red-100">{{ .Title }}</h1>
+    {{ $icon := "" }}
+    {{ if eq .Type "portfolio" }}{{ $icon = "folder-kanban" }}{{ end }}
+    {{ if eq .Type "blog" }}{{ $icon = "pencil-line" }}{{ end }}
+    {{ if eq .Type "publications" }}{{ $icon = "book-open" }}{{ end }}
+    {{ if eq .Type "experience" }}{{ $icon = "briefcase" }}{{ end }}
+
+    <h1 class="text-4xl font-bold text-center mb-4 text-custom-gray-800 dark:text-custom-red-100 flex items-center justify-center gap-x-3">
+        {{ with $icon }}{{ partial "icon.html" . }}{{ end }}
+        <span>{{ .Title }}</span>
+    </h1>
 
     {{ if .Content }}
         <div class="prose dark:prose-invert mx-auto text-center mb-12">{{ .Content }}</div>
     {{ end }}
 
-    {{/* --- Tag Filter Buttons --- */}}
-    {{/* We find all tags used ONLY in the pages of this section */}}
     {{ $tags := slice }}
     {{ range .Pages }}
         {{ $tags = $tags | append .Params.tags }}
@@ -23,11 +29,9 @@
         {{ end }}
     </div>
     {{ end }}
-    {{/* --- End Tag Filter --- */}}
 
-    {{/* Grid for Cards - handles different layouts */}}
     {{ $gridClass := "grid md:grid-cols-2 lg:grid-cols-3 gap-8" }}
-    {{ if or (eq .Type "blog") (eq .Type "publications") }}
+    {{ if or (eq .Type "blog") (eq .Type "publications") (eq .Type "experience") }}
         {{ $gridClass = "space-y-8 max-w-3xl mx-auto" }}
     {{ end }}
 

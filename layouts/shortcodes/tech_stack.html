@@ -1,19 +1,13 @@
-{{/* layouts/shortcodes/tech_stack.html */}}
 <section id="tech-stack" class="py-10 md:py-16 mb-12 md:mb-16">
     <div class="container mx-auto px-6">
-        <h2 class="text-2xl md:text-3xl font-semibold text-custom-red-500 mb-8 text-center">
-            Technologies, Skills & Tools
+        <h2 class="text-2xl md:text-3xl font-semibold text-custom-gray-800 dark:text-custom-red-100 mb-8 text-center flex items-center justify-center gap-x-3">
+            {{ partial "icon.html" "cpu" }}
+            <span>Technologies, Skills & Tools</span>
         </h2>
-        {{/* Define the list of technologies and tools */}}
-        {{ $techs := .Page.Params.tech_stack | default (slice
-            "Linux" "Python" "Pandas" "Numpy" "PyTorch" "OOP" "TensorFlow"
-            "Rust" "SQL" "C++" "git" "Jenkins (CI/CD)" "GitHub Actions (CI/CD)"
-            "Bash" "MATLAB" "Data Structures & Algorithms" "Functional Programming"
-            "ML & DL" "Computer architecture"
-        ) }}
+        {{ $techs := .Page.Params.tech_stack | default (slice "Linux" "Python" "Pandas" "Numpy" "PyTorch" "OOP" "TensorFlow" "Rust" "SQL" "C++" "git" "Jenkins (CI/CD)" "GitHub Actions (CI/CD)" "Bash" "MATLAB" "Data Structures & Algorithms" "Functional Programming" "ML & DL" "Computer architecture") }}
         <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
             {{ range $techs }}
-            <span class="bg-custom-red-100 text-custom-red-700 px-4 py-2 rounded-full text-sm font-medium shadow hover:shadow-md transition-shadow">{{ . }}</span>
+            <span class="bg-custom-red-100 text-custom-red-800 px-4 py-2 rounded-full text-sm font-medium shadow hover:shadow-md transition-shadow dark:bg-custom-red-500/10 dark:text-custom-red-400">{{ . }}</span>
             {{ end }}
         </div>
     </div>
