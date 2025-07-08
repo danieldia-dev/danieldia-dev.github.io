@@ -1,8 +1,6 @@
-/* assets/css/main.css */
 @import "tailwindcss";
-@source "hugo_stats.json"; /* For Hugo's asset processing */
+@source "hugo_stats.json";
 
-/* Tailwind Config & Custom Theme */
 @theme {
     /* Custom color palette */
     --color-custom-red-50: #fef2f2;
@@ -17,16 +15,13 @@
     --color-custom-gray-600: #4b5563;
     --color-custom-gray-700: #374151;
     --color-custom-gray-800: #1f2937;
-    --color-custom-gray-900: #111827; /* Darkest gray */
+    --color-custom-gray-900: #111827;
 
-    /* Custom font */
     --font-sans: "Source Code Pro", Menlo, Consolas, Monaco, Adwaita Mono, Liberation Mono, Lucida Console, monospace;
 }
 
-/* Include the official Tailwind typography plugin for styling Markdown content */
 @plugin "@tailwindcss/typography";
 
-/* Base styles applied to the body */
 body {
     @apply bg-custom-red-50 text-custom-gray-700 flex flex-col min-h-screen font-sans;
     @apply dark:bg-custom-gray-900 dark:text-custom-gray-500;
@@ -35,7 +30,6 @@ body {
     transition-duration: 300ms;
 }
 
-/* Custom component styles */
 .site-header {
     @apply bg-custom-red-100 dark:bg-custom-gray-800 shadow-md sticky top-0 z-50 text-custom-gray-700 dark:text-custom-gray-600;
     transition: background-color 0.3s ease;
@@ -58,7 +52,6 @@ body {
     @apply inline-block bg-custom-gray-200 hover:bg-custom-gray-300 text-custom-gray-800 font-semibold py-1 px-3 rounded-md transition-colors duration-200 dark:bg-custom-gray-700 dark:text-custom-gray-200 dark:hover:bg-custom-gray-600;
 }
 
-/* Styles for the tag filter buttons */
 .tag-filter-btn {
     @apply px-4 py-1.5 border border-custom-red-200 dark:border-custom-gray-700 rounded-full text-sm font-medium text-custom-gray-600 dark:text-custom-gray-400 transition-all duration-200;
 }
@@ -71,7 +64,6 @@ body {
     @apply bg-custom-red-500 text-white border-custom-red-500 dark:bg-custom-red-400 dark:text-custom-gray-900 dark:border-custom-red-400;
 }
 
-/* Animation styles */
 .unified-card-animation {
     opacity: 0;
     transform: translateY(20px);
@@ -80,8 +72,5 @@ body {
 }
 
 @keyframes card-fade-in {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
 }

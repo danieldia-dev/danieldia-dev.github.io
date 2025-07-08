@@ -1,88 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode | default "en" }}" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-        {{ if .IsHome }}
-            {{ .Site.Title }}
-        {{ else }}
-            {{ .Title }} - {{ .Site.Title }}
-        {{ end }}
-    </title>
-
-    {{ partialCached "css.html" . }}
-
-    {{/* Your favicon link - uncomment when ready and place D2.png in /static/ */}}
-    <link rel="icon" type="image/png" href="{{ "D2.png" | relURL }}" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet" />
-
-    {{ block "head_extra" . }}{{ end }}
+    {{ partial "head.html" . }}
 </head>
-<body class="flex flex-col min-h-screen font-sans">
+<body class="flex flex-col min-h-screen">
     {{ partial "site-header.html" . }}
-
-    <main class="container mx-auto px-6 py-8 flex-grow">
-        {{ block "main" . }}
-            <!-- Page specific content will be injected here -->
-        {{ end }}
+    <main class="flex-grow">
+        {{ block "main" . }}{{ end }}
     </main>
-
     {{ partial "site-footer.html" . }}
-
-    {{ block "scripts_extra" . }}
-        {{/*
-          This script highlights the active navigation link.
-          It works on a multi-page site by comparing the current page's URL path
-          with the href of each navigation link.
-        */}}
-        <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const navLinks = document.querySelectorAll('header nav a.nav-link');
-            const currentPagePath = window.location.pathname;
-
-            let bestMatch = { link: null, length: -1 };
-
-            navLinks.forEach(link => {
-                // Reset any existing active styles
-                link.classList.remove('active', 'text-custom-red-500', 'bg-custom-red-200', 'font-semibold');
-                link.classList.add('text-custom-gray-700');
-
-                let linkPath = new URL(link.href).pathname;
-
-                // Normalize paths for consistent comparison (remove trailing slash if not root)
-                if (linkPath.length > 1 && linkPath.endsWith('/')) {
-                    linkPath = linkPath.slice(0, -1);
-                }
-
-                let currentPathNormalized = currentPagePath;
-                if (currentPathNormalized.length > 1 && currentPathNormalized.endsWith('/')) {
-                   currentPathNormalized = currentPathNormalized.slice(0, -1);
-                }
-
-                // Check for a match. The condition makes sure '/blog/my-post' activates the '/blog' link.
-                if (currentPathNormalized === linkPath || (linkPath !== '/' && currentPathNormalized.startsWith(linkPath + '/'))) {
-                    // This is a potential match. We want the most specific (longest) one.
-                    if (linkPath.length > bestMatch.length) {
-                        bestMatch.link = link;
-                        bestMatch.length = linkPath.length;
-                    }
-                }
-            });
-
-            // If a best match was found, highlight it.
-            if (bestMatch.link) {
-                bestMatch.link.classList.add('active', 'text-custom-red-500', 'bg-custom-red-200', 'font-semibold');
-                bestMatch.link.classList.remove('text-custom-gray-700');
-            }
-        });
-        </script>
-    {{ end }}
-
-    {{/* Add the analytics partial call here */}}
+    {{ partial "footer-scripts.html" . }}
     {{ partial "analytics.html" . }}
 </body>
 </html>

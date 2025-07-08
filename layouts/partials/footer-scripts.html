@@ -1,24 +1,19 @@
-{{/* layouts/partials/footer-scripts.html */}}
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     // Staggered Card Animations
     const animatedCards = document.querySelectorAll('.unified-card-animation');
-    animatedCards.forEach((card, index) => {
-        card.style.setProperty('--delay', `${index * 100}ms`);
-    });
+    animatedCards.forEach((card, index) => { card.style.setProperty('--delay', `${index * 100}ms`); });
 
     // Tag Filtering Logic
     const filterContainer = document.querySelector('#tag-filter');
     if (filterContainer) {
         const filterButtons = filterContainer.querySelectorAll('.tag-filter-btn');
         const filterableCards = document.querySelectorAll('.filterable-card');
-
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
                 const activeTag = button.dataset.tag;
-
                 filterableCards.forEach(card => {
                     const cardTags = card.dataset.tags;
                     if (activeTag === 'all' || (cardTags && cardTags.includes(activeTag))) {
@@ -35,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
     const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
     const applyTheme = (theme) => {
         if (theme === 'dark') {
             document.documentElement.classList.add('dark');
@@ -47,16 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if(themeToggleDarkIcon) themeToggleDarkIcon.classList.remove('hidden');
         }
     };
-
     const savedTheme = localStorage.getItem('color-theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme) {
-        applyTheme(savedTheme);
-    } else {
-        applyTheme(prefersDark ? 'dark' : 'light');
-    }
-
+    if (savedTheme) { applyTheme(savedTheme); } else { applyTheme(prefersDark ? 'dark' : 'light'); }
     if(themeToggleBtn) {
         themeToggleBtn.addEventListener('click', function() {
             const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
