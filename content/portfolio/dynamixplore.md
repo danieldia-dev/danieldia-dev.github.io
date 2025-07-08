@@ -3,7 +3,7 @@ title: "Project 1 – A Modular Framework for Numerical Exploration of Dynamical
 date: 2025-06-29
 draft: false
 category: "Project"
-image: "/images/project-placeholder.jpg" # Optional: path relative to static folder e.g. static/images/project-placeholder.jpg
+image: "static/lorenz_attractor.jpg" # Optional: path relative to static folder e.g. static/images/project-placeholder.jpg
 summary: "DynamiXplore brings the power of Rust to the simplicity of Python for complex systems analysis."
 tags: ["Dynamical Systems", "FOSS", "Research Software", "Python", "Rust", "Simulation", "In Progress"]
 ---
