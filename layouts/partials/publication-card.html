@@ -1,0 +1,19 @@
+{{/* layouts/partials/publication-card.html */}}
+<article class="content-card bg-white p-6 rounded-xl shadow-lg"> {{/* Or use existing content-card style */}}
+    <h3 class="text-xl font-semibold mb-1 text-custom-red-500">
+        <a href="{{ .RelPermalink }}" class="hover:underline">{{ .Title }}</a>
+    </h3>
+    {{ with .Params.authors }}
+    <p class="text-xs text-custom-gray-500 mb-1">Authors: {{ delimit . ", " }}</p>
+    {{ end }}
+    {{ if .Date }}
+    <p class="text-xs text-custom-gray-500 mb-2">Published: {{ .Date.Format "January 2, 2006" }} {{ with .Params.journal }}in <em>{{ . }}</em>{{ end }}</p>
+    {{ end }}
+    {{ if .Summary }}
+        <p class="text-custom-gray-600 text-sm mb-3">{{ .Summary | plainify | truncate 150 }}</p>
+    {{ end }}
+    <a href="{{ .RelPermalink }}" class="text-custom-red-500 hover:underline text-sm font-semibold">Read more / View details &rarr;</a>
+    {{ with .Params.link }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs ml-4">External Link</a>
+    {{ end }}
+</article>

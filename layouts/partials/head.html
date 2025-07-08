@@ -1,9 +1,0 @@
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
-{{ $css := resources.Get "css/main.css" | postCSS }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}">
-<link rel="icon" type="image/png" href="{{ "D2.png" | relURL }}" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet" />

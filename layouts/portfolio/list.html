@@ -1,0 +1,57 @@
+{{/* layouts/portfolio/list.html */}}
+{{ define "main" }}
+    <div class="space-y-16">
+        {{/* Fetch all content we want to display on this page */}}
+        {{ $portfolioPages := where .Site.RegularPages "Type" "portfolio" }}
+        {{ $experiencePages := where .Site.RegularPages "Type" "experience" }}
+
+        <!-- 1. Experience Section (MODIFIED) -->
+        <section id="experience-list">
+            <h2 class="text-3xl font-bold text-center text-custom-red-500 mb-8">Experience</h2>
+            {{ if gt (len $experiencePages) 0 }}
+                <div class="space-y-8 max-w-3xl mx-auto">
+                    {{ range $experiencePages.ByDate.Reverse }}
+                        {{/* Use the experience-card partial to show a summary card with a button */}}
+                        {{ partial "experience-card.html" . }}
+                    {{ end }}
+                </div>
+            {{ else }}
+                <p class="text-center text-custom-gray-600">No professional experience listed yet.</p>
+            {{ end }}
+        </section>
+
+        <hr class="custom-divider max-w-4xl mx-auto"/>
+
+        <!-- 2. Projects Section -->
+        <section id="projects-list">
+             <h2 class="text-3xl font-bold text-center text-custom-red-500 mb-8">Projects</h2>
+            {{ $projects := where $portfolioPages ".Params.category" "Project" }}
+            {{ if gt (len $projects) 0 }}
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+                    {{ range $projects.ByDate.Reverse }}
+                        {{ partial "portfolio-card.html" . }}
+                    {{ end }}
+                </div>
+            {{ else }}
+                <p class="text-center text-custom-gray-600">No projects listed yet.</p>
+            {{ end }}
+        </section>
+
+        <hr class="custom-divider max-w-4xl mx-auto"/>
+
+        <!-- 3. Coursework Section -->
+        <section id="coursework-list">
+            <h2 class="text-3xl font-bold text-center text-custom-red-500 mb-8">Coursework</h2>
+            {{ $coursework := where $portfolioPages ".Params.category" "Coursework" }}
+            {{ if gt (len $coursework) 0 }}
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+                     {{ range $coursework.ByDate.Reverse }}
+                        {{ partial "portfolio-card.html" . }} {{/* Reusing the same card partial */}}
+                    {{ end }}
+                </div>
+            {{ else }}
+                <p class="text-center text-custom-gray-600">No coursework listed yet.</p>
+            {{ end }}
+        </section>
+    </div>
+{{ end }}
