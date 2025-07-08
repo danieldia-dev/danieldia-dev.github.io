@@ -1,0 +1,23 @@
+{{/* layouts/shortcodes/recent_projects.html */}}
+{{ $count := .Get "count" | default 2 }}
+<section id="projects-showcase" class="py-10 md:py-16 bg-custom-red-50 rounded-xl shadow-lg mb-12 md:mb-16">
+    <div class="container mx-auto px-6">
+        <h2 class="text-2xl md:text-3xl font-semibold text-custom-red-500 mb-8 text-center">
+            <a href="{{ "/portfolio/" | relURL }}" class="hover:underline">Projects</a>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+            {{/* MODIFIED: Filter for portfolio type AND category "Project" */}}
+            {{ $projects := where (where .Site.RegularPages "Type" "portfolio") ".Params.category" "Project" }}
+            {{ range first $count ($projects.ByDate.Reverse) }}
+                {{ partial "portfolio-card.html" . }}
+            {{ else }}
+                <p class="md:col-span-2 text-center text-custom-gray-600 py-4">No featured projects yet.</p>
+            {{ end }}
+        </div>
+         {{ if gt (len $projects) $count }}
+        <div class="text-center mt-10">
+            <a href="{{ "/portfolio/" | relURL }}" class="btn-primary">View All Projects</a>
+        </div>
+        {{ end }}
+    </div>
+</section>
