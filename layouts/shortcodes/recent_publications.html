@@ -7,7 +7,7 @@
         </h2>
         <div class="space-y-6">
             {{ range first $count (where site.RegularPages.ByDate.Reverse "Type" "publications") }}
-                {{ partial "publication-card.html" . }}
+                {{ partial "unified-card.html" . }}
             {{ else }}
                 <p class="md:col-span-2 text-center text-custom-gray-600 py-4">No recent publications yet.</p>
             {{ end }}

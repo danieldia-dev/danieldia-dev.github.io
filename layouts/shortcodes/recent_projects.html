@@ -9,7 +9,7 @@
             {{/* MODIFIED: Filter for portfolio type AND category "Project" */}}
             {{ $projects := where (where .Site.RegularPages "Type" "portfolio") ".Params.category" "Project" }}
             {{ range first $count ($projects.ByDate.Reverse) }}
-                {{ partial "portfolio-card.html" . }}
+                {{ partial "unified-card.html" . }}
             {{ else }}
                 <p class="md:col-span-2 text-center text-custom-gray-600 py-4">No featured projects yet.</p>
             {{ end }}
