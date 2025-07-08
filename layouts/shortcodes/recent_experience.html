@@ -1,22 +1,21 @@
-{{ $count := .Get "count" | default 2 }}
-<section class="py-10 md:py-16">
-    <div class="container mx-auto px-6 max-w-4xl">
-        <h2 class="text-2xl md:text-3xl font-semibold text-custom-gray-800 dark:text-custom-red-100 mb-8 text-center flex items-center justify-center gap-x-3">
-            {{ partial "icon.html" "briefcase" }}
-            <a href="{{ "/experience/" | relURL }}" class="hover:underline">Recent Experience</a>
-        </h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            {{ $pages := where site.RegularPages.ByDate.Reverse "Type" "experience" }}
-            {{ range first $count $pages }}
-                {{ partial "unified-card.html" . }}
-            {{ else }}
-                <p class="md:col-span-2 text-center text-custom-gray-600 py-4">No experience listed yet.</p>
+{{/* layouts/shortcodes/recent_experience.html */}}
+<section id="experience" class="py-10 md:py-16 max-w-3xl mx-auto mb-12 md:mb-16">
+    <h2 class="text-2xl md:text-3xl font-semibold text-custom-red-500 mb-8 text-center">
+         <a href="{{ "/portfolio/" | relURL }}#experience-list" class="hover:underline">Recent Experience</a>
+    </h2>
+    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+        {{/* Fetch the most recent experience item */}}
+        {{ with first 1 (where .Site.RegularPages.ByDate.Reverse "Type" "experience") }}
+            {{ range . }}
+                <div class="experience-item">
+                    <h3 class="text-xl font-semibold text-custom-gray-800">{{ .Title }} - {{ .Params.company }}</h3>
+                    <p class="text-sm text-custom-gray-500">{{ .Params.duration }}</p>
+                    <p class="mt-2 text-custom-gray-700">{{ .Summary }}</p>
+                    <a href="{{ "/portfolio/" | relURL }}#experience-list" class="inline-block mt-4 text-custom-red-500 hover:underline">View all experiences...</a>
+                </div>
             {{ end }}
-        </div>
-        {{ if gt (len $pages) $count }}
-        <div class="text-center mt-10">
-            <a href="{{ "/experience/" | relURL }}" class="btn-primary">View All Experiences</a>
-        </div>
+        {{ else }}
+            <p class="text-custom-gray-700">Experience section is currently being updated. Please check back soon!</p>
         {{ end }}
     </div>
 </section>

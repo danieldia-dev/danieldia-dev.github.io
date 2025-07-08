@@ -1,0 +1,15 @@
+{{/* layouts/partials/experience-card.html */}}
+<article class="content-card bg-white p-6 rounded-xl shadow-lg flex flex-col h-full">
+    <h3 class="text-xl font-semibold text-custom-gray-800">{{ .Title }}</h3>
+    <p class="font-medium text-custom-gray-600">{{ .Params.company }} | <span class="text-sm text-custom-gray-500">{{ .Params.duration }}</span></p>
+
+    {{/* Display the summary from front matter */}}
+    <p class="text-custom-gray-700 text-sm my-3 flex-grow">
+        {{ .Summary }}
+    </p>
+
+    {{/* "View Experience" button that links to the full page */}}
+    <div class="mt-auto">
+        <a href="{{ .RelPermalink }}" class="btn-primary text-sm self-start">View Experience</a>
+    </div>
+</article>
