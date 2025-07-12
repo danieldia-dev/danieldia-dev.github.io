@@ -3,6 +3,17 @@
   Theme: Rosé Pine Dawn (Light Theme)
 */
 
+/* This new rule targets the <pre> tag inside the .highlight container.
+  It makes its background transparent, allowing the pastel color of .highlight to show through.
+  This overrides the default dark background from the typography plugin.
+*/
+.highlight pre {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
 .highlight {
   color: #575279;
   background-color: #faf4ed;
