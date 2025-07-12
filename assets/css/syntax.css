@@ -16,10 +16,11 @@
 
 .highlight {
   color: #575279;
-  background-color: #faf4ed;
+  background-color: #ffffff; /* Off-white background to match the site's content cards */
   border-radius: 8px;
   padding: 1em;
   overflow: auto;
+  border: 1px solid #fecaca; /* Visible pastel red frame */
 }
 .highlight .err {
   color: #b4637a;
