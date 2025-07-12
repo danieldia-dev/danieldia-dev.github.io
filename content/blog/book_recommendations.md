@@ -1,6 +1,7 @@
 ---
 title: "Book Recommendations"
 draft: false
+date: 2025-05-20
 tags: ["Resources", "Advice", "Learning", "Undergraduate"]
 summary: "A curated list of interesting textbooks and resources for aspiring mathematicians and STEM professionals."
 ---
