@@ -1,0 +1,17 @@
+{{/* layouts/shortcodes/skill_bubbles.html */}}
+{{/*
+This shortcode takes a list of skills and displays them as styled bubbles.
+Usage in Markdown:
+{{< skill_bubbles "Python" "Data Analysis" "Pandas" "NumPy" >}}
+*/}}
+
+{{ if gt (len .Params) 0 }}
+<div class="my-4 flex flex-wrap items-center gap-3">
+    <h4 class="font-semibold text-sm mr-2 text-custom-gray-600 dark:text-custom-gray-400">Skills Acquired:</h4>
+    {{ range .Params }}
+        <span class="bg-custom-red-100 text-custom-red-800 px-3 py-1 rounded-full text-xs font-medium shadow-sm dark:bg-custom-red-500/10 dark:text-custom-red-400">
+            {{ . }}
+        </span>
+    {{ end }}
+</div>
+{{ end }}
