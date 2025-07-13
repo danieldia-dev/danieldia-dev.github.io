@@ -11,8 +11,6 @@ tags: ["Online", "Undergraduate", "Mathematics", "Computer & Communications Engi
 ## Economics & Finance
 
 ### Financial Management Specialization (University of Illinois Urbana-Champaign)
-
-**Skills:**
 {{< skill-bubbles "Business Valuation" "Working Capital" "Corporate Finance" "Financial Management" "Financial Statement Analysis" "Investments" "Cash Flows" "Bookkeeping" "Financial Analysis" "Financial Accounting" "Financial Statements" "Income Statement">}}
 
 * **Financial Accounting: Foundations**
