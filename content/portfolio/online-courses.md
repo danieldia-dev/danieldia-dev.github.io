@@ -13,24 +13,28 @@ tags: ["Online", "Undergraduate", "Mathematics", "Computer & Communications Engi
 ### Financial Management Specialization (University of Illinois Urbana-Champaign)
 {{< skill-bubbles "Business Valuation" "Working Capital" "Corporate Finance" "Financial Management" "Financial Statement Analysis" "Investments" "Cash Flows" "Bookkeeping" "Financial Analysis" "Financial Accounting" "Financial Statements" "Income Statement">}}
 
-* **Financial Accounting: Foundations**
-* **Financial Accounting: Advanced Topics**
+* **Financial Accounting: Foundations (Certificate)**
+* **Financial Accounting: Advanced Topics (Certificate)**
 
 ## Data Science & Machine Learning 
-*
+* **Learning AI Through Visualization, Columbia University (Certificate)** 
 
 ## Embedded Software and Systems Programming
-* 
+* **LFD110: Introduction to RISC-V (Certificate)**
+* **LFD123: Open Source RT-Thread RTOS on RISC-V (Certificate)**
 
 ## GNU/Linux and Systems Administration
-* 
+* **LFS101: Introduction to Linux (Certificate)**
 
 ## Continuous Integration & Continuous Delivery (CI/CD)
-* 
+* **LFS167: Introduction to Jenkins (Certificate)**
 
 ## Open Source Development
 
-* **A Beginner's Guide to Open Source Software Development (LFD102)**
-* **Open Source Technical Documentation Essentials (LFC111)**
-* **Software Engineering Basics for Embedded Systems (LFD116)**
-* **Ethics for Open Source Development (LFC104)**
+### Open Source Software Development, Linux and Git Specialization (The Linux Foundation)
+
+### The Linux Foundation
+* **LFD102: A Beginner's Guide to Open Source Software Development ([Certificate](https://www.credly.com/badges/196c38e6-5ebf-448c-a52d-a6fa48c4356f/public_url))**
+* **LFC111: Open Source Technical Documentation Essentials ([Certificate](https://www.credly.com/badges/df2ea583-d716-4bca-bd81-4d0ef1629baf/public_url))**
+* **LFD116: Software Engineering Basics for Embedded Systems ([Certificate](https://www.credly.com/badges/0c564c18-a9e0-4059-bb8d-8924b6345d9b/public_url))**
+* **LFC104: Ethics for Open Source Development ([Certificate](https://www.credly.com/badges/56891c90-6a30-41ef-9f2e-3632eca08731/public_url))**
