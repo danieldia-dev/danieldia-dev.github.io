@@ -19,11 +19,13 @@ tags: ["Online", "Undergraduate", "Mathematics", "Computer & Communications Engi
 ## Data Science & Machine Learning 
 * **Learning AI Through Visualization, Columbia University (Certificate)** 
 
-## Embedded Software and Systems Programming
+## Embedded Software & Systems Programming
 * **LFD110: Introduction to RISC-V (Certificate)**
 * **LFD123: Open Source RT-Thread RTOS on RISC-V (Certificate)**
 
-## GNU/Linux and Systems Administration
+## Pure & Applied Mathematics
+
+## GNU/Linux & Systems Administration
 * **LFS101: Introduction to Linux (Certificate)**
 
 ## Continuous Integration & Continuous Delivery (CI/CD)
@@ -34,6 +36,7 @@ tags: ["Online", "Undergraduate", "Mathematics", "Computer & Communications Engi
 ### Open Source Software Development, Linux and Git Specialization (The Linux Foundation)
 
 ### The Linux Foundation
+* **LFD103: A Beginner's Guide to Linux Kernel Development (Certificate)**
 * **LFD102: A Beginner's Guide to Open Source Software Development ([Certificate](https://www.credly.com/badges/196c38e6-5ebf-448c-a52d-a6fa48c4356f/public_url))**
 * **LFC111: Open Source Technical Documentation Essentials ([Certificate](https://www.credly.com/badges/df2ea583-d716-4bca-bd81-4d0ef1629baf/public_url))**
 * **LFD116: Software Engineering Basics for Embedded Systems ([Certificate](https://www.credly.com/badges/0c564c18-a9e0-4059-bb8d-8924b6345d9b/public_url))**

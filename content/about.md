@@ -3,14 +3,17 @@ title: "About Me"
 draft: false
 ---
 
-Welcome to my personal space on the web! 👋 I'm Daniel, and this is where I'll share a bit about myself, my work, and things I'm learning.
+Hello! I am Daniel Dia 👋
 
----
-I'm Daniel Dia, a Computer & Communications Engineering (CCE) student at the American University of Beirut (AUB), where I aim to integrate hardware and software approaches, combining my studies with a planned double major in Mathematics and a strong interest in Economics and Finance. 📈
+Welcome to my personal space on the web! 
 
-Excited to contribute technical skills and a community-focused mindset to information theory, dynamical systems, probability theory, statistical learning, and mathematics applied to quantitative finance and embedded (software) systems.
+I'm a Computer & Communications Engineering student at the American University of Beirut (AUB), driven by a fascination with the powerful intersection of mathematics 📈, software 💻, and quantitative finance 🧠.
 
-I believe in continuous learning and applying advanced mathematical and technological insights to solve complex, real-world problems. 🚀
+My journey is grounded in a deep appreciation for theoretical foundations. I am particularly interested in the elegance of Mathematical Analysis and Linear Algebra, the predictive power of Probability & Statistics, and the structure of Dynamical Systems.
+
+I am passionate about translating these advanced mathematical insights into practical, high-impact applications. My focus is on leveraging tools from Information Theory and Numerical Methods to tackle challenges in quantitative finance and build robust embedded software systems. I am also exploring how formal methods, drawing from logic and type theory, can be used with proof assistants to develop verifiably secure and robust machine learning models.
+
+Ultimately, I believe in continuous learning as the key to solving complex problems and am committed to using technology to make a meaningful impact. 🚀
 
 ---
 
