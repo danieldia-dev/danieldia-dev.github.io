@@ -8,9 +8,11 @@
         <!-- 1. Experience Section -->
         <section id="experience-list">
             <h2 class="text-3xl font-bold text-center text-custom-red-500 mb-8">Experience</h2>
-            {{ if gt (len $experiencePages) 0 }}
+            {{/* MODIFICATION: Filter to exclude the 'Volunteering' category */}}
+            {{ $professionalExperience := where $experiencePages ".Params.category" "ne" "Volunteering" }}
+            {{ if gt (len $professionalExperience) 0 }}
                 <div class="space-y-8 max-w-3xl mx-auto">
-                    {{ range $experiencePages.ByDate.Reverse }}
+                    {{ range $professionalExperience.ByDate.Reverse }}
                         {{/* Use the updated experience-card partial */}}
                         {{ partial "experience-card.html" . }}
                     {{ end }}
@@ -58,10 +60,10 @@
 
         <hr class="custom-divider max-w-4xl mx-auto"/>
 
-        <!-- 4. NEW: Volunteering Section -->
+        <!-- 4. Volunteering Section -->
         <section id="volunteering-list">
             <h2 class="text-3xl font-bold text-center text-custom-red-500 mb-8">Volunteering</h2>
-            {{/* To make this work, create content files with Type = "experience" and category = "Volunteering" */}}
+            {{/* This filter correctly selects only items with the 'Volunteering' category */}}
             {{ $volunteering := where $experiencePages ".Params.category" "Volunteering" }}
             {{ if gt (len $volunteering) 0 }}
                 <div class="space-y-8 max-w-3xl mx-auto">
