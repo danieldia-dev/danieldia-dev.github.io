@@ -3,6 +3,7 @@ title: "Wikipedia Contributor (Volunteer)"
 company: "Wikipedia (Wikimedia Foundation)"
 duration: "Dec 2023 - Present"
 category: "Volunteering" # This is the important part!
+summary: "Drove over 1.1 million reader views on edited articles through 130+ enhancements, earning 70+ commendations ('thanks') from the editorial community."
 logo: "/logos/wikipedia-logo.png"
 ---
 ## Wikipedia & Open Knowledge Contribution
