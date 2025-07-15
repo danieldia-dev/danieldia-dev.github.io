@@ -1,7 +1,16 @@
 {{/* layouts/partials/experience-card.html */}}
 <article class="content-card bg-white p-6 rounded-xl shadow-lg flex flex-col h-full">
-    <h3 class="text-xl font-semibold text-custom-gray-800">{{ .Title }}</h3>
-    <p class="font-medium text-custom-gray-600">{{ .Params.company }} | <span class="text-sm text-custom-gray-500">{{ .Params.duration }}</span></p>
+    <div class="flex items-center gap-x-4 mb-1">
+        {{/* Check for a logo in the front matter */}}
+        {{ with .Params.logo }}
+            <img src="{{ . | relURL }}" alt="{{ $.Params.company }} logo" class="h-10 w-10 object-contain flex-shrink-0 rounded-md">
+        {{ end }}
+        
+        <div class="flex-grow">
+            <h3 class="text-xl font-semibold text-custom-gray-800">{{ .Title }}</h3>
+            <p class="font-medium text-custom-gray-600">{{ .Params.company }} | <span class="text-sm text-custom-gray-500">{{ .Params.duration }}</span></p>
+        </div>
+    </div>
 
     {{/* Display the summary from front matter */}}
     <p class="text-custom-gray-700 text-sm my-3 flex-grow">

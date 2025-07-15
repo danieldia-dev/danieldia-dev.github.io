@@ -1,11 +1,10 @@
 {{/* layouts/partials/portfolio-card.html */}}
-{{/* This card is used to display a single project summary */}}
+{{/* This card is now more generic for projects, coursework, etc. */}}
 
 <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-full transition-transform transform hover:-translate-y-1">
     {{/* Check if an image is specified in the front matter */}}
     {{ with .Params.image }}
         <a href="{{ $.RelPermalink }}">
-            {{/* Use relURL to create the correct path to the image from the static directory */}}
             <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="w-full h-48 object-cover" loading="lazy">
         </a>
     {{ end }}
@@ -20,7 +19,8 @@
         </p>
 
         <div class="mt-auto pt-4">
-             <a href="{{ .RelPermalink }}" class="btn-primary">View Project</a>
+            {{/* The button text is now more generic */}}
+            <a href="{{ .RelPermalink }}" class="btn-primary">View Details</a>
         </div>
     </div>
 </div>

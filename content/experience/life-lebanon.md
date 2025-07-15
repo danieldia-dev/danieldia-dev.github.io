@@ -5,6 +5,7 @@ date: 2025-07-11 # Use the end date for sorting
 duration: "Jul 2025 — Present"
 summary: "Selected as a scholar for my CCE degree at AUB, recognized for dedication to academic excellence and alignment with LIFE's mission and values."
 draft: false
+logo: "logos/life-logo.png"
 ---
 
 Selected as a LIFE Scholar for dedication to academic excellence and a commitment to making a positive impact, joining a global network that empowers Lebanese talent through mentorship and community engagement.
