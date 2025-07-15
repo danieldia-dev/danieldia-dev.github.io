@@ -3,7 +3,7 @@ title: "Online Coursework"
 date: 2025-06-29
 draft: false
 category: "Coursework"
-image: "/images/project-placeholder.jpg" # Optional: path relative to static folder e.g. static/images/project-placeholder.jpg
+image: "aub1.jpg" # Optional: path relative to static folder e.g. static/images/project-placeholder.jpg
 summary: "Independent online coursework completed during my undergraduate studies at AUB."
 tags: ["Online", "Undergraduate", "Mathematics", "Computer & Communications Engineering", "Economics"]
 ---
@@ -15,6 +15,7 @@ tags: ["Online", "Undergraduate", "Mathematics", "Computer & Communications Engi
 
 * **Financial Accounting: Foundations (Certificate)**
 * **Financial Accounting: Advanced Topics (Certificate)**
+* **Investments I: Fundamentals of Performance Evaluation (Certificate)**
 
 ## Data Science & Machine Learning 
 * **Learning AI Through Visualization, Columbia University (Certificate)** 

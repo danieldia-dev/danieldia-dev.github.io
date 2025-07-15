@@ -8,7 +8,21 @@ summary: "DynamiXplore brings the power of Rust to the simplicity of Python for 
 tags: ["Dynamical Systems", "FOSS", "Research Software", "Python", "Rust", "Simulation", "In Progress"]
 ---
 
-Scientists and engineers across disciplines—from epidemiology and physics to economics and biology—rely on the numerical exploration of dynamical systems to understand complex phenomena. This exploration typically involves a recurring workflow: defining a model's equations, simulating its behavior over time, and analyzing the resulting trajectory to uncover its fundamental properties, such as stability, periodicity, or the presence of chaos.
+A modern, high-performance Python framework designed to provide a cohesive, end-to-end environment for the study of dynamical systems.
+
+Features:
+
+- High-Performance Core 🚀: Backend written in Rust for C-level speed on intensive calculations.
+
+- Comprehensive Analysis Suite 📈: Includes Lyapunov exponents, permutation entropy, fractal dimensions, and more.
+
+- Pythonic API 🐍: Designed to be intuitive and easy to integrate into the existing Python data science ecosystem.
+
+- Interactive Visualizations 🌐: Built-in plotting functions using Plotly for easy exploration of results.
+
+## Introduction
+
+Scientists and engineers across disciplines — from epidemiology and physics to economics and biology — rely on the numerical exploration of dynamical systems to understand complex phenomena. This exploration typically involves a recurring workflow: defining a model's equations, simulating its behavior over time, and analyzing the resulting trajectory to uncover its fundamental properties, such as stability, periodicity, or the presence of chaos.
 
 In the Python ecosystem, this process has traditionally been fragmented and inefficient. A researcher must often act as a software integrator, manually piecing together disparate tools: `SciPy`'s powerful but general-purpose ODE solvers for simulation, specialized time-series libraries or custom-written scripts for computing metrics like Lyapunov exponents, and plotting libraries like `Matplotlib` to visualize the results. This not only complicates the research workflow but also introduces performance bottlenecks, as numerically intensive analysis in pure Python can be prohibitively slow for long simulations or high-dimensional systems.
 
