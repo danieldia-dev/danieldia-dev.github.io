@@ -3,7 +3,7 @@ title: "Full Stack Software Engineer"
 company: "DevForces (Startup)"
 date: 2025-07-14 # Use the end date for sorting
 duration: "Jul 2025 — Present"
-summary: ""
+summary: "Member of the full-stack development team, responsible for the end-to-end development of a new web platform for our client LiveLunger."
 draft: false
 logo: "logos/devforces-logo.png"
 ---
