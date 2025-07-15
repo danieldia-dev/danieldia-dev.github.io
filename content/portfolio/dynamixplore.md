@@ -20,7 +20,7 @@ Features:
 
 - Interactive Visualizations 🌐: Built-in plotting functions using Plotly for easy exploration of results.
 
-## Introduction
+### Introduction
 
 Scientists and engineers across disciplines — from epidemiology and physics to economics and biology — rely on the numerical exploration of dynamical systems to understand complex phenomena. This exploration typically involves a recurring workflow: defining a model's equations, simulating its behavior over time, and analyzing the resulting trajectory to uncover its fundamental properties, such as stability, periodicity, or the presence of chaos.
 
