@@ -7,7 +7,7 @@ summary: "Drove over 1.1 million reader views on edited articles through 130+ en
 logo: "/logos/wikipedia-logo.png"
 ---
 
-Driven by a core belief that knowledge should be free and accessible to all, I am an active volunteer contributor to Wikipedia, the world's largest open encyclopedia. My work focuses on enhancing the quality, depth, and clarity of technical and academic articles for a global audience.
+Driven by a core belief that **knowledge should be free and accessible to all**, I am an active volunteer contributor to Wikipedia, the world's largest open encyclopedia. My work focuses on enhancing the quality, depth, and clarity of technical and academic articles for a global audience.
 
 - ***Global Impact & Community Recognition***
     
@@ -21,6 +21,7 @@ Driven by a core belief that knowledge should be free and accessible to all, I a
     
     I have elevated and significantly expanded core-knowledge articles across a wide range of fields, including **computer science**, **engineering**, **physics**, **biology**, **linguistics**, and **mathematics**. My process involves correcting systemic issues such as sourcing, structure, and neutrality to ensure adherence to the encyclopedia's highest editorial standards. This commitment to quality extends across both the English and Russian platforms.
 
+### My Contributions
 [See my contributions on English Wikipedia](https://en.wikipedia.org/wiki/Special:Contributions/KibalchishTheCoder)
 
 [See my contributions on Russian Wikipedia](https://ru.wikipedia.org/wiki/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%92%D0%BA%D0%BB%D0%B0%D0%B4/KibalchishTheCoder)

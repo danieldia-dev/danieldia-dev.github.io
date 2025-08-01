@@ -13,9 +13,12 @@ tags: ["Online", "Undergraduate", "Mathematics", "Computer & Communications Engi
 ### Financial Management Specialization (University of Illinois Urbana-Champaign)
 {{< skill-bubbles "Business Valuation" "Working Capital" "Corporate Finance" "Financial Management" "Financial Statement Analysis" "Investments" "Cash Flows" "Bookkeeping" "Financial Analysis" "Financial Accounting" "Financial Statements" "Income Statement">}}
 
-* **Financial Accounting: Foundations (Certificate)**
-* **Financial Accounting: Advanced Topics (Certificate)**
-* **Investments I: Fundamentals of Performance Evaluation (Certificate)**
+* **Financial Accounting: Foundations ([Certificate](https://www.coursera.org/account/accomplishments/verify/ESOM0APE2166))**
+* **Financial Accounting: Advanced Topics ([Certificate](https://www.coursera.org/account/accomplishments/verify/GA9UGZM8294V))**
+* **Investments I: Fundamentals of Performance Evaluation ([Certificate](https://www.coursera.org/account/accomplishments/verify/M9BIFZ0CCSME))**
+* **Investments II: Lessons and Applications for Investors ([Certificate](https://www.coursera.org/account/accomplishments/verify/1SBQF9NJVYXT))**
+* **Corporate Finance I: Measuring and Promoting Value Creation (Certificate)**
+* **Corporate Finance II: Financing Investments and Managing Risk (Certificate)**
 
 ## Data Science & Machine Learning 
 * **Learning AI Through Visualization, Columbia University (Certificate)** 
