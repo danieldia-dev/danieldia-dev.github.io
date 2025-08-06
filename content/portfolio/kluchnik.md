@@ -1,6 +1,6 @@
 ---
-title: "TRNG-PassGen: A Hardware-Based Cryptographically Secure Password Generator"
-date: 2025-08-06
+title: "Project 3 – TRNG-PassGen: A Hardware-Based Cryptographically Secure Password Generator"
+date: 2025-07-16
 draft: false
 category: "Project"
 image: "kluchnik.png" # Optional: path relative to static folder e.g. /images/trng_project_image.jpg
