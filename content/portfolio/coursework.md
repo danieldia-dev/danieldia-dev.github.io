@@ -10,8 +10,6 @@ tags: ["AUB", "Undergraduate", "Mathematics", "Computer & Communications Enginee
 
 ## Mathematics
 
-
-
 ## Computer & Communications Engineering
 
 ## Economics & Finance
