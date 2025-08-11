@@ -17,7 +17,7 @@ tags: ["Online", "Undergraduate", "Mathematics", "Computer & Communications Engi
 * **Financial Accounting: Advanced Topics ([Certificate](https://www.coursera.org/account/accomplishments/verify/GA9UGZM8294V))**
 * **Investments I: Fundamentals of Performance Evaluation ([Certificate](https://www.coursera.org/account/accomplishments/verify/M9BIFZ0CCSME))**
 * **Investments II: Lessons and Applications for Investors ([Certificate](https://www.coursera.org/account/accomplishments/verify/1SBQF9NJVYXT))**
-* **Corporate Finance I: Measuring and Promoting Value Creation (Certificate)**
+* **Corporate Finance I: Measuring and Promoting Value Creation ([Certificate](https://www.coursera.org/account/accomplishments/verify/UTMJ3ZF1YEJE))**
 * **Corporate Finance II: Financing Investments and Managing Risk (Certificate)**
 
 ## Data Science & Machine Learning 
