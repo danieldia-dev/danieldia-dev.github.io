@@ -10,7 +10,7 @@ tags: ["Online", "Undergraduate", "Mathematics", "Computer & Communications Engi
 
 ## Economics & Finance
 
-### Financial Management Specialization (University of Illinois Urbana-Champaign)
+### [Financial Management Specialization (University of Illinois Urbana-Champaign)](https://www.coursera.org/account/accomplishments/specialization/B6T2UM2FTU6B)
 {{< skill-bubbles "Business Valuation" "Working Capital" "Corporate Finance" "Financial Management" "Financial Statement Analysis" "Investments" "Cash Flows" "Bookkeeping" "Financial Analysis" "Financial Accounting" "Financial Statements" "Income Statement">}}
 
 * **Financial Accounting: Foundations ([Certificate](https://www.coursera.org/account/accomplishments/verify/ESOM0APE2166))**
@@ -18,7 +18,7 @@ tags: ["Online", "Undergraduate", "Mathematics", "Computer & Communications Engi
 * **Investments I: Fundamentals of Performance Evaluation ([Certificate](https://www.coursera.org/account/accomplishments/verify/M9BIFZ0CCSME))**
 * **Investments II: Lessons and Applications for Investors ([Certificate](https://www.coursera.org/account/accomplishments/verify/1SBQF9NJVYXT))**
 * **Corporate Finance I: Measuring and Promoting Value Creation ([Certificate](https://www.coursera.org/account/accomplishments/verify/UTMJ3ZF1YEJE))**
-* **Corporate Finance II: Financing Investments and Managing Risk (Certificate)**
+* **Corporate Finance II: Financing Investments and Managing Risk ([Certificate](https://www.coursera.org/account/accomplishments/verify/T8H5DG4ZYOWB))**
 
 ## Data Science & Machine Learning 
 * **Learning AI Through Visualization, Columbia University (Certificate)** 
