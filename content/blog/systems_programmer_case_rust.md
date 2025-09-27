@@ -178,7 +178,7 @@ As the limitations of mainstream OOP became more apparent, another school of tho
 
 This approach **eliminates entire classes of bugs related to shared mutable state**, which are a primary cause of complexity in OOP and concurrent systems. Haskell, in particular, represents the zenith of this philosophy, with a powerful static type system that enforces purity. To handle necessary side effects like I/O or state mutation, it uses advanced **type-system constructs** like monads. In a way, monads allow programmers to explicitly sequence operations and manage state in a controlled, contained manner, **emulating some of the encapsulation benefits of OOP** without its pitfalls of implicit state and inheritance.
 
-However, this purity comes with its own set of trade-offs, especially for systems programming. The heavy reliance on immutability can lead to **performance challenges** if not managed carefully, and the high level of abstraction can obscure the underlying hardware realities of memory layout and control flow. For many systems developers, the purely functional world felt powerful but impractical for writing device drivers or game engines. This created a chasm: on one side, the *unsafe, complex, but hardware-centric world* of **C++**; on the other, *the safe, elegant, but abstract world *of **Haskell**. It is precisely this chasm that Rust was designed to bridge. Rust was designed with a clear, opinionated vision from the start.
+However, this purity comes with its own set of trade-offs, especially for systems programming. The heavy reliance on immutability can lead to **performance challenges** if not managed carefully, and the high level of abstraction can obscure the underlying hardware realities of memory layout and control flow. For many systems developers, the purely functional world felt powerful but impractical for writing device drivers or game engines. This created a chasm: on one side, the *unsafe, complex, but hardware-centric world* of **C++**; on the other, *the safe, elegant, but abstract world* of **Haskell**. It is precisely this chasm that Rust was designed to bridge. Rust was designed with a clear, opinionated vision from the start.
 
 For a deeper dive into Rust's functional programming features, [see Chapter 13 ("Functional Language Features: Iterators and Closures") of The Rust Book](https://doc.rust-lang.org/book/ch13-00-functional-features.html). 
 
@@ -192,7 +192,7 @@ In Rust, every value has a single "owner." When the owner goes out of scope, the
 
 However, Rust makes two crucial changes: 
 - First, it's **universal and non-negotiable**. 
-- Second, when a value is assigned to another variable or passed to a function, its ownership is moved. The original variable is now considered uninitialized and cannot be used, a rule enforced at compile time. This elegantly prevents "double frees" and makes the flow of ownership explicit.
+- Second, when a value is **assigned to another variable** or **passed to a function**, its **ownership is moved**. The original variable is now considered uninitialized and cannot be used, a rule enforced at compile time. This elegantly prevents "double frees" and makes the flow of ownership explicit.
 
 [See Section 15.1. ("RAII") of Rust by Example (RBE) for more.](https://doc.rust-lang.org/rust-by-example/scope/raii.html) 
 
@@ -235,7 +235,7 @@ For a full breakdown, [see Chapter 4 ("Understanding Ownership") of The Rust Pro
 
 Moving ownership constantly would be impractical. Rust's solution is borrowing, which allows parts of the code to **access data via references without taking ownership**. The borrow checker, Rust's most famous feature, enforces a **critical set of rules** at compile time:
 
-- You can have ***ANY*** number of **immutable** references (`&T`) simultaneously.
+- You can have ***ANY number*** of **immutable** references (`&T`) simultaneously.
 
 - You can have ***ONLY ONE*** **mutable** reference (`&mut T`).
 
@@ -335,11 +335,11 @@ While memory safety is the headline feature, it's the modern developer experienc
 
 Rust comes with `Cargo`, an integrated package manager and build system that is nothing short of revolutionary for developers (read "blasphemers") coming from C++. It handles:
 
-- **Dependency Management:** The Cargo.toml manifest file is a simple, declarative way to specify dependencies from the central crates.io repository. This stands in stark contrast to the fragmented C++ ecosystem of Conan, vcpkg, and manual library management.
+- **Dependency Management:** The `Cargo.toml` manifest file is a simple, declarative way to specify dependencies from the central crates.io repository. This stands in stark contrast to the fragmented C++ ecosystem of `Conan`, `vcpkg`, and manual library management.
 
-- **Reproducible Builds:** Cargo automatically generates a Cargo.lock file, ensuring that every developer on a project, and the CI server, gets the exact same version of every dependency, eliminating "works on my machine" issues.
+- **Reproducible Builds:** Cargo automatically generates a `Cargo.lock` file, ensuring that every developer on a project, and the CI server, gets the exact same version of every dependency, eliminating "works on my machine" issues.
 
-- **Integrated Toolchain:** A single cargo command can build your project (`cargo build`), run tests (`cargo test`), generate test coverage (`cargo tarpaulin`), run benchmarks (`cargo bench`), generate documentation (`cargo doc`), format code (`cargo fmt`), and run a powerful static analyzer (`cargo clippy`). This consistency is a massive productivity boost compared to orchestrating Makefiles, CMake, Doxygen, and Clang-Tidy.
+- **Integrated Toolchain:** A single cargo command can build your project (`cargo build`), run tests (`cargo test`), generate test coverage (`cargo tarpaulin`), run benchmarks (`cargo bench`), generate documentation (`cargo doc`), format code (`cargo fmt`), and run a powerful static analyzer (`cargo clippy`). This consistency is a massive productivity boost compared to orchestrating `Makefiles`, `CMake`, `Doxygen`, and `Clang-Tidy`.
 
 See [Chapter 7 ("Managing Growing Projects with Packages, Crates, and Modules")](https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html) and [Chapter 14 ("More About Cargo and Crates.io")](https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html) of The Rust Book, as well as [Section 12 of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/cargo.html) for more. 
 
@@ -481,9 +481,9 @@ The `?` operator provides concise error propagation that is still explicit and t
 
 The benefits of Rust are not just theoretical. Some of the world's largest technology companies are adopting it for critical, performance-sensitive systems, often replacing existing C++ codebases.
 
-- **Google:** Rust is a first-class language for systems programming in the Android Open Source Project. In a 2022 blog post, Google stated that since introducing Rust, "there have been zero memory safety vulnerabilities discovered" in their new Rust code. They also reported that based on internal data, "*Rust developer productivity and satisfaction is high,*" with developers being twice as productive as their C++ counterparts after overcoming the initial learning curve. Read more on the [Google Security Blog](https://security.googleblog.com/2024/09/eliminating-memory-safety-vulnerabilities-Android.html).
+- **Google:** Rust is a first-class language for systems programming in the **Android Open Source Project**. In a 2022 blog post, Google stated that since introducing Rust, "*there have been zero memory safety vulnerabilities discovered*" in their new Rust code. They also reported that based on internal data, "*Rust developer productivity and satisfaction is high,*" with developers being twice as productive as their C++ counterparts after overcoming the initial learning curve. Read more on the [Google Security Blog](https://security.googleblog.com/2024/09/eliminating-memory-safety-vulnerabilities-Android.html).
 
-- **Microsoft:** Recognizing that approximately 70% of their yearly security patches are fixes for memory safety bugs in C and C++ code, Microsoft has made a strategic bet on Rust. They are actively rewriting core Windows components, including parts of the kernel, in Rust and have an official ["Rust for Windows"](https://learn.microsoft.com/en-us/windows/dev-environment/rust/rust-for-windows) project to provide seamless interoperability with the Windows API.
+- **Microsoft:** Recognizing that approximately 70% of their yearly security patches are fixes for memory safety bugs in C and C++ code, Microsoft has made a **strategic bet on Rust**. They are actively rewriting core Windows components, including parts of the kernel, in Rust and have an official ["Rust for Windows"](https://learn.microsoft.com/en-us/windows/dev-environment/rust/rust-for-windows) project to provide seamless interoperability with the Windows API.
 
 - **Amazon Web Services (AWS):** AWS has used Rust to build some of its most critical and performance-sensitive infrastructure. [Firecracker](https://firecracker-microvm.github.io/), the virtualization technology that powers AWS Lambda and Fargate, is written in Rust, leveraging its safety and speed for secure multi-tenant isolation.
 
