@@ -10,7 +10,7 @@ summary: "A technical deep-dive into Rust's core design principles, comparing it
 
 — **Andreas Jung, Rust Core Team Member.**
 
-# Introduction
+## Introduction
 
 For decades, the world of systems programming has been dominated by a single titan: C++. Its promise of "zero-cost abstractions" and direct hardware access has made it the default choice for performance-critical domains, from game engines and operating systems to high-frequency trading. Yet, this power comes at a price—a notoriously steep learning curve and a constant, looming threat of memory-related bugs and security vulnerabilities that have plagued the industry for years.
 
@@ -18,13 +18,17 @@ This has led to a fundamental trade-off: choose a language like C++ for raw perf
 
 Rust, a language that began as a personal project by Graydon Hoare at Mozilla Research in 2006, fundamentally challenges this trade-off. It is designed to provide the low-level control and bare-metal performance of C++ while guaranteeing memory safety and data-race-free concurrency at compile time. This is not an incremental improvement; it is a paradigm shift in how we can approach building reliable, high-performance software. This post will provide a technical overview of Rust's core value propositions, compare its design decisions to those of other major languages, and explore why it's rapidly moving from a niche interest to a strategic choice for some of the world's largest technology companies.
 
-# Table of Contents
+## Table of Contents
 
 - [Introduction](#introduction)
 - [Table of Contents](#table-of-contents)
 - [Data, Behavior, and Types: A New Way of Thinking](#data-behavior-and-types-a-new-way-of-thinking)
   - [What is a "Type"? From Data to Information](#what-is-a-type-from-data-to-information)
   - [Data is Just Data: `structs` and `enums`](#data-is-just-data-structs-and-enums)
+  - [Making Impossible States Impossible: `match` vs. `switch`](#making-impossible-states-impossible-match-vs-switch)
+    - [Rust's Compile-Time Guarantee:](#rusts-compile-time-guarantee)
+    - [Go's Runtime Hopefulness:](#gos-runtime-hopefulness)
+    - [C++'s Verbose Visitor:](#cs-verbose-visitor)
   - [Behavior as Traits: Composition Over Inheritance](#behavior-as-traits-composition-over-inheritance)
 - [A Critique of Object-Oriented Programming and C++'s Design Philosophy](#a-critique-of-object-oriented-programming-and-cs-design-philosophy)
   - [The Failures of the OOP Dream](#the-failures-of-the-oop-dream)
@@ -32,7 +36,7 @@ Rust, a language that began as a personal project by Graydon Hoare at Mozilla Re
   - [The Functional Programming Detour: Purity at a Price](#the-functional-programming-detour-purity-at-a-price)
 - [The Ownership Model: A Paradigm Shift in Memory Safety](#the-ownership-model-a-paradigm-shift-in-memory-safety)
   - [Ownership: Deterministic Resource Management](#ownership-deterministic-resource-management)
-    - [C++ Example (RAII with std::unique\_ptr):](#c-example-raii-with-stdunique_ptr)
+    - [C++ Example (RAII with `std::unique_ptr`):](#c-example-raii-with-stdunique_ptr)
     - [Rust Equivalent (Ownership Move):](#rust-equivalent-ownership-move)
   - [Borrowing: Enforcing Data Discipline](#borrowing-enforcing-data-discipline)
     - [C++ Use-After-Free via Iterator Invalidation:](#c-use-after-free-via-iterator-invalidation)
@@ -45,21 +49,22 @@ Rust, a language that began as a personal project by Graydon Hoare at Mozilla Re
   - [A Precise GUI Example: OOP vs. Data-Oriented](#a-precise-gui-example-oop-vs-data-oriented)
     - [Typical OOP Approach (e.g., in Java/C#):](#typical-oop-approach-eg-in-javac)
     - [Rust's Trait-Based Approach:](#rusts-trait-based-approach)
-  - [Robust Error Handling: Result vs. Exceptions and nil](#robust-error-handling-result-vs-exceptions-and-nil)
-    - [Go's if err != nil Boilerplate:](#gos-if-err--nil-boilerplate)
+  - [Robust Error Handling: Result vs. Exceptions and `nil`](#robust-error-handling-result-vs-exceptions-and-nil)
+    - [Explicit Handling with match](#explicit-handling-with-match)
+    - [Go's `if err != nil` Boilerplate:](#gos-if-err--nil-boilerplate)
     - [C++/Java's Invisible Control Flow:](#cjavas-invisible-control-flow)
     - [Rust's `?` Operator:](#rusts--operator)
 - [Industry Adoption: From Theory to Production Code](#industry-adoption-from-theory-to-production-code)
 - [Who is Rust For? Identifying the Ideal Use Cases](#who-is-rust-for-identifying-the-ideal-use-cases)
 - [Conclusion: A New Baseline for Systems Programming](#conclusion-a-new-baseline-for-systems-programming)
 
-# Data, Behavior, and Types: A New Way of Thinking
+## Data, Behavior, and Types: A New Way of Thinking
 
 Many mainstream languages like Java and C++ are built around classical **Object-Oriented Programming (OOP),** where data and behavior are tightly coupled within objects that inherit from one another. 
 
 Rust takes a different approach, drawing inspiration from **functional programming** and type theory to favor a data-oriented design **based on composition over inheritance**.
 
-## What is a "Type"? From Data to Information
+### What is a "Type"? From Data to Information
 
 In systems programming, we often think of a **type** as just a description of data in memory (e.g., `int` is 4 bytes). In functional programming and type theory, a type is a much richer concept: it's a formal way of **classifying values and expressing constraints** on them. 
 
@@ -69,8 +74,8 @@ In systems programming, we often think of a **type** as just a description of da
 
 **Rust** strikes a pragmatic balance. It has a **rich type system** inspired by Haskell (e.g., algebraic data types, traits) but is fundamentally **designed for systems programming**. It uses types not just to describe memory layouts, but to enforce high-level rules about resource management, concurrency, and program state.
 
-## Data is Just Data: `structs` and `enums`
-In Rust, the primary tools for modeling your domain are structs and enums. They are used to hold data, and nothing else.
+### Data is Just Data: `structs` and `enums`
+In Rust, the primary tools for modeling your domain are structs and enums. Important note: they are used to hold data, and **nothing** else.
 
 - **Structs:** Simple aggregations of data. They are like `C` structs or `C++` structs without methods defined inside them. They just hold data.
     ```rust
@@ -84,17 +89,101 @@ In Rust, the primary tools for modeling your domain are structs and enums. They 
 - **Enums (Algebraic Data Types):** Rust's enums are far more powerful than their `C/C++` counterparts. They are Algebraic Data Types (ADTs), meaning each variant can hold different data. This allows you to encode program state in the type system itself.
     ```rust
     enum WebEvent {
-        PageLoad,                         // Variant with no data
-        KeyPress(char),                   // Variant with a tuple
-        Click { x: i64, y: i64 },         // Variant with a struct
+        PageLoad,                     // Variant with no data
+        KeyPress(char),               // Variant with a tuple
+        Click { x: i64, y: i64 },     // Variant with a struct
     }
     ```
 
-The `match` statement used with enums is exhaustive: the compiler will error if you forget to handle a variant. This is a significant safety improvement over the C++ `std::variant` or Go's `interface{}` with a type switch.
+### Making Impossible States Impossible: `match` vs. `switch`
+
+The `match` statement used with enums is exhaustive: the compiler will error if you forget to handle a variant. This is a significant safety improvement over the C++ `std::variant` or Go's `interface{}` with a type switch. Let's consider handling requests in a simple network server.
+
+#### Rust's Compile-Time Guarantee:
+```rust
+enum Request {
+    Get(String),
+    Post(String, String),
+    Delete(String),
+    // Let's add a new request type later: Put(String, String)
+}
+
+fn handle_request(req: Request) {
+    match req {
+        Request::Get(path) => println!("GET {}", path),
+        Request::Post(path, body) => println!("POST {}: {}", path, body),
+        // Whoops! We forgot to handle the Delete variant.
+    }
+}
+```
+
+This code will simply not compile. The Rust compiler stops you with a clear error:
+`error[E0004]: non-exhaustive patterns: Delete(_) not covered`
+
+This forces the developer to account for all possibilities, preventing entire classes of bugs. The correct, exhaustive version would handle all variants. This becomes invaluable when you refactor: if you add a new `Request::Put` variant to the enum, the compiler will instantly show you every single match statement in your codebase that needs to be updated.
+
+[For more details, see the official Rust documentation for error[E0004].](https://doc.rust-lang.org/error_codes/E0004.html).
+
+#### Go's Runtime Hopefulness:
+
+Go uses `interface{}` and type switches to achieve similar polymorphism, but the check is at runtime, not compile time (like in Rust).
+
+```go
+type GetRequest struct { Path string }
+type PostRequest struct { Path, Body string }
+type DeleteRequest struct { Path string }
+// If we add a PutRequest struct later, the compiler won't warn us.
+
+func handleRequest(req interface{}) {
+    switch r := req.(type) {
+    case GetRequest:
+        fmt.Printf("GET %s\n", r.Path)
+    case PostRequest:
+        fmt.Printf("POST %s: %s\n", r.Path, r.Body)
+    // We forgot to handle DeleteRequest.
+    default:
+        // This default case might not be what we want.
+        // If we forget it, the program just does nothing for that case.
+        fmt.Println("Unknown request type")
+    }
+}
+```
+This code compiles perfectly. If it receives a DeleteRequest, it will either do nothing or hit a default case, hiding a bug that Rust would have caught.
+
+#### C++'s Verbose Visitor:
+
+C++ `std::variant` is a significant improvement over C-style **unions**, but ensuring exhaustiveness is less ergonomic than Rust's match. A common pattern is `std::visit`.
+
+```cpp
+#include <variant>
+#include <string>
+
+struct GetRequest { std::string path; };
+struct PostRequest { std::string path, body; };
+struct DeleteRequest { std::string path; };
+
+using Request = std::variant<GetRequest, PostRequest, DeleteRequest>;
+
+void handle_request(const Request& req) {
+    std::visit([](auto&& arg) {
+        using T = std::decay_t<decltype(arg)>;
+        if constexpr (std::is_same_v<T, GetRequest>) {
+            // handle Get
+        } else if constexpr (std::is_same_v<T, PostRequest>) {
+            // handle Post
+        }
+        // No compile error for forgetting DeleteRequest.
+        // Advanced template magic can be used to check for exhaustiveness,
+        // but it's not a built-in guarantee of the language's control flow.
+    }, req);
+}
+```
+
+Like Go, the C++ version compiles without complaint, silently ignoring the unhandled `DeleteRequest`. While modern C++ provides tools to build compile-time checks for this, they are not a fundamental, out-of-the-box feature of the `switch` or `if-constexpr` constructs. Rust's match integrates this safety check directly and simply.
 
 See [Chapter 5 ("Using Structs to Structure Related Data")](https://doc.rust-lang.org/book/ch05-00-structs.html) and [Chapter 6 ("Enums and Pattern Matching")](https://doc.rust-lang.org/book/ch06-00-enums.html) of the Rust Book for more, as well as [Section 3 ("Custom Types") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/custom_types.html). 
 
-## Behavior as Traits: Composition Over Inheritance
+### Behavior as Traits: Composition Over Inheritance
 
 > The problem with object-oriented languages is they’ve got all this implicit environment that they carry around with them. You wanted a banana but what you got was a gorilla holding the banana and the entire jungle. 
 
@@ -130,15 +219,15 @@ impl GpioWrite for GpioPin {
     fn set_low(&mut self) { /* hardware-specific code to set pin low */ }
 }
 ```
-Here, a `GpioPin` is just data. We grant it the ability to be written to by implementing the `GpioWrite` trait for it. If it were also a readable pin, we could simply add another `impl GpioRead for GpioPin`. This avoids the rigid hierarchies of OOP, where you might be forced to create awkward classes like `WriteOnlyPin` or `ReadWritePin`.
+Here, a `GpioPin` is just data, it does include any "behavioral" code. We grant it the ability to be written to by implementing the `GpioWrite` trait for it. If it were also a readable pin, we could simply add another `impl GpioRead for GpioPin`. This avoids the rigid hierarchies of OOP, where you might be forced to create awkward classes like `WriteOnlyPin` or `ReadWritePin`.
 
 [See Chapter 10 ("Generic Types, Traits, and Lifetimes") of The Rust Book for more on this](https://doc.rust-lang.org/book/ch10-00-generics.html) (specifically [Section 10.2.](https://doc.rust-lang.org/book/ch10-02-traits.html)), as well as [Section 16 ("Traits") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/trait.html).  
 
-# A Critique of Object-Oriented Programming and C++'s Design Philosophy
+## A Critique of Object-Oriented Programming and C++'s Design Philosophy
 
 The trait-based approach stands in **stark contrast** to the design of languages like C++ and Java, and indeed, to the **entire OOP paradigm** as it is commonly practiced.
 
-## The Failures of the OOP Dream
+### The Failures of the OOP Dream
 
 The **promise** of OOP was **reusable**, **modular code through inheritance**. Born from innovative ideas in languages like Simula and Smalltalk for modeling complex systems, it was popularized by C++ and Java in the 80s and 90s as the definitive solution for large-scale software engineering. The vision was an industrial one: build software from interchangeable, component-like objects. The **reality**, however, has often been **brittle**, **complex**, and **deeply coupled systems**.
 
@@ -156,7 +245,7 @@ Coming back to this quote, it perfectly captures the problem of such deep, rigid
 
 Rust's trait system avoids this entirely. You don't inherit a "jungle"; you simply implement the `EatsBananas` **trait** for your `Gorilla` **struct**. The data and behavior are decoupled, allowing for maximum flexibility and true modularity.
 
-## C++: The Swiss Army Knife with 200 Dull Blades
+### C++: The Swiss Army Knife with 200 Dull Blades
 
 The issues with OOP are compounded in C++ by its design philosophy, which can be summarized as "**include everything and let the user figure it out.**" This has led to a language of immense, arguably unnecessary, complexity. Unix pioneer Ken Thompson, co-creator of C, had a particularly sharp critique:
 
@@ -166,7 +255,7 @@ The issues with OOP are compounded in C++ by its design philosophy, which can be
 
 This describes a language that, in trying to please everyone, created a minefield. C++ has multiple ways to do almost everything (e.g., at least five forms of initialization, `unique_ptr` vs. `shared_ptr` vs. raw pointers), and the "correct" choice is often subtle and context-dependent. This leads to the "subset" problem: every organization uses a different, mutually incompatible subset of C++, making code portability a nightmare. **C++ isn't a coherent language; it's a collection of features bolted together over decades**.
 
-## The Functional Programming Detour: Purity at a Price
+### The Functional Programming Detour: Purity at a Price
 
 As the limitations of mainstream OOP became more apparent, another school of thought, rooted in academia and mathematics, offered a different path: **functional programming (FP)**. Languages like Lisp, Scheme, and later OCaml and Haskell, proposed a radical alternative. Instead of bundling mutable state and behavior into objects, FP emphasizes:
 
@@ -182,11 +271,11 @@ However, this purity comes with its own set of trade-offs, especially for system
 
 For a deeper dive into Rust's functional programming features, [see Chapter 13 ("Functional Language Features: Iterators and Closures") of The Rust Book](https://doc.rust-lang.org/book/ch13-00-functional-features.html). 
 
-# The Ownership Model: A Paradigm Shift in Memory Safety
+## The Ownership Model: A Paradigm Shift in Memory Safety
 
 The heart of Rust's value proposition is its **ownership model**, a novel approach to memory management that operates entirely at compile time. To appreciate its significance, one must **contrast** it with the two dominant paradigms: **manual memory management** (C/C++) and **automatic garbage collection** (Java/Go).
 
-## Ownership: Deterministic Resource Management
+### Ownership: Deterministic Resource Management
 
 In Rust, every value has a single "owner." When the owner goes out of scope, the value is "dropped," and its resources (memory, file handles, network sockets) are freed. This deterministic, scope-based resource management is known as `RAII` (**Resource Acquisition Is Initialization**), a pattern familiar to C++ developers.
 
@@ -196,7 +285,7 @@ However, Rust makes two crucial changes:
 
 [See Section 15.1. ("RAII") of Rust by Example (RBE) for more.](https://doc.rust-lang.org/rust-by-example/scope/raii.html) 
 
-### C++ Example (RAII with std::unique_ptr):
+#### C++ Example (RAII with `std::unique_ptr`):
 
 ```cpp
 #include <iostream>
@@ -214,7 +303,7 @@ int main() {
 }
 ```
 
-### Rust Equivalent (Ownership Move):
+#### Rust Equivalent (Ownership Move):
 ```rust
 fn process_string(s: String) {
     println!("Processing: {}", s);
@@ -231,7 +320,7 @@ While both prevent use-after-move, Rust's ownership is fundamental. This contras
 
 For a full breakdown, [see Chapter 4 ("Understanding Ownership") of The Rust Programming Language Book](https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html), as well as [Section 15.2. ("Ownership and moves") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/scope/move.html).
 
-## Borrowing: Enforcing Data Discipline
+### Borrowing: Enforcing Data Discipline
 
 Moving ownership constantly would be impractical. Rust's solution is borrowing, which allows parts of the code to **access data via references without taking ownership**. The borrow checker, Rust's most famous feature, enforces a **critical set of rules** at compile time:
 
@@ -243,7 +332,7 @@ Moving ownership constantly would be impractical. Rust's solution is borrowing, 
 
 This "*aliasing XOR mutability*" rule eliminates entire categories of bugs, from simple data corruption to complex data races in concurrent code.
 
-### C++ Use-After-Free via Iterator Invalidation:
+#### C++ Use-After-Free via Iterator Invalidation:
 ```cpp
 #include <iostream>
 #include <vector>
@@ -263,7 +352,7 @@ int main() {
 
 This code compiles but can crash or produce garbage data at runtime. The responsibility to avoid this lies entirely with the programmer.
 
-### Rust's Compile-Time Prevention:
+#### Rust's Compile-Time Prevention:
 ```rust
 fn main() {
     let mut v = vec![1, 2, 3];
@@ -280,11 +369,11 @@ The borrow checker sees that `v.push()` requires a mutable borrow of `v` while f
 
 See [Section 15.3. ("Borrowing") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/scope/borrow.html) for more on this. 
 
-## Lifetimes: Eliminating Dangling Pointers
+### Lifetimes: Eliminating Dangling Pointers
 
 The final piece is **ensuring references never outlive the data they point to**. The compiler achieves this through lifetime analysis. In most cases, lifetimes are inferred automatically. When ambiguity arises, the programmer provides **explicit lifetime annotations**.
 
-### C++ Dangling Pointer:
+#### C++ Dangling Pointer:
 ```cpp
 const std::string& get_longest(const std::string& s1, const std::string& s2) {
     if (s1.length() > s2.length()) {
@@ -297,7 +386,7 @@ const std::string& get_longest(const std::string& s1, const std::string& s2) {
 ```
 The above code is a **ticking time bomb** (waiting to ruin your weekend) that compiles but returns a reference to memory that has been deallocated.
 
-### Rust's Compile-Time Prevention (and Solution):
+#### Rust's Compile-Time Prevention (and Solution):
 ```rust
 // This function signature tells the compiler that the returned reference
 // must live at least as long as the SHORTEST of the two input references.
@@ -327,11 +416,11 @@ The Rust compiler understands that `string2` is destroyed at the end of the inne
 
 For a deep dive, [see Chapter 10 ("Generic Types, Traits, and Lifetimes") of The Rust Book](https://doc.rust-lang.org/book/ch10-00-generics.html), as well as [Section 15.4. ("Lifetimes") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/scope/lifetime.html). 
 
-# A Modern Development Experience: Abstractions and Tooling
+## A Modern Development Experience: Abstractions and Tooling
 
 While memory safety is the headline feature, it's the modern developer experience that often wins "converts".
 
-## World-Class Tooling: Cargo and the Ecosystem
+### World-Class Tooling: Cargo and the Ecosystem
 
 Rust comes with `Cargo`, an integrated package manager and build system that is nothing short of revolutionary for developers (read "blasphemers") coming from C++. It handles:
 
@@ -343,11 +432,11 @@ Rust comes with `Cargo`, an integrated package manager and build system that is 
 
 See [Chapter 7 ("Managing Growing Projects with Packages, Crates, and Modules")](https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html) and [Chapter 14 ("More About Cargo and Crates.io")](https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html) of The Rust Book, as well as [Section 12 of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/cargo.html) for more. 
 
-## A Precise GUI Example: OOP vs. Data-Oriented
+### A Precise GUI Example: OOP vs. Data-Oriented
 
 Let's make the GUI example more concrete to see the practical difference.
 
-### Typical OOP Approach (e.g., in Java/C#):
+#### Typical OOP Approach (e.g., in Java/C#):
 
 Imagine a GUI library where everything must inherit from a `Widget` base class.
 ```cpp
@@ -379,7 +468,7 @@ public class Image extends Widget {
 }
 ```
 
-### Rust's Trait-Based Approach:
+#### Rust's Trait-Based Approach:
 ```rust
 // 1. Define distinct behaviors as traits.
 pub trait Draw {
@@ -432,11 +521,47 @@ This is far more flexible. The **data** (`Button`, `Image`) is **decoupled** fro
 
 More on Rust's "Object-Oriented Programming (OOP)" features [in Chapter 18 ("Object-Oriented Programming Features of Rust") of The Rust Book](https://doc.rust-lang.org/book/ch18-00-oop.html). 
 
-## Robust Error Handling: Result vs. Exceptions and nil
+### Robust Error Handling: Result vs. Exceptions and `nil`
 
-Rust eschews traditional exceptions. Instead, recoverable errors are handled through the `Result<T, E>` enum. A function that can fail returns either `Ok(T)` with the success value or `Err(E)` with an error value. The compiler forces you to handle the `Err` case.
+Rust eschews traditional exceptions, which can create invisible control flow paths and make it difficult to reason about a program's behavior. Instead, recoverable errors are handled explicitly through the `Result<T, E>` enum. A function that can fail has this possibility encoded directly in its return type. It will return either `Ok(T)` with the success value of type `T`, or `Err(E)` with an error value of type `E`. Most importantly, the compiler forces you to handle the `Err` case, making it impossible to accidentally ignore a potential failure.
 
-### Go's if err != nil Boilerplate:
+#### Explicit Handling with match
+
+Let's look at a function for safe division. Instead of crashing on division by zero, it returns a `Result`.
+```rust
+fn safe_divide(numerator: f64, denominator: f64) -> Result<f64, String> {
+    if denominator == 0.0 {
+        // On failure, return an Err variant with an error message.
+        Err(String::from("Cannot divide by zero"))
+    } else {
+        // On success, return an Ok variant with the result.
+        Ok(numerator / denominator)
+    }
+}
+
+fn main() {
+    let result = safe_divide(10.0, 2.0);
+
+    match result {
+        Ok(value) => println!("Result: {}", value),
+        Err(e) => println!("Error: {}", e),
+    }
+
+    let error_result = safe_divide(10.0, 0.0);
+    // If you tried to use error_result without handling the Err case,
+    // the compiler would stop you.
+    match error_result {
+        Ok(value) => println!("Result: {}", value),
+        Err(e) => println!("Error: {}", e),
+    }
+}
+```
+
+In this example, the caller is forced by the `match` statement's exhaustiveness rule (the same rule we saw with the `Request` enum) to handle both **success** `(Ok)` and **failure** `(Err)`. You cannot simply "forget" to check for an error. This makes the code far more robust.
+
+Now that we understand the basics, let's see how this compares to other languages and how Rust makes it more ergonomic.
+
+#### Go's `if err != nil` Boilerplate:
 ```go
 file, err := os.Open("foo.txt")
 if err != nil {
@@ -445,7 +570,7 @@ if err != nil {
 // more error checks...
 ```
 
-### C++/Java's Invisible Control Flow:
+#### C++/Java's Invisible Control Flow:
 ```cpp
 try {
     // several function calls...
@@ -455,7 +580,7 @@ try {
 }
 ```
 
-### Rust's `?` Operator:
+#### Rust's `?` Operator:
 ```rust
 use std::fs::File;
 use std::io::{self, Read};
@@ -477,7 +602,7 @@ The `?` operator provides concise error propagation that is still explicit and t
 
 [See Chapter 9 ("Error Handling") of The Rust Book](https://doc.rust-lang.org/book/ch09-00-error-handling.html), as well as [Section 18 ("Error handling") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/error.html) for more. 
 
-# Industry Adoption: From Theory to Production Code
+## Industry Adoption: From Theory to Production Code
 
 The benefits of Rust are not just theoretical. Some of the world's largest technology companies are adopting it for critical, performance-sensitive systems, often replacing existing C++ codebases.
 
@@ -504,7 +629,7 @@ The benefits of Rust are not just theoretical. Some of the world's largest techn
 
     Rust, with its predictable performance, explicit error handling (e.g. via `Result`), and lack of hidden memory allocations, directly addresses these long-standing concerns. Its successful integration for writing new drivers and subsystems is a powerful testament to its suitability for the most demanding software environments in the world.
 
-# Who is Rust For? Identifying the Ideal Use Cases
+## Who is Rust For? Identifying the Ideal Use Cases
 
 Rust is not a silver bullet, but its unique combination of features makes it an ideal choice for a wide range of applications:
 
@@ -518,6 +643,6 @@ Rust is not a silver bullet, but its unique combination of features makes it an 
 
 - *Anyone who enjoys this kind of programming* :)
 
-# Conclusion: A New Baseline for Systems Programming
+## Conclusion: A New Baseline for Systems Programming
 
 Rust represents a significant evolution in programming language design. It proves that a language does not have to sacrifice safety for performance, or developer experience for low-level control. By providing memory safety, fearless concurrency, and a world-class toolchain, it empowers developers to build software that is faster, more reliable, and more secure. While C++ will remain a cornerstone of the industry for years to come, Rust offers a compelling, modern, and, above all, safer path forward for the next generation of systems software.
