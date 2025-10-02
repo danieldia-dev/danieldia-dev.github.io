@@ -4,6 +4,7 @@ date: 2025-06-29
 draft: false
 category: "Project"
 image: "lorenz_attractor.jpg"
+link: "https://github.com/Kibalchish47/dynamixplore"
 summary: "A Python-first toolkit with a high-performance Rust core for the advanced simulation and analysis of complex dynamical systems, including nonsmooth and chaotic phenomena."
 tags: ["Dynamical Systems", "FOSS", "Research Software", "Scientific Computing", "Python", "Rust", "PyO3", "Numerical Methods", "In Progress"]
 ---

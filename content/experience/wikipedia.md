@@ -3,7 +3,7 @@ title: "Wikipedia Contributor (Volunteer)"
 company: "Wikipedia (Wikimedia Foundation)"
 duration: "Dec 2023 - Present"
 category: "Volunteering" # This is the important part!
-summary: "Drove over 1.1 million reader views on edited articles through 150+ enhancements, earning 70+ commendations ('thanks') from the editorial community."
+summary: "Drove over 1.2 million reader views on edited articles through 150+ enhancements, earning 70+ commendations ('thanks') from the editorial community."
 logo: "/logos/wikipedia-logo.png"
 ---
 
@@ -11,7 +11,7 @@ Driven by a core belief that **knowledge should be free and accessible to all**,
 
 - ***Global Impact & Community Recognition***
     
-    I have performed over **150 significant enhancements** to articles in both English, Russian, and Spanish, which have collectively been viewed by over **1.1 million readers**. This work is not just about adding information, but about making complex topics understandable to a broader audience. Within the collaborative editorial community, my contributions have been recognized with over **70 commendations** ("thanks") from fellow editors, affirming the quality and value of my edits.
+    I have performed over **150 significant enhancements** to articles in both English, Russian, and Spanish, which have collectively been viewed by over **1.2 million readers**. This work is not just about adding information, but about making complex topics understandable to a broader audience. Within the collaborative editorial community, my contributions have been recognized with over **70 commendations** ("thanks") from fellow editors, affirming the quality and value of my edits.
 
 - ***Architecting Knowledge & Technical Expertise***
 

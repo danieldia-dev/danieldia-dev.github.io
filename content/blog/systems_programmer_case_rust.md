@@ -148,7 +148,7 @@ func handleRequest(req interface{}) {
     }
 }
 ```
-This code compiles perfectly. If it receives a DeleteRequest, it will either do nothing or hit a default case, hiding a bug that Rust would have caught.
+This code compiles perfectly. If it receives a `DeleteRequest`, it will either do nothing or hit a default case, hiding a bug that Rust would have caught.
 
 #### C++'s Verbose Visitor:
 

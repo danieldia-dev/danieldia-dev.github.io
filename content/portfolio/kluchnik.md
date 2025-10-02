@@ -4,6 +4,7 @@ date: 2025-07-16
 draft: false
 category: "Project"
 image: "kluchnik.png" # Optional: path relative to static folder e.g. /images/trng_project_image.jpg
+link: "https://github.com/Kibalchish47/kluchnik"
 summary: "A full-stack, end-to-end system for generating cryptographically secure passwords based on true physical randomness, designed to be resilient against quantum computing threats."
 tags: ["C++", "Rust", "ESP32", "Cryptography", "TRNG", "Embedded Systems", "Networking", "Desktop App", "UI/UX", "Security", "AES"]
 ---
