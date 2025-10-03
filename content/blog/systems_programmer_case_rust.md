@@ -32,8 +32,12 @@ Rust, a language that began as a personal project by Graydon Hoare at Mozilla Re
   - [Behavior as Traits: Composition Over Inheritance](#behavior-as-traits-composition-over-inheritance)
 - [A Critique of Object-Oriented Programming and C++'s Design Philosophy](#a-critique-of-object-oriented-programming-and-cs-design-philosophy)
   - [The Failures of the OOP Dream](#the-failures-of-the-oop-dream)
-  - [C++: The Swiss Army Knife with 200 Dull Blades](#c-the-swiss-army-knife-with-200-dull-blades)
   - [The Functional Programming Detour: Purity at a Price](#the-functional-programming-detour-purity-at-a-price)
+    - [Immutability:](#immutability)
+    - ["Pure" Functions:](#pure-functions)
+    - [First-Class Functions:](#first-class-functions)
+    - [Monads: Quarantining Side Effects](#monads-quarantining-side-effects)
+  - [C++: The Swiss Army Knife with 200 Dull Blades](#c-the-swiss-army-knife-with-200-dull-blades)
 - [The Ownership Model: A Paradigm Shift in Memory Safety](#the-ownership-model-a-paradigm-shift-in-memory-safety)
   - [Ownership: Deterministic Resource Management](#ownership-deterministic-resource-management)
     - [C++ Example (RAII with `std::unique_ptr`):](#c-example-raii-with-stdunique_ptr)
@@ -245,6 +249,61 @@ Coming back to this quote, it perfectly captures the problem of such deep, rigid
 
 Rust's trait system avoids this entirely. You don't inherit a "jungle"; you simply implement the `EatsBananas` **trait** for your `Gorilla` **struct**. The data and behavior are decoupled, allowing for maximum flexibility and true modularity.
 
+### The Functional Programming Detour: Purity at a Price
+
+As the limitations of mainstream OOP became more apparent, another school of thought, rooted in academia and mathematics, offered a different path: **functional programming** (FP). Languages like [Lisp](https://en.wikipedia.org/wiki/Lisp_(programming_language)), [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)), and later [OCaml](https://en.wikipedia.org/wiki/OCaml) and [Haskell](https://www.haskell.org/), proposed a radical alternative. To make these concepts concrete, let's look at some Haskell examples, using a (simplified) `Request` type for a web server.
+
+```haskell
+-- A simple data type to represent a request
+data Request = Get { path :: String } | Post { path :: String, body :: String }
+```
+
+#### Immutability:
+
+Data structures are **unchangeable**. Instead of modifying data, you create new data with the desired changes. An OOP programmer might think of `request.setPath("/new")`, which **mutates** the object. In Haskell, that's impossible.
+
+```haskell
+-- This function takes a request and a new path, and returns a NEW request.
+-- The original is untouched.
+updatePath :: Request -> String -> Request
+updatePath (Get oldPath) newPath = Get newPath
+updatePath (Post oldPath body) newPath = Post newPath body
+```
+
+#### "Pure" Functions:
+
+`updatePath` above is a perfect example of a pure function. It's a mathematical mapping from inputs to outputs. For the same `Request` and `String`, it will always produce the same new `Request`. It has no observable side effects like modifying global state, printing to the console, or performing `I/O`. This makes code incredibly easy to reason about and test.
+
+#### First-Class Functions:
+
+Functions are **values**, just like numbers or strings. They can be passed as arguments to other functions. This allows for powerful **abstractions**.
+
+```haskell
+-- A higher-order function that takes a processing function and applies it to a list of requests.
+processRequests :: (Request -> String) -> [Request] -> [String]
+processRequests processor requests = map processor requests
+
+-- A simple function that extracts the path. It can be passed as an argument.
+extractPath :: Request -> String
+extractPath (Get p) = p
+extractPath (Post p _) = p
+
+main_processor = do
+    let reqs = [Get "/home", Post "/login" "user=admin"]
+    -- We pass the `extractPath` function into `processRequests`.
+    let paths = processRequests extractPath reqs
+    print paths -- This will print ["/home", "/login"]
+```
+#### Monads: Quarantining Side Effects
+
+The `processRequests` and `extractPath` functions are pure. But what about `print` paths? That's a side effect `(I/O)`. Haskell uses advanced type-system constructs like **monads** to manage this. The `do` block in `main_processor` signals that we are sequencing "side-effectful" actions within the `IO` monad. In a way, monads allow programmers to explicitly sequence these "impure" operations in a controlled, contained manner, emulating some of the **encapsulation benefits of OOP without its pitfalls** of implicit state and inheritance.
+
+This approach eliminates entire classes of bugs related to shared mutable state. However, this purity comes with its own set of trade-offs, especially for systems programming. The heavy reliance on immutability can lead to **performance challenges** if not managed carefully, and the high level of abstraction can obscure the underlying hardware realities of memory layout and control flow. For many systems developers, the purely functional world felt powerful but **impractical for writing device drivers or game engines**. 
+
+This created a chasm: on one side, the unsafe, complex, but *hardware-centric* world of **C++**; on the other, the *safe, elegant, but abstract world* of **Haskell**. It is precisely this chasm that ***Rust*** was designed to bridge.
+
+For a deeper dive into Rust's functional programming features, [see Chapter 13 ("Functional Language Features: Iterators and Closures") of The Rust Book](https://doc.rust-lang.org/book/ch13-00-functional-features.html).
+
 ### C++: The Swiss Army Knife with 200 Dull Blades
 
 The issues with OOP are compounded in C++ by its design philosophy, which can be summarized as "**include everything and let the user figure it out.**" This has led to a language of immense, arguably unnecessary, complexity. Unix pioneer Ken Thompson, co-creator of C, had a particularly sharp critique:
@@ -253,23 +312,7 @@ The issues with OOP are compounded in C++ by its design philosophy, which can be
 
 — **Ken Thompson, Unix pioneer and co-creator of C.**
 
-This describes a language that, in trying to please everyone, created a minefield. C++ has multiple ways to do almost everything (e.g., at least five forms of initialization, `unique_ptr` vs. `shared_ptr` vs. raw pointers), and the "correct" choice is often subtle and context-dependent. This leads to the "subset" problem: every organization uses a different, mutually incompatible subset of C++, making code portability a nightmare. **C++ isn't a coherent language; it's a collection of features bolted together over decades**.
-
-### The Functional Programming Detour: Purity at a Price
-
-As the limitations of mainstream OOP became more apparent, another school of thought, rooted in academia and mathematics, offered a different path: **functional programming (FP)**. Languages like Lisp, Scheme, and later OCaml and Haskell, proposed a radical alternative. Instead of bundling mutable state and behavior into objects, FP emphasizes:
-
-- **Immutability:** Data structures are unchangeable by default. Instead of modifying data, you create new data with the desired changes.
-
-- **Pure Functions:** Functions are treated as mathematical mappings from inputs to outputs. A pure function will always produce the same output for the same input and has no observable side effects (like modifying global state or performing `I/O`).
-
-- **First-Class Functions:** Functions are values, just like numbers or strings. They can be passed as arguments, returned from other functions, and stored in data structures.
-
-This approach **eliminates entire classes of bugs related to shared mutable state**, which are a primary cause of complexity in OOP and concurrent systems. Haskell, in particular, represents the zenith of this philosophy, with a powerful static type system that enforces purity. To handle necessary side effects like I/O or state mutation, it uses advanced **type-system constructs** like monads. In a way, monads allow programmers to explicitly sequence operations and manage state in a controlled, contained manner, **emulating some of the encapsulation benefits of OOP** without its pitfalls of implicit state and inheritance.
-
-However, this purity comes with its own set of trade-offs, especially for systems programming. The heavy reliance on immutability can lead to **performance challenges** if not managed carefully, and the high level of abstraction can obscure the underlying hardware realities of memory layout and control flow. For many systems developers, the purely functional world felt powerful but impractical for writing device drivers or game engines. This created a chasm: on one side, the *unsafe, complex, but hardware-centric world* of **C++**; on the other, *the safe, elegant, but abstract world* of **Haskell**. It is precisely this chasm that Rust was designed to bridge. Rust was designed with a clear, opinionated vision from the start.
-
-For a deeper dive into Rust's functional programming features, [see Chapter 13 ("Functional Language Features: Iterators and Closures") of The Rust Book](https://doc.rust-lang.org/book/ch13-00-functional-features.html). 
+This describes a language that, in trying to please everyone, created a minefield. C++ has multiple ways to do almost everything (e.g., at least five forms of initialization, `unique_ptr` vs. `shared_ptr` vs. raw pointers), and the "correct" choice is often subtle and context-dependent. This leads to the "subset" problem: every organization uses a different, mutually incompatible subset of C++, making code portability a nightmare. **C++ isn't a coherent language; it's a collection of features bolted together over decades**. 
 
 ## The Ownership Model: A Paradigm Shift in Memory Safety
 
