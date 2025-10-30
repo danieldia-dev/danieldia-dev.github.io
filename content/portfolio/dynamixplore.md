@@ -1,7 +1,7 @@
 ---
 title: "DynamiXplore: A High-Performance Framework for Dynamical Systems"
 date: 2025-06-29
-draft: true
+draft: false
 category: "Project"
 image: "lorenz_attractor.jpg"
 link: "https://github.com/Kibalchish47/dynamixplore"
