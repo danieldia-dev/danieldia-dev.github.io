@@ -1,6 +1,6 @@
 ---
 title: "General Undergraduate Advice"
-draft: false
+draft: true
 date: 2025-05-19
 tags: ["Advice", "Undergraduate", "Mathematics", "STEM"]
 summary: "A curated list of advice for aspiring mathematicians and STEM professionals."

@@ -1,9 +1,9 @@
 ---
-title: "A Systems Programmer's Case for Rust" 
-date: 2025-09-27 
-draft: false 
-tags: ["Rust", "Systems Programming", "C++", "Memory Safety", "Concurrency", "Software Engineering"] 
-summary: "A technical deep-dive into Rust's core design principles, comparing its approach to memory safety, concurrency, and tooling against C++, Java, and Haskell. We explore why major tech companies are adopting it for critical systems and identify the ideal use cases for the language."
+title: "A Systems Programmer's Case for Rust"
+date: 2025-09-27
+draft: false
+tags: ["Rust", "Systems Programming", "C++", "Memory Safety", "Concurrency", "Software Engineering"]
+summary: "A technical deep-dive into Rust's core design principles, comparing its approach to memory safety, concurrency, and tooling against C++, Java, and Haskell."
 ---
 
 > For me, the main thing is that it's a modern language. It's a language that was designed to fix all the warts that we've had in all the other languages.
@@ -64,13 +64,13 @@ Rust, a language that began as a personal project by Graydon Hoare at Mozilla Re
 
 ## Data, Behavior, and Types: A New Way of Thinking
 
-Many mainstream languages like Java and C++ are built around classical **Object-Oriented Programming (OOP),** where data and behavior are tightly coupled within objects that inherit from one another. 
+Many mainstream languages like Java and C++ are built around classical **Object-Oriented Programming (OOP),** where data and behavior are tightly coupled within objects that inherit from one another.
 
 Rust takes a different approach, drawing inspiration from **functional programming** and type theory to favor a data-oriented design **based on composition over inheritance**.
 
 ### What is a "Type"? From Data to Information
 
-In systems programming, we often think of a **type** as just a description of data in memory (e.g., `int` is 4 bytes). In functional programming and type theory, a type is a much richer concept: it's a formal way of **classifying values and expressing constraints** on them. 
+In systems programming, we often think of a **type** as just a description of data in memory (e.g., `int` is 4 bytes). In functional programming and type theory, a type is a much richer concept: it's a formal way of **classifying values and expressing constraints** on them.
 
 **A type system is a tool for reasoning about your program's correctness before it runs**.
 
@@ -185,11 +185,11 @@ void handle_request(const Request& req) {
 
 Like Go, the C++ version compiles without complaint, silently ignoring the unhandled `DeleteRequest`. While modern C++ provides tools to build compile-time checks for this, they are not a fundamental, out-of-the-box feature of the `switch` or `if-constexpr` constructs. Rust's match integrates this safety check directly and simply.
 
-See [Chapter 5 ("Using Structs to Structure Related Data")](https://doc.rust-lang.org/book/ch05-00-structs.html) and [Chapter 6 ("Enums and Pattern Matching")](https://doc.rust-lang.org/book/ch06-00-enums.html) of the Rust Book for more, as well as [Section 3 ("Custom Types") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/custom_types.html). 
+See [Chapter 5 ("Using Structs to Structure Related Data")](https://doc.rust-lang.org/book/ch05-00-structs.html) and [Chapter 6 ("Enums and Pattern Matching")](https://doc.rust-lang.org/book/ch06-00-enums.html) of the Rust Book for more, as well as [Section 3 ("Custom Types") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/custom_types.html).
 
 ### Behavior as Traits: Composition Over Inheritance
 
-> The problem with object-oriented languages is they’ve got all this implicit environment that they carry around with them. You wanted a banana but what you got was a gorilla holding the banana and the entire jungle. 
+> The problem with object-oriented languages is they’ve got all this implicit environment that they carry around with them. You wanted a banana but what you got was a gorilla holding the banana and the entire jungle.
 
 — **Joe Armstrong, creator of Erlang.**
 
@@ -197,7 +197,7 @@ In other words, in an object-oriented language such as Java or C++, if a hypothe
 
 Instead of methods living inside a class, Rust separates them. You define **behavior** in `impl` blocks, often by implementing traits. A `trait` is a **collection of method signatures** that defines a **shared capability or concept** (e.g., `Draw`, `Clone`, `Debug`). It is an interface that a type can choose to implement.
 
-This is fundamentally about **composition**. You start with simple data structures (`structs` and `enums`) and then compose behaviors onto them by implementing `traits`. This is far more flexible than inheritance. 
+This is fundamentally about **composition**. You start with simple data structures (`structs` and `enums`) and then compose behaviors onto them by implementing `traits`. This is far more flexible than inheritance.
 
 For example, in embedded programming, you could model a `GPIO` pin like this:
 ```rust
@@ -225,7 +225,7 @@ impl GpioWrite for GpioPin {
 ```
 Here, a `GpioPin` is just data, it does include any "behavioral" code. We grant it the ability to be written to by implementing the `GpioWrite` trait for it. If it were also a readable pin, we could simply add another `impl GpioRead for GpioPin`. This avoids the rigid hierarchies of OOP, where you might be forced to create awkward classes like `WriteOnlyPin` or `ReadWritePin`.
 
-[See Chapter 10 ("Generic Types, Traits, and Lifetimes") of The Rust Book for more on this](https://doc.rust-lang.org/book/ch10-00-generics.html) (specifically [Section 10.2.](https://doc.rust-lang.org/book/ch10-02-traits.html)), as well as [Section 16 ("Traits") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/trait.html).  
+[See Chapter 10 ("Generic Types, Traits, and Lifetimes") of The Rust Book for more on this](https://doc.rust-lang.org/book/ch10-00-generics.html) (specifically [Section 10.2.](https://doc.rust-lang.org/book/ch10-02-traits.html)), as well as [Section 16 ("Traits") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/trait.html).
 
 ## A Critique of Object-Oriented Programming and C++'s Design Philosophy
 
@@ -298,7 +298,7 @@ main_processor = do
 
 The `processRequests` and `extractPath` functions are pure. But what about `print` paths? That's a side effect `(I/O)`. Haskell uses advanced type-system constructs like **monads** to manage this. The `do` block in `main_processor` signals that we are sequencing "side-effectful" actions within the `IO` monad. In a way, monads allow programmers to explicitly sequence these "impure" operations in a controlled, contained manner, emulating some of the **encapsulation benefits of OOP without its pitfalls** of implicit state and inheritance.
 
-This approach eliminates entire classes of bugs related to shared mutable state. However, this purity comes with its own set of trade-offs, especially for systems programming. The heavy reliance on immutability can lead to **performance challenges** if not managed carefully, and the high level of abstraction can obscure the underlying hardware realities of memory layout and control flow. For many systems developers, the purely functional world felt powerful but **impractical for writing device drivers or game engines**. 
+This approach eliminates entire classes of bugs related to shared mutable state. However, this purity comes with its own set of trade-offs, especially for systems programming. The heavy reliance on immutability can lead to **performance challenges** if not managed carefully, and the high level of abstraction can obscure the underlying hardware realities of memory layout and control flow. For many systems developers, the purely functional world felt powerful but **impractical for writing device drivers or game engines**.
 
 This created a chasm: on one side, the unsafe, complex, but *hardware-centric* world of **C++**; on the other, the *safe, elegant, but abstract world* of **Haskell**. It is precisely this chasm that ***Rust*** was designed to bridge.
 
@@ -312,7 +312,7 @@ The issues with OOP are compounded in C++ by its design philosophy, which can be
 
 — **Ken Thompson, Unix pioneer and co-creator of C.**
 
-This describes a language that, in trying to please everyone, created a minefield. C++ has multiple ways to do almost everything (e.g., at least five forms of initialization, `unique_ptr` vs. `shared_ptr` vs. raw pointers), and the "correct" choice is often subtle and context-dependent. This leads to the "subset" problem: every organization uses a different, mutually incompatible subset of C++, making code portability a nightmare. **C++ isn't a coherent language; it's a collection of features bolted together over decades**. 
+This describes a language that, in trying to please everyone, created a minefield. C++ has multiple ways to do almost everything (e.g., at least five forms of initialization, `unique_ptr` vs. `shared_ptr` vs. raw pointers), and the "correct" choice is often subtle and context-dependent. This leads to the "subset" problem: every organization uses a different, mutually incompatible subset of C++, making code portability a nightmare. **C++ isn't a coherent language; it's a collection of features bolted together over decades**.
 
 ## The Ownership Model: A Paradigm Shift in Memory Safety
 
@@ -322,11 +322,11 @@ The heart of Rust's value proposition is its **ownership model**, a novel approa
 
 In Rust, every value has a single "owner." When the owner goes out of scope, the value is "dropped," and its resources (memory, file handles, network sockets) are freed. This deterministic, scope-based resource management is known as `RAII` (**Resource Acquisition Is Initialization**), a pattern familiar to C++ developers.
 
-However, Rust makes two crucial changes: 
-- First, it's **universal and non-negotiable**. 
+However, Rust makes two crucial changes:
+- First, it's **universal and non-negotiable**.
 - Second, when a value is **assigned to another variable** or **passed to a function**, its **ownership is moved**. The original variable is now considered uninitialized and cannot be used, a rule enforced at compile time. This elegantly prevents "double frees" and makes the flow of ownership explicit.
 
-[See Section 15.1. ("RAII") of Rust by Example (RBE) for more.](https://doc.rust-lang.org/rust-by-example/scope/raii.html) 
+[See Section 15.1. ("RAII") of Rust by Example (RBE) for more.](https://doc.rust-lang.org/rust-by-example/scope/raii.html)
 
 #### C++ Example (RAII with `std::unique_ptr`):
 
@@ -359,7 +359,7 @@ fn main() {
 }
 ```
 
-While both prevent use-after-move, Rust's ownership is fundamental. This contrasts with garbage-collected languages like Go, where the programmer has no control over when memory is freed, leading to potential non-determinism in resource cleanup and performance. 
+While both prevent use-after-move, Rust's ownership is fundamental. This contrasts with garbage-collected languages like Go, where the programmer has no control over when memory is freed, leading to potential non-determinism in resource cleanup and performance.
 
 For a full breakdown, [see Chapter 4 ("Understanding Ownership") of The Rust Programming Language Book](https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html), as well as [Section 15.2. ("Ownership and moves") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/scope/move.html).
 
@@ -410,7 +410,7 @@ fn main() {
 ```
 The borrow checker sees that `v.push()` requires a mutable borrow of `v` while first holds an immutable borrow. It rejects the program, **preventing the possibility of the bug**.
 
-See [Section 15.3. ("Borrowing") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/scope/borrow.html) for more on this. 
+See [Section 15.3. ("Borrowing") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/scope/borrow.html) for more on this.
 
 ### Lifetimes: Eliminating Dangling Pointers
 
@@ -448,16 +448,16 @@ fn main() {
     {
         let string2 = String::from("xyz");
         // This works because both s1 and s2 are valid here.
-        result = get_longest(&string1, &string2); 
+        result = get_longest(&string1, &string2);
         println!("Inside scope, longest is: {}", result); // This is fine.
     }
     // println!("The longest string is {}", result); // COMPILE ERROR! `string2` does not live long enough.
 }
 ```
 
-The Rust compiler understands that `string2` is destroyed at the end of the inner scope. It sees that result could potentially be a reference to `string2`, and therefore flags the final `println!` as an error because result would be a dangling pointer. This entire class of bugs is eliminated at compile time. How cute is that?  
+The Rust compiler understands that `string2` is destroyed at the end of the inner scope. It sees that result could potentially be a reference to `string2`, and therefore flags the final `println!` as an error because result would be a dangling pointer. This entire class of bugs is eliminated at compile time. How cute is that?
 
-For a deep dive, [see Chapter 10 ("Generic Types, Traits, and Lifetimes") of The Rust Book](https://doc.rust-lang.org/book/ch10-00-generics.html), as well as [Section 15.4. ("Lifetimes") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/scope/lifetime.html). 
+For a deep dive, [see Chapter 10 ("Generic Types, Traits, and Lifetimes") of The Rust Book](https://doc.rust-lang.org/book/ch10-00-generics.html), as well as [Section 15.4. ("Lifetimes") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/scope/lifetime.html).
 
 ## A Modern Development Experience: Abstractions and Tooling
 
@@ -473,7 +473,7 @@ Rust comes with `Cargo`, an integrated package manager and build system that is 
 
 - **Integrated Toolchain:** A single cargo command can build your project (`cargo build`), run tests (`cargo test`), generate test coverage (`cargo tarpaulin`), run benchmarks (`cargo bench`), generate documentation (`cargo doc`), format code (`cargo fmt`), and run a powerful static analyzer (`cargo clippy`). This consistency is a massive productivity boost compared to orchestrating `Makefiles`, `CMake`, `Doxygen`, and `Clang-Tidy`.
 
-See [Chapter 7 ("Managing Growing Projects with Packages, Crates, and Modules")](https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html) and [Chapter 14 ("More About Cargo and Crates.io")](https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html) of The Rust Book, as well as [Section 12 of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/cargo.html) for more. 
+See [Chapter 7 ("Managing Growing Projects with Packages, Crates, and Modules")](https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html) and [Chapter 14 ("More About Cargo and Crates.io")](https://doc.rust-lang.org/book/ch14-00-more-about-cargo.html) of The Rust Book, as well as [Section 12 of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/cargo.html) for more.
 
 ### A Precise GUI Example: OOP vs. Data-Oriented
 
@@ -562,7 +562,7 @@ fn draw_all_widgets(widgets: &[&dyn Draw]) {
 
 This is far more flexible. The **data** (`Button`, `Image`) is **decoupled** from the **behavior** (`Draw`, `EventHandler`). An `Image` doesn't carry the dead weight of an event-handling method it will never use. If we need a new kind of interactive element, we just implement the `EventHandler` trait for it, without needing to fit it into a rigid `Widget` hierarchy.
 
-More on Rust's "Object-Oriented Programming (OOP)" features [in Chapter 18 ("Object-Oriented Programming Features of Rust") of The Rust Book](https://doc.rust-lang.org/book/ch18-00-oop.html). 
+More on Rust's "Object-Oriented Programming (OOP)" features [in Chapter 18 ("Object-Oriented Programming Features of Rust") of The Rust Book](https://doc.rust-lang.org/book/ch18-00-oop.html).
 
 ### Robust Error Handling: Result vs. Exceptions and `nil`
 
@@ -632,18 +632,18 @@ fn read_username_from_file() -> Result<String, io::Error> {
     // The '?' operator propagates the error automatically. If File::open fails,
     // the function immediately returns the Err variant.
     let mut file = File::open("username.txt")?;
-    
+
     let mut username = String::new();
     // The '?' operator does the same for the read operation.
     file.read_to_string(&mut username)?;
-    
+
     // If both operations succeed, return the username wrapped in Ok.
     Ok(username)
 }
 ```
 The `?` operator provides concise error propagation that is still explicit and type-checked, offering the best of both worlds: **less boilerplate** than Go and **more safety and clarity** than C++/Java exceptions.
 
-[See Chapter 9 ("Error Handling") of The Rust Book](https://doc.rust-lang.org/book/ch09-00-error-handling.html), as well as [Section 18 ("Error handling") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/error.html) for more. 
+[See Chapter 9 ("Error Handling") of The Rust Book](https://doc.rust-lang.org/book/ch09-00-error-handling.html), as well as [Section 18 ("Error handling") of Rust by Example (RBE)](https://doc.rust-lang.org/rust-by-example/error.html) for more.
 
 ## Industry Adoption: From Theory to Production Code
 
@@ -656,7 +656,7 @@ The benefits of Rust are not just theoretical. Some of the world's largest techn
 - **Amazon Web Services (AWS):** AWS has used Rust to build some of its most critical and performance-sensitive infrastructure. [Firecracker](https://firecracker-microvm.github.io/), the virtualization technology that powers AWS Lambda and Fargate, is written in Rust, leveraging its safety and speed for secure multi-tenant isolation.
 
 - **The Linux Kernel:** Perhaps the most significant endorsement for any systems language, Rust was officially accepted for kernel development in 2022, joining the exclusive ranks of C and assembly. This is a milestone that C++, despite its decades of existence, has never achieved (I believe this is what is referred to as "skill issue" nowadays). The reasons for C++'s exclusion were articulated very CLEARLY by Linus Torvalds in a [now-famous 2004 mailing list post](https://harmful.cat-v.org/software/c++/linus):
-    > In fact, in Linux we did try C++ once already, back in 1992. It sucks. Trust me - writing kernel code in C++ is a BLOODY STUPID IDEA. The fact is, C++ compilers are not trustworthy. They were even worse in 1992, but some fundamental facts haven't changed: 
+    > In fact, in Linux we did try C++ once already, back in 1992. It sucks. Trust me - writing kernel code in C++ is a BLOODY STUPID IDEA. The fact is, C++ compilers are not trustworthy. They were even worse in 1992, but some fundamental facts haven't changed:
     > the whole C++ exception handling thing is fundamentally broken. It's especially broken for kernels.
     > any compiler or language that likes to hide things like memory
     > allocations behind your back just isn't a good choice for a kernel.

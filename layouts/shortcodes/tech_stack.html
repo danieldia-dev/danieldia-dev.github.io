@@ -7,8 +7,8 @@
         {{/* Define the list of technologies and tools */}}
         {{ $techs := .Page.Params.tech_stack | default (slice
             "Linux" "Python" "Pandas" "Numpy" "PyTorch" "OOP" "TensorFlow"
-            "Rust (w/ Tokio)" "SQL" "C/C++" "Git" "GitHub Actions (CI/CD)"
-            "Bash" "F*" "Lean4" "Embedded Programming (ESP32)" "hax"
+            "Rust (w/ Tokio)" "SQL" "C/C++" "Git" "GitHub Actions" "Jenkins"
+            "Bash" "F*" "Lean4" "Embedded Programming (ESP32)" "hax" "Soldering"
         ) }}
         <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
             {{ range $techs }}
