@@ -3,21 +3,21 @@ title: "About Me"
 draft: false
 ---
 
-Hello! I am Daniel Dia 👋
+Hello! I'm Daniel Dia 👋
 
-Welcome to my personal space on the web! 
+Welcome to my personal corner of the web.
 
-I am a Computer & Communications Engineering (CCE) and Mathematics dual degree student at the American University of Beirut (AUB), driven to apply a strong theoretical foundation to solve complex, real-world problems.
+I'm a first-year Computer & Communications Engineering (CCE) and Mathematics dual degree student at the American University of Beirut (AUB).
 
-My journey is grounded in a deep fascination with the powerful intersection of mathematics 📈, software 💻, and electrical engineering💡(and quantitative finance 🧠). I am passionate about translating advanced theoretical concepts—from mathematical analysis and linear algebra to information theory—into high-impact applications. 
+---
 
-In addition, I am interested in leveraging dynamical systems, ergodic theory, and numerical methods to create more efficient simulations and algorithmic analyses, especially in the context of finance and computational nonsmooth dynamics.
+My passion lies at the intersection of **mathematics**, **cryptography**, and **systems programming**. I'm driven to create software that is not just *functional*, but also verifiably *correct*, *efficient*, and **secure**.
 
-I believe in principled software engineering: creating software that is not just functional, but also verifiably correct, efficient, and memory-safe. This focus steers my deep interest in languages like Rust and C, foundational systems like the Linux kernel, and the elegance of data structures and algorithms. 
+As an energetic and highly motivated person, my central goal is to democratize access to high-quality technical knowledge and help others explore the "why" behind everything. I'm driven by a profound sense of initiative, whether that's tutoring, developing open-source tools, or designing hands-on workshops. I thrive on demystifying complex subjects and making them accessible to a wider audience.
 
-This extends to my work in machine learning and deep Learning, where I focus on building efficient AI with applications in embedded software on microcontrollers. I am currently exploring how formal methods and proof assistants like Lean4 can be used to verify software correctness, especially in building secure and robust machine learning models.
+---
 
-Ultimately, my motivation is to help democratize access to high-quality technical knowledge. This belief has driven me to tutor fellow students, contribute to Wikipedia, and develop open-source tools. I am always eager to contribute a community-focused mindset and advanced technical skills to impactful projects. 🚀
+My technical focus is on principled, low-level software engineering. This ranges from embedded systems programming with `C` and `C++` on platforms like the `ESP32`, to exploring foundational systems like the `Linux` kernel, to building modern, memory-safe applications in `Rust`. I'm particularly interested in high-assurance cryptography, using formal methods and tools like `F*`, `Lean4`, `ProVerif`, and `hax` to build provably secure protocols and ensure correct implementation. 🚀
 
 ---
 

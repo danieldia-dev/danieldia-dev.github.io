@@ -1,7 +1,7 @@
 ---
 title: "DynamiXplore: A High-Performance Framework for Dynamical Systems"
 date: 2025-06-29
-draft: false
+draft: true
 category: "Project"
 image: "lorenz_attractor.jpg"
 link: "https://github.com/Kibalchish47/dynamixplore"
@@ -17,7 +17,7 @@ Developed in collaboration with [**Dr. Theresa Honein**](https://thh00.github.io
 
 ### The Problem: A Fragmented & Inefficient Workflow
 
-Scientists across disciplines—from physics and engineering to economics and biology—rely on numerical simulation to understand complex phenomena. Traditionally in Python, this requires piecing together disparate tools: `SciPy` for ODE solving, specialized libraries for chaos analysis, and `Matplotlib` or `Plotly` for visualization. This workflow is not only cumbersome but also creates significant performance bottlenecks, making the analysis of long, high-dimensional trajectories prohibitively slow.
+Scientists across disciplines—from physics and engineering to economics and biology — rely on numerical simulation to understand complex phenomena. Traditionally in Python, this requires piecing together disparate tools: `SciPy` for ODE solving, specialized libraries for chaos analysis, and `Matplotlib` or `Plotly` for visualization. This workflow is not only cumbersome but also creates significant performance bottlenecks, making the analysis of long, high-dimensional trajectories prohibitively slow.
 
 **DynamiXplore** solves this by offering a single, unified toolkit built for performance from the ground up.
 

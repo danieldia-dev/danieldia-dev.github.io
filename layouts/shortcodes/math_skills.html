@@ -6,9 +6,9 @@
         </h2>
         {{/* Define the list of mathematical skills and theories */}}
         {{ $math_skills := .Page.Params.math_skills | default (slice
-            "Probability Theory" "Statistics" "Real & Complex Analysis" "Linear & Abstract Algebra"
-            "Information Theory" "Ergodic Theory" "Dynamical Systems" "Numerical Methods"
-            "Data Structures & Algorithms" "Computer architecture"
+            "Cryptography" "Abstract Algebra" "Field Theory" "Data Structures & Algorithms" "Formal Verification"
+            "Zero-Knowledge (ZK) Proofs" "Probability Theory" "Computer architecture" "Information Theory"
+            "Digital Circuit Design" "Mathematical Analysis"
         ) }}
         <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
             {{ range $math_skills }}

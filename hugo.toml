@@ -1,6 +1,6 @@
-baseURL = "https://kibalchish47.github.io/" # Replace with your actual username if different
+baseURL = "https://danieldia-dev.github.io/" # Replace with your actual username if different
 languageCode = "en-us"
-title = "Daniel Dia's Personal Website"
+title = "Daniel Dia's Website"
 
 # Number of items per page for lists (blog, portfolio)
 [pagination]
@@ -27,7 +27,7 @@ target = 'assets/notwatching/hugo_stats.json'
 
 [params]
 AuthorName = "Daniel Dia"
-tagline = "Computer & Communications Engineering & Mathematics student @AUB | Economics Enthusiast" # Update with your tagline
+tagline = "Computer & Communications Engineering & Mathematics student @AUB | Cryptography Enthusiast" # Update with your tagline
 profilePic = "pfp_small_blurred.png"                                                    # Path relative to static folder, e.g., static/D2.png
 goatcounter_code = "danieldia"
 
@@ -41,8 +41,29 @@ codeFences = true
 guessSyntax = true
 noClasses = false
 
-# Note: If your repo is kibalchish47.github.io (user/org page), baseURL is fine.
-# If it's a project page like kibalchish47.github.io/my-repo,
-# baseURL should be "https://kibalchish47.github.io/my-repo/"
-# For kibalchish47.github.io repository, the baseURL should just be "https://kibalchish47.github.io/"
-# And the site will be served from the root of the domain.
+# Main navigation menu
+[menu]
+  [[menu.main]]
+    name = "Homepage"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 20
+  [[menu.main]]
+    name = "Portfolio"
+    url = "/portfolio/"
+    weight = 30
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 40
+  [[menu.main]]
+    name = "Academia"
+    url = "/academia/"
+    weight = 50
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 60
