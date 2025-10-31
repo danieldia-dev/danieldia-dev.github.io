@@ -10,7 +10,7 @@ logo: "logos/life-logo.png"
 
 Selected as a LIFE Scholar for dedication to academic excellence and a commitment to making a positive impact, joining a global network that empowers Lebanese talent through mentorship and community engagement.
 
-As a recipient of the LIFE Scholarship, I was awarded financial support of up to $4,000 per academic year for my entire undergraduate education at AUB. 
+As a recipient of the LIFE Scholarship, I was awarded financial support of up to $4,000 per academic year for my entire undergraduate education at AUB.
 
 My responsibilities and engagement as an active member of the LIFE community include:
 

@@ -22,8 +22,6 @@ tagline: "Computer & Communications Engineering & Mathematics student @AUB | Cry
       </div>
   </div>
 </div>
-
 {{< recent_experience >}}
-
 {{< recent_projects count=2 >}}
 {{< recent_blog_posts count=1 >}}
