@@ -1,6 +1,6 @@
 ---
 title: "Bridging the Gap: Authoring Comprehensive Documentation for the hax Formal Verification Tool"
-date: 2025-11-17
+date: 2025-11-15
 draft: false
 category: "Open-Source"
 summary: "Authored an 8-module technical documentation set for the `hax` formal verification library to lower its barrier to entry. The work was shared and discussed by the project's core team."
