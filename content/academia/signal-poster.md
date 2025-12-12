@@ -31,6 +31,6 @@ To make these concepts more tangible, I built an **interactive web visualization
 
 [Explore the interactive Double Ratchet demo here!](https://doubleratchetsignal.netlify.app/)
 
-[View the full poster (PDF)]()
+[View the full poster (PDF)](https://github.com/danieldia-dev/danieldia-dev.github.io/blob/main/static/academia/CMPS297AD_poster_dark.pdf)
 
 This work represents the convergence of several themes I'm passionate about: formal verification, cryptographic systems, and making complex theoretical concepts accessible to practitioners. It's particularly exciting to see how the same verification techniques I've been studying—dependent types, F*, and automated provers—are being applied to secure the communications of billions of people in the real world.
