@@ -9,19 +9,19 @@ tags: ["AUB", "Undergraduate", "Mathematics", "Computer Science", "Engineering"]
 ---
 
 ## Mathematics
-- MATH201: Calculus & Analytic Geometry III
-- MATH219: (Honors) Linear Algebra I
+- MATH201: Calculus & Analytic Geometry III (Fall 2025)
+- MATH219: (Honors) Linear Algebra I (Fall 2025)
 
 ## Engineering
-- EECE210: Electric Circuits
-- FEAA200: Introduction to Engineering and Architecture
+- EECE210: Electric Circuits (Fall 2025)
+- FEAA200: Introduction to Engineering and Architecture (Fall 2025)
 
 ## Computer Science
-- CMPS297AD/396AI: Applied Cryptography
+- CMPS297AD/396AI: Applied Cryptography (Fall 2025, audit)
 
 ## Economics & Finance
 
 ## Physics & Natural Sciences
 
 ## Humanities & Other Courses
-- ENGL203: Academic English
+- ENGL203: Academic English (Fall 2025)
